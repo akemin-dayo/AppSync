@@ -20,6 +20,10 @@ On the contrary, the AppSync implementation here ultilizes the dynamic hooking f
 
 Again, AppSync is __NOT__ meant to support privacy. __Please no piracy and support developers!__
 
+Reference
+------
+[com.saurik.iphone.fmil by @saurik](http://svn.saurik.com/repos/menes/trunk/tweaks/fmil/Tweak.mm)
+
 Build
 ------
     git clone --recursive https://github.com/linusyang/AppSync.git
