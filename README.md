@@ -18,7 +18,7 @@ Currently, all so-called "AppSync for iOS 7" is made by the notorious Chinese iO
 
 On the contrary, the AppSync implementation here ultilizes the dynamic hooking function `MSHookFunction` of Cydia Substrate by @saurik to bypass the signature check, which does not modify any system files and is more generic, stable and safe.
 
-Again, AppSync is __NOT__ meant to support privacy. __Please no piracy and support developers!__
+Again, AppSync is __NOT__ meant to support piracy. __Please no piracy and support developers!__
 
 Reference
 ------
