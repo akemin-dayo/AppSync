@@ -1,0 +1,13 @@
+Package: com.linusyang.appsync
+Name: AppSync
+Priority: standard
+Pre-Depends: firmware (>= 5.0), mobilesubstrate
+Conflicts: us.hackulo.appsync50plus
+Provides: appsync
+Version: 0.1
+Architecture: iphoneos-arm
+Description: AppSync for iOS 5, 6 and 7+
+Maintainer: Linus Yang <laokongzi@gmail.com>
+Author: Linus Yang <laokongzi@gmail.com>
+Sponsor: Linus Yang <http://linusyang.com>
+Section: Tweaks
