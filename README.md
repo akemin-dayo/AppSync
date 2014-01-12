@@ -26,7 +26,13 @@ Reference
 
 Build
 ------
-    git clone --recursive https://github.com/linusyang/AppSync.git
-    cd AppSync
-    make
-    make package # If you have dpkg-deb utilities
+```Bash
+git clone --recursive https://github.com/linusyang/AppSync.git
+cd AppSync
+make
+make package # If you have dpkg-deb utilities
+```
+
+License
+------
+Licensed under [GPLv3](http://www.gnu.org/copyleft/gpl.html).
