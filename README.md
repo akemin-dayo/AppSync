@@ -1,7 +1,7 @@
 # AppSync for iOS 7 
 _iOS 5+ is supported_
 
-v0.1 by Linus Yang
+Copyright (c) 2014 Linus Yang
 
 ## Things you need to know first
 * __AppSync__ is __NOT__ for piracy. 
