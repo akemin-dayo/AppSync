@@ -14,7 +14,7 @@ Introduction
 ------
 _AppSync_ is a tool to synchronize your IPA Package freely, especially useful for iOS developers who are not enrolled in the iOS developers' program to test their apps on devices.
 
-Currently, all so-called "AppSync for iOS 7" is made by the notorious Chinese iOS piracy website pp25.com. This pp25 version of AppSync modifies `installd`'s launch daemon plist file for interposing signature checking routines, which is __an ugly workaround__ and __extremely unstable__, causing force close of system apps, or other unexpected behaviours.
+Currently, all so-called "AppSync for iOS 7" is made by the notorious Chinese iOS piracy website [25pp.com](http://pro.25pp.com). This 25pp version of AppSync modifies `installd`'s launch daemon plist file for interposing signature checking routines, which is __an ugly workaround__ and __extremely unstable__, causing force close of system apps, or other unexpected behaviours.
 
 On the contrary, the AppSync implementation here ultilizes the dynamic hooking function `MSHookFunction` of Cydia Substrate by @saurik to bypass the signature check, which does not modify any system files and is more generic, stable and safe.
 
