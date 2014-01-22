@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 launchctl unload /System/Library/LaunchDaemons/com.apple.mobile.installd.plist
 launchctl load /System/Library/LaunchDaemons/com.apple.mobile.installd.plist
