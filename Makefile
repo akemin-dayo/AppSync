@@ -13,7 +13,7 @@ AppSyncUnified_LIBRARIES = substrate
 include $(THEOS_MAKE_PATH)/tweak.mk
 
 package::
-	dpkg -b transitional/net.angelxwind.appsync70plus
-	dpkg -b transitional/net.angelxwind.appsync60plus
-	dpkg -b transitional/net.angelxwind.appsync50plus
-	mv transitional/net.angelxwind.appsync*plus.deb debs/
+	dpkg -b transitional/nodelete-net.angelxwind.appsync70plus
+	dpkg -b transitional/nodelete-net.angelxwind.appsync60plus
+	dpkg -b transitional/nodelete-net.angelxwind.appsync50plus
+	mv transitional/nodelete-net.angelxwind.appsync*plus.deb debs/
