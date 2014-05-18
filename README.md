@@ -30,7 +30,8 @@ Reference
 
 Compiling AppSync Unified
 -------------------------
-```git clone https://github.com/angelXwind/AppSync.git
+```
+git clone https://github.com/angelXwind/AppSync.git
 cd AppSync
 make
 make package #requires dpkg, install using Homebrew - http://brew.sh/
