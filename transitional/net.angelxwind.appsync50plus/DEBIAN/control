@@ -1,0 +1,10 @@
+Architecture: iphoneos-arm
+Author: Karen Tsai (angelXwind)
+Depends: net.angelxwind.appsyncunified
+Description: Transitional package for AppSync Unified. Please remove this package.
+Maintainer: Karen Tsai (angelXwind)
+Homepage: http://cydia.angelxwind.net/
+Name: AppSync Unified Transitional Package - PLEASE REMOVE
+Package: net.angelxwind.appsync50plus
+Section: Tweaks
+Version: 8.0-as50p

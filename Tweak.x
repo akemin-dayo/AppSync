@@ -1,9 +1,10 @@
 /*
- *    AppSync for iOS 7
- *    https://github.com/linusyang/AppSync
+ *    AppSync Unified
+ *    https://github.com/angelXwind/AppSync
+ *    http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
  *
  *    Cydia Substrate tweak for arbitrary IPA package sync
- *    Copyright (c) 2014 Linus Yang <laokongzi@gmail.com>
+ *    Copyright (c) 2014 Linus Yang <laokongzi@gmail.com>, Karen Tsai <angelXwind@angelxwind.net>
  *
  *    AppSync is NOT for piracy. Use it legally.
  *
@@ -19,7 +20,6 @@
  *
  *    You should have received a copy of the GNU General Public License
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
  */
 
 /* Minimal Cydia Substrate header */
@@ -42,6 +42,7 @@ void MSHookFunction(void *symbol, void *replace, void **result);
 
 DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t b, NSDictionary **info)
 {
+    NSLog(@"Please don't steal AppSync Unified and claim credit for it. It's quite sad that it's so big of a problem that it needs to be addressed in this NSLog.");
     original_MISValidateSignatureAndCopyInfo(path, b, info);
     return 0;
 }
