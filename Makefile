@@ -6,14 +6,14 @@ DEBUG = 0
 
 include $(THEOS)/makefiles/common.mk
 
-AppSyncUnified_FILES = Tweak.x
+AppSyncUnified_FILES = AppSyncUnified.x
 AppSyncUnified_CFLAGS = -fvisibility=hidden
 AppSyncUnified_LIBRARIES = substrate
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 
 package::
-	dpkg -b transitional/nodelete-net.angelxwind.appsync70plus
-	dpkg -b transitional/nodelete-net.angelxwind.appsync60plus
-	dpkg -b transitional/nodelete-net.angelxwind.appsync50plus
+	dpkg-deb -b -Zgzip transitional/nodelete-net.angelxwind.appsync70plus
+	dpkg-deb -b -Zgzip transitional/nodelete-net.angelxwind.appsync60plus
+	dpkg-deb -b -Zgzip transitional/nodelete-net.angelxwind.appsync50plus
 	mv transitional/nodelete-net.angelxwind.appsync*plus.deb debs/
