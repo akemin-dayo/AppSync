@@ -17,3 +17,6 @@ package::
 	dpkg-deb -b -Zgzip transitional/nodelete-net.angelxwind.appsync60plus
 	dpkg-deb -b -Zgzip transitional/nodelete-net.angelxwind.appsync50plus
 	mv transitional/nodelete-net.angelxwind.appsync*plus.deb debs/
+
+clean::
+	rm -f debs/nodelete-net.angelxwind.appsync*plus.deb
