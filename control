@@ -1,5 +1,5 @@
 Conflicts: us.hackulo.appsync50, us.hackulo.appsync50plus
-Depends: mobilesubstrate
+Depends: mobilesubstrate, net.angelxwind.completeppsyncremover
 Depiction: http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
 Maintainer: Karen Tsai (angelXwind) <angelXwind@angelxwind.net>
 Homepage: http://cydia.angelxwind.net/
@@ -8,7 +8,7 @@ Replaces: us.hackulo.appsync50
 Package: net.angelxwind.appsyncunified
 Name: AppSync Unified
 Pre-Depends: firmware (>= 5.0), mobilesubstrate (>= 0.9.5000)
-Version: 4.0
+Version: 4.1
 Architecture: iphoneos-arm
 Description: AppSync Unified allows you to sync and install unsigned iOS applications. Works on iOS 5, 6, and 7.
 Section: Tweaks
