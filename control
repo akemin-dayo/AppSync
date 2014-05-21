@@ -1,5 +1,5 @@
 Conflicts: us.hackulo.appsync50, us.hackulo.appsync50plus
-Depends: mobilesubstrate, net.angelxwind.completeppsyncremover
+Depends: mobilesubstrate
 Depiction: http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
 Maintainer: Karen Tsai (angelXwind) <angelXwind@angelxwind.net>
 Homepage: http://cydia.angelxwind.net/
