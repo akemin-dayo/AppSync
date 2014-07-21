@@ -40,15 +40,18 @@ void MSHookFunction(void *symbol, void *replace, void **result);
     MSHookFunction(_ ## name, (void *) custom_ ## name, (void **) &original_ ## name); \
 } while(0)
 
-DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t b, NSDictionary **info)
-{
-    NSLog(@"Please don't steal AppSync Unified and claim credit for it. It's quite sad that it's so big of a problem that it needs to be addressed in this NSLog.");
+DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t b, NSDictionary **info) {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:@"/var/lib/dpkg/info/net.angelxwind.appsyncunified.list"]) {
+        NSLog(@"You seem to have installed AppSync Unified from an APT repository that is not cydia.angelxwind.net (package ID net.angelxwind.appsyncunified).");
+        NSLog(@"If someone other than Linus Yang (laokongzi) or Karen Tsai (angelXwind) is taking credit for the development of this tweak, they are likely lying.");
+        NSLog(@"Remember: AppSync is NOT for piracy. Use it legally.");
+    }
     original_MISValidateSignatureAndCopyInfo(path, b, info);
     return 0;
 }
 
 %ctor {
-    MSImageRef image = MSGetImageByName("/usr/lib/libmis.dylib");
+    MSImageRef image = MSGetImageByName("/usr/lib/libmis.dylib"); // consider using dlopen()
     if (image == NULL) {
         NSLog(@"AppSync: Failed to load libmis.dylib.");
         return;
