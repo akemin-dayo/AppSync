@@ -44,7 +44,7 @@ Karen's Pineapple Beta Repo: http://cydia.angelxwind.net/beta/
 
 iOS 8 has more or less completely rewritten the `launchd` daemon, and also the codesigning check process (`MISValidateSignatureAndCopyInfo`) in the `installd` daemon. Following these changes, we've rewritten parts of AppSync Unified to work with iOS 8's new `installd`.
 
-However, there is still a major roadblock - which is Cydia Substrate. As of Cydia Substrate version 0.9.5016, Cydia Substrate cannot properly inject code into processes that are running as `mobile`, `installd` being one of them. Therefore, AppSync Unified 5.0 has to inject itself via a rather hacky method, which is basically just calling `cynject` manually.
+However, there is still a major roadblock - which is Cydia Substrate. As of Cydia Substrate version 0.9.5016, Cydia Substrate cannot properly inject code into daemons that are running as `mobile`, `installd` being one of them. Therefore, AppSync Unified 5.0 has to inject itself via a rather hacky method, which is basically just calling `cynject` manually.
 
 While this workaround is still far better than whatever PPSync has come up with, the current limitations of Cydia Substrate in iOS 8 prevent AppSync Unified from being injected properly. Due to the hackish nature of the workaround, the source code to AppSync Unified 5.0 will not be pushed until Cydia Substrate is fixed.
 
