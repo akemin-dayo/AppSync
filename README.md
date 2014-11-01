@@ -14,7 +14,7 @@ Introduction
 ------------
 AppSync Unified is a tweak that patches installd to allow for the installation of unsigned IPA packages on an iOS device. This is particularly useful for iOS developers who are not enrolled in Apple's official iOS Developer Program, as it allows these developers to debug and test their apps on their own devices using modifications such as iOSOpenDev.
 
-As of now, all other so-called "AppSync for iOS 7" packages are actually mirrors of "PPSync," an incredibly strange installd patch made by the notorious Chinese iOS piracy website, [25pp.com](http://pro.25pp.com).
+Many so-called "AppSync" packages found on various piracy-centered repos are actually mirrors of "PPSync," an incredibly strange installd patch made by the notorious Chinese iOS piracy website, [25pp.com](http://pro.25pp.com).
 
 This 25pp version of AppSync, PPSync, modifies `installd`'s launch daemon plist file for interposing signature checking routines, which is **an ugly workaround** and **extremely unstable**, causing system apps to randomly crash, among other undesirable behaviour.
 
