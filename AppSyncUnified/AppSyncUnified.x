@@ -127,6 +127,20 @@ DECL_FUNC(SecCertificateCopySubjectSummary, CFStringRef, SecCertificateRef certi
 
 DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t b, NSDictionary **info)
 {
+#ifdef KAREN_ASU
+    if (![[NSFileManager defaultManager] fileExistsAtPath:@"/var/lib/dpkg/info/net.angelxwind.appsyncunified.list"]) {
+        NSLog(@"You seem to have installed AppSync Unified from an APT repository that is not cydia.angelxwind.net (package ID net.angelxwind.appsyncunified).");
+        NSLog(@"If someone other than Linus Yang (laokongzi) or Karen Tsai (angelXwind) is taking credit for the development of this tweak, they are likely lying.");
+        NSLog(@"Remember: AppSync Unified is NOT for piracy. Use it legally.");
+    }
+#endif
+#ifdef YANG_ASU
+    if (![[NSFileManager defaultManager] fileExistsAtPath:@"/var/lib/dpkg/info/com.linusyang.appsync.list"]) {
+        NSLog(@"You seem to have installed AppSync from an APT repository that is not yangapp.googlecode.com/svn/ (package ID com.linusyang.appsync).");
+        NSLog(@"If someone other than Linus Yang (laokongzi) or Karen Tsai (angelXwind) is taking credit for the development of this tweak, they are likely lying.");
+        NSLog(@"Remember: AppSync is NOT for piracy. Use it legally.");
+    }
+#endif
     COPY_NSLOG_ONCE(kInfoBytes, kInfoBytesLength, kSecMagicBytes[0]);
     original_MISValidateSignatureAndCopyInfo(path, b, info);
     if (info == NULL) {
