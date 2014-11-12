@@ -1,0 +1,20 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/Karen/Development/AppSync",
+			"follow_symlinks": false,
+            "path": ".",
+            "file_exclude_patterns": [
+                "*.deb"
+            ],
+            "folder_exclude_patterns": [
+                "_",
+                "obj",
+                "theos",
+                ".theos",
+                "debs"
+            ]
+		}
+	]
+}

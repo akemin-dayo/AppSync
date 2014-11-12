@@ -1,4 +1,0 @@
-#!/bin/sh
-#karen was here o u o
-launchctl stop com.apple.mobile.installd
-launchctl start com.apple.mobile.installd

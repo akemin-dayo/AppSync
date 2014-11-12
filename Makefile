@@ -5,12 +5,10 @@ TARGET_IPHONEOS_DEPLOYMENT_VERSION = 5.0
 DEBUG = 0
 
 include $(THEOS)/makefiles/common.mk
-
-AppSyncUnified_FILES = AppSyncUnified.x
-AppSyncUnified_CFLAGS = -fvisibility=hidden
-AppSyncUnified_LIBRARIES = substrate
-
-include $(THEOS_MAKE_PATH)/tweak.mk
+SUBPROJECTS += AppSyncUnified
+SUBPROJECTS += postinst
+SUBPROJECTS += asu_inject
+include $(THEOS_MAKE_PATH)/aggregate.mk
 
 package::
 	dpkg-deb -b -Zgzip transitional/nodelete-net.angelxwind.appsync70plus
@@ -19,4 +17,7 @@ package::
 	mv transitional/nodelete-net.angelxwind.appsync*plus.deb debs/
 
 clean::
-	rm -f debs/nodelete-net.angelxwind.appsync*plus.deb
+	rm -f debs/*.deb
+
+stage::
+	find "$(THEOS_STAGING_DIR)" -type f \( -iname "*.strings" -o -iname "*.plist" \) -exec plutil -convert binary1 {} \;

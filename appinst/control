@@ -1,0 +1,14 @@
+Package: com.linusyang.appinst
+Name: App Installer
+Priority: standard
+Pre-Depends: firmware (>= 5.0)
+Depends: net.angelxwind.appsyncunified (>= 5.1)
+Version: 0.2
+Architecture: iphoneos-arm
+Description: install ipa files from command line
+Maintainer: Karen Tsai <angelXwind@angelxwind.net>
+Author: Linus Yang <laokongzi+appsync@gmail.com>
+Section: Utilities
+Homepage: https://github.com/angelXwind/AppSync
+Tag: role::enduser, purpose::console
+Depiction: http://cydia.angelxwind.net/?page/com.linusyang.appinst
