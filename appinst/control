@@ -3,7 +3,7 @@ Name: App Installer
 Priority: standard
 Pre-Depends: firmware (>= 5.0)
 Depends: net.angelxwind.appsyncunified (>= 5.1)
-Version: 0.2
+Version: 0.2-asu
 Architecture: iphoneos-arm
 Description: install ipa files from command line
 Maintainer: Karen Tsai <angelXwind@angelxwind.net>
