@@ -1,4 +1,4 @@
-Conflicts: us.hackulo.appsync50, us.hackulo.appsync50plus, com.hackyouriphone.appsync7, com.teiron.ppsync, appsync50plus2.25pp, com.linusyang.appsync, com.sull.appsyncunified, com.sull.appsyncunifiedbeta
+Conflicts: us.hackulo.appsync50, us.hackulo.appsync50plus, com.hackyouriphone.appsync7, com.teiron.ppsync, appsync50plus2.25pp, com.linusyang.appsync, com.sull.appsyncunified, com.sull.appsyncunifiedbeta, com.xsellize.appsync50, com.xsellize.appsync50plus, appsync50plus.178
 Depends: firmware (>= 5.0), mobilesubstrate (>= 0.9.5100)
 Depiction: http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
 Maintainer: Karen Tsai (angelXwind) <angelXwind@angelxwind.net>
