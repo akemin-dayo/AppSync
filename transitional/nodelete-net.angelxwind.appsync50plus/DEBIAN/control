@@ -4,8 +4,8 @@ Depends: net.angelxwind.appsyncunified
 Description: Transitional package for AppSync Unified.
 Maintainer: Karen Tsai (angelXwind)
 Homepage: http://cydia.angelxwind.net/
-Name: AppSync Unified Transitional Package - AppSync for iOS 5.0+
+Name: AppSync Unified Transitional Package (50plus)
 Package: net.angelxwind.appsync50plus
 Section: Tweaks
-Version: 8.8
-Depiction: http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
+Version: 9.0
+Depiction: http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-transitional
