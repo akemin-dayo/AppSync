@@ -1,9 +1,8 @@
 {
-	"folders":
-	[
-		{
-			"path": "/Users/Karen/Development/AppSync",
-			"follow_symlinks": false,
+    "folders":
+    [
+        {
+            "follow_symlinks": false,
             "path": ".",
             "file_exclude_patterns": [
                 "*.deb"
@@ -15,6 +14,6 @@
                 ".theos",
                 "debs"
             ]
-		}
-	]
+        }
+    ]
 }
