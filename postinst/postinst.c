@@ -62,6 +62,10 @@ int main(int argc, const char **argv)
 		return 1;
 	}
 	if (SYSTEM_GE_IOS_8()) {
+		if (access(PLIST_PATH_IOS_8, F_OK) == -1) {
+			INFO("symlinking installd plist...");
+			symlink(PLIST_PATH, PLIST_PATH_IOS_8);
+		}
 		run_launchctl(PLIST_PATH_IOS_8, "unload");
 		run_launchctl(PLIST_PATH_IOS_8, "load");
 #ifdef INJECT_HACK

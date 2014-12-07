@@ -1,4 +1,4 @@
-Conflicts: us.hackulo.appsync50, us.hackulo.appsync50plus, com.hackyouriphone.appsync7, com.teiron.ppsync, appsync50plus2.25pp, com.linusyang.appsync, com.sull.appsyncunified, com.sull.appsyncunifiedbeta, com.xsellize.appsync50, com.xsellize.appsync50plus, appsync50plus.178
+Conflicts: us.hackulo.appsync50, us.hackulo.appsync50plus, com.hackyouriphone.appsync7, com.teiron.ppsync, appsync50plus2.25pp, com.linusyang.appsync, com.sull.appsyncunified, com.sull.appsyncunifiedbeta, com.xsellize.appsync50, com.xsellize.appsync50plus, appsync50plus.178, appsync50plus2.178
 Depends: firmware (>= 5.0), mobilesubstrate (>= 0.9.5100)
 Depiction: http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
 Maintainer: Karen Tsai (angelXwind) <angelXwind@angelxwind.net>
@@ -7,7 +7,7 @@ Provides: appsync
 Replaces: us.hackulo.appsync50
 Package: net.angelxwind.appsyncunified
 Name: AppSync Unified
-Version: 5.2
+Version: 5.3
 Architecture: iphoneos-arm
 Description: AppSync Unified allows you to sync and install unsigned iOS applications. Works on iOS 5, 6, 7, and 8.
 Section: Tweaks

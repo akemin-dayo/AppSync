@@ -34,6 +34,9 @@ MSImageRef MSGetImageByName(const char *file);
 void *MSFindSymbol(MSImageRef image, const char *name);
 void MSHookFunction(void *symbol, void *replace, void **result);
 
+#define KAREN_ASU_PATH "/var/lib/dpkg/info/net.angelxwind.appsyncunified.list"
+#define YANG_ASU_PATH "/var/lib/dpkg/info/com.linusyang.appsync.list"
+
 #ifdef DEBUG
 #define LOG(...) NSLog(@"AppSync Unified: " __VA_ARGS__)
 #else
@@ -128,14 +131,14 @@ DECL_FUNC(SecCertificateCopySubjectSummary, CFStringRef, SecCertificateRef certi
 DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t b, NSDictionary **info)
 {
 #ifdef KAREN_ASU
-	if (![[NSFileManager defaultManager] fileExistsAtPath:@"/var/lib/dpkg/info/net.angelxwind.appsyncunified.list"]) {
+	if (access(KAREN_ASU_PATH, F_OK) == -1) {
 		NSLog(@"You seem to have installed AppSync Unified from an APT repository that is not cydia.angelxwind.net (package ID net.angelxwind.appsyncunified).");
 		NSLog(@"If someone other than Linus Yang (laokongzi) or Karen Tsai (angelXwind) is taking credit for the development of this tweak, they are likely lying.");
 		NSLog(@"Remember: AppSync Unified is NOT for piracy. Use it legally.");
 	}
 #endif
 #ifdef YANG_ASU
-	if (![[NSFileManager defaultManager] fileExistsAtPath:@"/var/lib/dpkg/info/com.linusyang.appsync.list"]) {
+	if (access(YANG_ASU_PATH, F_OK) == -1) {
 		NSLog(@"You seem to have installed AppSync from an APT repository that is not yangapp.googlecode.com/svn/ (package ID com.linusyang.appsync).");
 		NSLog(@"If someone other than Linus Yang (laokongzi) or Karen Tsai (angelXwind) is taking credit for the development of this tweak, they are likely lying.");
 		NSLog(@"Remember: AppSync is NOT for piracy. Use it legally.");

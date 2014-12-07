@@ -35,6 +35,15 @@
 #define kAppType @"User"
 #define kAppTypeKey @"ApplicationType"
 #define kRandomLength 6
+#define APPINST_PATH "/var/lib/dpkg/info/com.linusyang.appinst.list"
+#ifdef KAREN_APPINST
+#define REPO "cydia.angelxwind.net"
+#elif YANG_APPINST
+#define REPO "yangapp.googlecode.com/svn/"
+#else
+#define REPO ""
+#endif
+
 static const NSString *kRandomAlphabet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 #define kCopyrightKey (0x13)
@@ -69,6 +78,11 @@ int main(int argc, const char *argv[])
 {
 	@autoreleasepool {
 		COPY_NSLOG(kCopyrightBytes, kCopyrightLength, kCopyrightKey);
+		if (access(APPINST_PATH, F_OK) == -1) {
+			NSLog(@"You seem to have installed appinst from an APT repository that is not %s (package ID com.linusyang.appinst).", REPO);
+			NSLog(@"If someone other than Linus Yang (laokongzi) or Karen Tsai (angelXwind) is taking credit for the development of this tool, they are likely lying.");
+			NSLog(@"Remember: App Installer (appinst) is NOT for piracy. Use it legally.");
+		}
 
 #ifdef INJECT_HACK
 		if (SYSTEM_GE_IOS_8()) {
