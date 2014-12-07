@@ -7,5 +7,6 @@ Homepage: http://cydia.angelxwind.net/
 Name: AppSync Unified Transitional Package (70plus)
 Package: net.angelxwind.appsync70plus
 Section: Tweaks
-Version: 9.0
+Version: 9.2
 Depiction: http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-transitional
+Tag: cydia::obsolete
