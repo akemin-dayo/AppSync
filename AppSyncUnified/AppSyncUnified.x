@@ -95,14 +95,11 @@ static void copyIdentifierAndEntitlements(NSString *path, NSString **identifier,
 	LOG(@"bundle exec: %@", executablePath);
 
 	NSMutableData *data = [NSMutableData data];
-	int ret = copyEntitlementDataFromFile(executablePath.UTF8String, (CFMutableDataRef) data);
-	if (ret == kCopyEntSuccess) {
-		NSError *error;
-		NSDictionary *plist = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:NULL error:&error];
-		*info = [[NSDictionary alloc] initWithDictionary:plist];
-	} else {
-		LOG(@"failed to fetch entitlements: %@", (NSString *) entErrorString(ret));
-	}
+	// int ret = copyEntitlementDataFromFile(executablePath.UTF8String, (CFMutableDataRef) data);
+	// copyEntitlementDataFromFile appears to not affect installation of unsigned apps at all, removing it
+	NSError *error;
+	NSDictionary *plist = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:NULL error:&error];
+	*info = [[NSDictionary alloc] initWithDictionary:plist];
 }
 
 DECL_FUNC(SecCertificateCreateWithData, SecCertificateRef, CFAllocatorRef allocator, CFDataRef data)
