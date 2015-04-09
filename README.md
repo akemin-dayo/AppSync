@@ -1,7 +1,7 @@
 # AppSync Unified
 ###### Unified AppSync dynamic library for iOS 5, 6, 7, and 8.
 
-Copyright (c) 2014 Linus Yang, Karen Tsai (angelXwind)
+Copyright (c) 2014-2015 Linus Yang, Karen Tsai (angelXwind)
 
 Disclaimer
 ----------
@@ -36,6 +36,11 @@ cd AppSync
 make
 make package #requires dpkg, install using Homebrew - http://brew.sh/
 ```
+
+Using AppSync Unified for Development
+-------------------------------------
+
+Read this: [Tutorial: Unsigned iOS App Development with AppSync Unified](http://angelxwind.net/?page/how2asu)
 
 Cydia Repository
 ----------------
