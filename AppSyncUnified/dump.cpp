@@ -439,11 +439,13 @@ int copyEntitlementDataFromFile(const char *path, CFMutableDataRef output)
 						uint8_t *blob = top + data;
 						struct SuperBlob *super = reinterpret_cast<struct SuperBlob *>(blob);
 
-						for (size_t index(0); index != Swap(super->count); ++index) {
-							if (Swap(super->index[index].type) == CSSLOT_ENTITLEMENTS) {
-								uint32_t begin = Swap(super->index[index].offset);
-								struct Blob *entitlements = reinterpret_cast<struct Blob *>(blob + begin);
-								CFDataAppendBytes(output, (const uint8_t *) (entitlements + 1), Swap(entitlements->length) - sizeof(struct Blob));
+						if ((super->count) > -1) {
+							for (size_t index(0); index != Swap(super->count); ++index) {
+								if (Swap(super->index[index].type) == CSSLOT_ENTITLEMENTS) {
+									uint32_t begin = Swap(super->index[index].offset);
+									struct Blob *entitlements = reinterpret_cast<struct Blob *>(blob + begin);
+									CFDataAppendBytes(output, (const uint8_t *) (entitlements + 1), Swap(entitlements->length) - sizeof(struct Blob));
+								}
 							}
 						}
 
