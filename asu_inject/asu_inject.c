@@ -112,14 +112,7 @@ int main(int argc, char* argv[]) {
 	dispatch_queue_t queue = dispatch_queue_create(dispatch_queue_name, 0);
 
 	printf("Finding installd PID...\n");
-	dispatch_async(queue, ^{
-		while(TRUE) {
-			/* XXX this is processor intensive momentarily until said process starts, should gate */
-			boolean_t res = find_process(process_name, &process_pid);
-			if(res)
-				break;
-		}
-	});
+	dispatch_async(queue, ^{ while (!find_process(process_name, &process_pid)); });
 
 	printf("Waiting for queue to come back...\n");
 	/* wait for queue to come back */
