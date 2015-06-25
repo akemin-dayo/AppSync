@@ -95,7 +95,7 @@ static void copyIdentifierAndEntitlements(NSString *path, NSString **identifier,
 	LOG(@"bundle exec: %@", executablePath);
 
 	NSMutableData *data = [NSMutableData data];
-	int ret = copyEntitlementDataFromFile(executablePath.UTF8String, (CFMutableDataRef) data, kCFCoreFoundationVersionNumber >= 1144.17);
+	int ret = copyEntitlementDataFromFile(executablePath.UTF8String, (CFMutableDataRef) data);
 	if (ret == kCopyEntSuccess) {
 		NSError *error;
 		NSDictionary *plist = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:NULL error:&error];

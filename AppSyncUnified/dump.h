@@ -29,7 +29,7 @@ extern "C" {
 
 #include <CoreFoundation/CoreFoundation.h>
 
-int copyEntitlementDataFromFile(const char *path, CFMutableDataRef output, bool is83plus);
+int copyEntitlementDataFromFile(const char *path, CFMutableDataRef output);
 
 enum {
 	kCopyEntSuccess = 0,
