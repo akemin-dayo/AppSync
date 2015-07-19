@@ -438,8 +438,7 @@ int copyEntitlementDataFromFile(const char *path, CFMutableDataRef output) {
 						uint8_t *blob = top + data;
 						struct SuperBlob *super = reinterpret_cast<struct SuperBlob *>(blob);
 
-						// iOS 8.3's installd is weird, so short-circuit it
-						if (kCFCoreFoundationVersionNumber >= 1144.17 || (super->count) > -1) {
+						if ((super->count) > 0) {
 							for (size_t index(0); index != Swap(super->count); ++index) {
 								if (Swap(super->index[index].type) == CSSLOT_ENTITLEMENTS) {
 									uint32_t begin = Swap(super->index[index].offset);
