@@ -101,7 +101,11 @@ static void copyIdentifierAndEntitlements(NSString *path, NSString **identifier,
 		NSDictionary *plist = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:NULL error:&error];
 		NSMutableDictionary *mutableInfo = [[NSMutableDictionary alloc] initWithDictionary:plist];
 		if ([mutableInfo objectForKey:@"application-identifier"] == nil) {
-			[mutableInfo setObject:bundleIdentifier forKey:@"application-identifier"];
+			if ([mutableInfo objectForKey:@"com.apple.developer.team-identifier"] != nil) {
+				[mutableInfo setObject:[NSString stringWithFormat:@"%@.%@", [mutableInfo objectForKey:@"com.apple.developer.team-identifier"], bundleIdentifier] forKey:@"application-identifier"];
+			} else {
+				[mutableInfo setObject:bundleIdentifier forKey:@"application-identifier"];
+			}
 		}
 		*info = [mutableInfo copy];
 	} else {
