@@ -99,7 +99,11 @@ static void copyIdentifierAndEntitlements(NSString *path, NSString **identifier,
 	if (ret == kCopyEntSuccess) {
 		NSError *error;
 		NSDictionary *plist = [NSPropertyListSerialization propertyListWithData:data options:NSPropertyListImmutable format:NULL error:&error];
-		*info = [[NSDictionary alloc] initWithDictionary:plist];
+		NSMutableDictionary *mutableInfo = [[NSMutableDictionary alloc] initWithDictionary:plist];
+		if ([mutableInfo objectForKey:@"application-identifier"] == nil) {
+			[mutableInfo setObject:bundleIdentifier forKey:@"application-identifier"];
+		}
+		*info = [mutableInfo copy];
 	} else {
 		LOG(@"failed to fetch entitlements: %@", (NSString *) entErrorString(ret));
 	}
