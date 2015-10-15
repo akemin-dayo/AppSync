@@ -1,55 +1,56 @@
 # AppSync Unified
-###### Unified AppSync dynamic library for iOS 5, 6, 7, and 8. iOS 9 will not supported.
+###### Unified AppSync dynamic library for iOS 5 and above.
 
-Copyright (c) 2014-2015 Linus Yang, Karen Tsai (angelXwind)
+What is AppSync Unified?
+------------------------
+AppSync Unified is a tweak that patches installd to allow for the installation of fakesigned IPA packages on an iOS device.
 
-Disclaimer
-----------
-* **AppSync Unified** is **NOT** for piracy. 
-* **AppSync Unified** is **for freedom of iOS development with the official Xcode iOS SDK.**
-* **Jailbreaking** is **NOT** for  piracy. 
-* **Jailbreaking** is **for freedom of your iOS device.**
+AppSync Unified can be used to downgrade or clone installed apps, to download fakesigned IPAs (often emulators), and also to assist in the development of iOS applications using Xcode 6 or below.
 
-Introduction
-------------
-AppSync Unified is a tweak that patches installd to allow for the installation of unsigned IPA packages on an iOS device. This is particularly useful for iOS developers who are not enrolled in Apple's official iOS Developer Program, as it allows these developers to debug and test their apps on their own devices using modifications such as iOSOpenDev.
+**AppSync Unified should not be used to pirate iOS apps. Please support iOS developers and do not pirate!**
 
-Many so-called "AppSync" packages found on various piracy-centered repos are actually mirrors of "PPSync," an incredibly strange installd patch made by the notorious Chinese iOS piracy website, [25pp.com](http://pro.25pp.com).
+**I explain the problem with AppSync Unified and iOS piracy rather thoroughly [in this reddit post](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/). Please give it a read.**
 
-This 25pp version of AppSync, PPSync, modifies `installd`'s launch daemon plist file for interposing signature checking routines, which is **an ugly workaround** and **extremely unstable**, causing system apps to randomly crash, among other undesirable behaviour.
-
-Even more baffling is how PPSync's `postinst` script symlinks all system applications to `/User/Applications/`, which ... actually causes more problems than what they were trying to solve. No idea what they were trying to do there.
-
-AppSync Unified utilizes the dynamic hooking function `MSHookFunction` of @saurik's Cydia Substrate to bypass the signature check, which does not modify any system files and is much more stable and safe.
-
-Again, AppSync is **NOT** meant to support piracy. Obviously it can still be used in that way, and I, nor anyone else can really stop you if you want to pirate, but **please don't pirate and support the developers!**
-
-Reference
----------
-[com.saurik.iphone.fmil by @saurik](http://svn.saurik.com/repos/menes/trunk/tweaks/fmil/Tweak.mm)
-
-Compiling AppSync Unified
+Official Cydia Repository
 -------------------------
+You can find AppSync Unified at **Karen's Pineapple Repo: https://cydia.angelxwind.net/** ([depiction page](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified))
+
+If you do not see AppSync Unified in Karen's Pineapple Repo, then that just means you have another repository added that is also hosting an identical copy of AppSync Unified.
+
+How does it work?
+-----------------
+AppSync Unified utilizes the dynamic hooking function `MSHookFunction()` in Cydia Substrate to bypass installd's signature checks. This means AppSync Unified **does not modify any system files and is much more stable and safe as a result.**
+
+Can't this be used to pirate apps?
+----------------------------------
+Unfortunately, yes.
+
+I explain the problem with AppSync Unified and iOS piracy rather thoroughly [in this reddit post](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/). Please give it a read.
+
+**tl;dr: AppSync Unified should not be used to pirate iOS apps. Please support iOS developers and do not pirate!**
+
+What makes this better than the other "AppSync"-esque packages?
+---------------------------------------------------------------
+Many other "AppSync"-esque packages found on various piracy-centered repos are actually all mirrors/repacks of "PPSync," an... incredibly *strange* `installd` patch made by the notorious Chinese iOS piracy website, 25pp.
+
+25pp's version of AppSync, "PPSync," modifies `installd`'s launch daemon plist file to interpose its signature checking routines, which is **an ugly workaround** and **extremely unstable**, causing system apps to randomly crash, among other undesirable behaviour.
+
+Even more baffling is how PPSync's `postinst` creates symbolic links of all system applications to `/User/Applications/`, which causes a multitude of problems.
+
+**tl;dr: AppSync Unified is much more stable than anything else you'll find out there.**
+
+How do I compile AppSync Unified?
+---------------------------------
 ```
 git clone https://github.com/angelXwind/AppSync.git
 cd AppSync
 make
-make package #requires dpkg, install using Homebrew - http://brew.sh/
+make package #requires dpkg, install using Homebrew - see http://brew.sh/
 ```
 
-Using AppSync Unified for Development
--------------------------------------
-
-Read this: [Tutorial: Unsigned iOS App Development with AppSync Unified](https://angelxwind.net/?page/how2asu)
-
-Cydia Repository
-----------------
-
-Karen's Pineapple Repo: https://cydia.angelxwind.net/
-
-AppSync Unified Depiction page: https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
-
-Please don't steal AppSync Unified and take credit for it. You just end up looking like an idiot when you do that.
+How do I use Xcode 6 (or below) to push my developed apps to my device?
+-----------------------------------------------------------------------
+Read this: [Tutorial: How to use AppSync Unified for development with Xcode 6 or below](https://angelxwind.net/?page/how2asu)
 
 License
 -------
