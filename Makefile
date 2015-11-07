@@ -3,6 +3,7 @@ TWEAK_NAME = AppSyncUnified
 IPHONE_ARCHS = armv7 armv7s arm64
 TARGET_IPHONEOS_DEPLOYMENT_VERSION = 5.0
 DEBUG = 0
+PACKAGE_VERSION = $(THEOS_PACKAGE_BASE_VERSION)
 
 include $(THEOS)/makefiles/common.mk
 SUBPROJECTS += AppSyncUnified
