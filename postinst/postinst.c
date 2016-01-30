@@ -31,10 +31,6 @@
 #define PLIST_PATH "/System" PLIST_PATH_IOS_8
 
 #ifdef BUILD_POSTINST
-#define kCopyrightKey (0x13)
-#define kCopyrightLength 23
-static const uint32_t kCopyrightBytes[kCopyrightLength] = {0x931b1a02, 0x53eb819b, 0xabe3099b, 0xd2e2019b, 0x319b3bd9, 0xbe333a3, 0xd99959eb, 0x10ca83e1, 0x1b530bd3, 0xa3db399b, 0xdb81d199, 0x9191139, 0x9afbd3e9, 0x33019a53, 0x93eba0cb, 0xc9c99a31, 0x2b19ad2, 0x399afab2, 0xa292fafa, 0x51f99aea, 0xe19a1ad2, 0xa928252, 0x99c9c8c9};
-
 #ifdef INJECT_HACK
 #include <sys/stat.h>
 #define DEFAULT_WAIT 1
@@ -55,7 +51,9 @@ static int run_launchctl(const char *path, const char *cmd)
 int main(int argc, const char **argv)
 {
 #ifdef BUILD_POSTINST
-	COPY_PRINT(kCopyrightBytes, kCopyrightLength, kCopyrightKey);
+	printf("AppSync Unified for iOS 5 and above\n");
+	printf("Copyright (C) 2014-2016 Linus Yang, Karen Tsai\n");
+	printf("** PLEASE DO NOT USE APPSYNC UNIFIED FOR PIRACY **\n");
 #endif
 	if (geteuid() != 0) {
 		INFO("fatal: must be run as root, quit");

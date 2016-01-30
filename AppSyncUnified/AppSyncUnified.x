@@ -66,9 +66,6 @@ void MSHookFunction(void *symbol, void *replace, void **result);
 static const uint8_t kSecMagicBytes[kSecMagicBytesLength] = {0xa1, 0x13};
 #define kSecSubjectCStr "Apple iPhone OS Application Signing"
 
-#define kInfoBytesLength 10
-static const uint32_t kInfoBytes[kInfoBytesLength] = {0x68e8f97, 0xc67e14de, 0xf16768c, 0xc69e4636, 0x4eac0c4e, 0x14440c9e, 0x8c84ac0c, 0x6e467ea7, 0x940fc606, 0x7e350d0e};
-
 static void copyIdentifierAndEntitlements(NSString *path, NSString **identifier, NSDictionary **info)
 {
 	if (path == nil || identifier == NULL || info == NULL) {
@@ -152,7 +149,6 @@ DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t 
 		NSLog(@"Remember: AppSync is NOT for piracy. Use it legally.");
 	}
 #endif
-	COPY_NSLOG_ONCE(kInfoBytes, kInfoBytesLength, kSecMagicBytes[0]);
 	original_MISValidateSignatureAndCopyInfo(path, b, info);
 	if (info == NULL) {
 		LOG(@"Boo, NULL info");
