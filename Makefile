@@ -12,13 +12,9 @@ SUBPROJECTS += asu_inject
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 package::
-	@dpkg-deb -b -Zgzip transitional/nodelete-net.angelxwind.appsync70plus
-	@dpkg-deb -b -Zgzip transitional/nodelete-net.angelxwind.appsync60plus
-	@dpkg-deb -b -Zgzip transitional/nodelete-net.angelxwind.appsync50plus
-	@mv transitional/nodelete-net.angelxwind.appsync*plus.deb debs/
+	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-net.angelxwind.appsync70plus debs/net.angelxwind.appsync70plus.deb
+	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-net.angelxwind.appsync60plus debs/net.angelxwind.appsync60plus.deb
+	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-net.angelxwind.appsync50plus debs/net.angelxwind.appsync50plus.deb
 
 clean::
 	@rm -f debs/*.deb
-
-stage::
-	@find "$(THEOS_STAGING_DIR)" -type f \( -iname "*.strings" -o -iname "*.plist" \) -exec plutil -convert binary1 {} \;
