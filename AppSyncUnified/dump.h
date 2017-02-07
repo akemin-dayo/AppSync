@@ -40,11 +40,7 @@ enum {
 };
 
 #ifdef DEBUG
-enum {
-	kCFLogLevelError = 3,
-	kCFLogLevelWarning = 4
-};
-extern void CFLog(int32_t level, CFStringRef format, ...);
+#include <CoreFoundation/CFLogUtilities.h>
 CFStringRef entErrorString(int code);
 #endif
 

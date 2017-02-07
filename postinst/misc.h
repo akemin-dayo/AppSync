@@ -29,7 +29,13 @@
 #define kCFCoreFoundationVersionNumber_iOS_8_0 1140.10
 #endif
 
+#ifndef kCFCoreFoundationVersionNumber_iOS_10_0
+#define kCFCoreFoundationVersionNumber_iOS_10_0 1300.0
+#endif
+
 #define SYSTEM_GE_IOS_8() (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0)
+
+#define SYSTEM_GE_IOS_8_LT_IOS_10() (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0 && kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_10_0)
 
 #define INFO(...) do { \
 	fprintf(stdout, __VA_ARGS__); \
