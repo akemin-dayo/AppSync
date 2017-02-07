@@ -38,7 +38,7 @@ void MSHookFunction(void *symbol, void *replace, void **result);
 #define YANG_ASU_PATH "/var/lib/dpkg/info/com.linusyang.appsync.list"
 
 #ifdef DEBUG
-#define LOG(...) NSLog(@"AppSync Unified: " __VA_ARGS__)
+#define LOG(LogContents, ...) NSLog((@"AppSync Unified: %s:%d " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 #define LOG(...)
 #endif
@@ -57,7 +57,7 @@ void MSHookFunction(void *symbol, void *replace, void **result);
 #define LOAD_IMAGE(image, path) do { \
 	image = MSGetImageByName(path); \
 	if (image == NULL) { \
-		LOG(@"Failed to load " #image "."); \
+		LOG(@"Failed to load image: " #image "."); \
 		return; \
 	} \
 } while (0)
@@ -69,17 +69,17 @@ static const uint8_t kSecMagicBytes[kSecMagicBytesLength] = {0xa1, 0x13};
 static void copyIdentifierAndEntitlements(NSString *path, NSString **identifier, NSDictionary **info)
 {
 	if (path == nil || identifier == NULL || info == NULL) {
-		LOG(@"copyIdentifierAndEntitlements: null args");
+		LOG(@"copyIdentifierAndEntitlements: args are NULL, returning");
 		return;
 	}
 
-	LOG(@"bundle path: %@", path);
+	LOG(@"bundle path = %@", path);
 	NSBundle *bundle = [NSBundle bundleWithPath:path];
 
 	NSString *bundleIdentifier = [bundle bundleIdentifier];
 	if (bundleIdentifier != nil) {
 		*identifier = [[NSString alloc] initWithString:bundleIdentifier];
-		LOG(@"bundle id: %@", bundleIdentifier);
+		LOG(@"bundleID = %@", bundleIdentifier);
 	}
 
 	NSString *executablePath = [bundle executablePath];
@@ -89,7 +89,7 @@ static void copyIdentifierAndEntitlements(NSString *path, NSString **identifier,
 		newPaths[newPaths.count - 1] = @"MobileCydia";
 		executablePath = [NSString pathWithComponents:newPaths];
 	}
-	LOG(@"bundle exec: %@", executablePath);
+	LOG(@"bundle exec path = %@", executablePath);
 
 	NSMutableData *data = [NSMutableData data];
 	int ret = copyEntitlementDataFromFile(executablePath.UTF8String, (CFMutableDataRef) data);
@@ -110,12 +110,21 @@ static void copyIdentifierAndEntitlements(NSString *path, NSString **identifier,
 	}
 }
 
+#ifndef kCFCoreFoundationVersionNumber_iOS_10_0
+#define kCFCoreFoundationVersionNumber_iOS_10_0 1300.0
+#endif
+
 DECL_FUNC(SecCertificateCreateWithData, SecCertificateRef, CFAllocatorRef allocator, CFDataRef data)
 {
 	SecCertificateRef result = original_SecCertificateCreateWithData(allocator, data);
+	LOG(@"orig SecCertificateRef = %@", (NSData *)result);
 	if (result == NULL) {
+		// Returning ASU data causes installd to crash on iOS 10
 		CFDataRef dataRef = CFDataCreate(NULL, kSecMagicBytes, kSecMagicBytesLength);
-		if (data != NULL && CFEqual(dataRef, data)) {
+		LOG(@"ASU SecCertificateRef = %@", (NSData *)dataRef);
+		// As a temporary workaround for now, always return the original data on iOS 10
+		// Note that this does NOT enable installation of unsigned/fakesigned iOS apps on iOS 10. It just prevents installd from crashing to make it easier to develop with.
+		if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_10_0 && data != NULL && CFEqual(dataRef, data)) {
 			result = (SecCertificateRef) dataRef;
 		} else {
 			CFRelease(dataRef);
@@ -151,17 +160,19 @@ DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t 
 #endif
 	original_MISValidateSignatureAndCopyInfo(path, b, info);
 	if (info == NULL) {
-		LOG(@"Boo, NULL info");
+		LOG(@"info is NULL :c");
 	} else if (*info == nil) {
-		LOG(@"Ahh, nil info, fake it");
+		LOG(@"info is nil, returning faked info");
 		if (SYSTEM_GE_IOS_8()) {
 			static dispatch_once_t onceToken;
 			dispatch_once(&onceToken, ^{
 				MSImageRef imageSec;
+				LOG(@"Loading and injecting into Security.framework");
 				LOAD_IMAGE(imageSec, "/System/Library/Frameworks/Security.framework/Security");
+				LOG(@"Hooking SecCertificateCreateWithData");
 				HOOK_FUNC(SecCertificateCreateWithData, imageSec);
+				LOG(@"Hooking SecCertificateCopySubjectSummary");
 				HOOK_FUNC(SecCertificateCopySubjectSummary, imageSec);
-				LOG(@"Security.framework injected");
 			});
 
 			NSMutableDictionary *fakeInfo = [[NSMutableDictionary alloc] init];
@@ -179,12 +190,12 @@ DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t 
 			[fakeInfo setObject:[NSData dataWithBytes:kSecMagicBytes length:kSecMagicBytesLength] forKey:@"SignerCertificate"];
 			[fakeInfo setObject:[NSDate date] forKey:@"SigningTime"];
 			[fakeInfo setObject:[NSNumber numberWithBool:NO] forKey:@"ValidatedByProfile"];
-			LOG(@"faked info: %@", fakeInfo);
+			LOG(@"ASU faked info = %@", fakeInfo);
 			*info = fakeInfo;
 		}
 	} else {
-		LOG(@"Hooray, info is okay");
-		LOG(@"orig info: %@", *info);
+		LOG(@"orig info is okay, proceed");
+		LOG(@"orig info = %@", *info);
 	}
 	return 0;
 }
@@ -192,8 +203,9 @@ DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t 
 %ctor {
 	@autoreleasepool {
 		MSImageRef image;
+		LOG(@"Loading and injecting into libmis.dylib");
 		LOAD_IMAGE(image, "/usr/lib/libmis.dylib");
+		LOG(@"Hooking MISValidateSignatureAndCopyInfo");
 		HOOK_FUNC(MISValidateSignatureAndCopyInfo, image);
-		LOG(@"libmis.dylib injected");
 	}
 }

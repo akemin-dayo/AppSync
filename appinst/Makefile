@@ -1,4 +1,4 @@
-TARGET = iphone:clang:latest:5.0
+TARGET = iphone:clang:latest:6.0
 ARCHS = armv7 armv7s arm64
 TARGET_CODESIGN_FLAGS="-Sentitlement.plist"
 THEOS_PACKAGE_DIR_NAME = debs

@@ -30,7 +30,7 @@
 #import "../postinst/misc.h"
 
 #define APPNAME "appinst"
-#define LOG(...) NSLog(@"" __VA_ARGS__)
+#define LOG(LogContents, ...) NSLog((@"appinst: %s:%d " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define kIdentifierKey @"CFBundleIdentifier"
 #define kAppType @"User"
 #define kAppTypeKey @"ApplicationType"
@@ -88,7 +88,7 @@ int main(int argc, const char *argv[])
 		if (SYSTEM_GE_IOS_8()) {
 			pid_t pid_installd = -1;
 			int status = inject_installd(&pid_installd);
-			LOG("inject installd (%d) with return %d", pid_installd, status);
+			LOG("injected into installd (%d) with return code %d", pid_installd, status);
 		}
 #endif
 
@@ -99,20 +99,20 @@ int main(int argc, const char *argv[])
 			if (![fileManager removeItemAtPath:workPath error:nil]) {
 				LOG("failed to remove temporary path: %@, ignore", workPath);
 			} else {
-				LOG("clean up temporary files");
+				LOG("cleaning up temporary files");
 			}
 		}
 
 		/* Check arguments */
 		if (argc != 2) {
-			LOG("usage: " APPNAME " <ipa file>");
+			LOG("Usage: " APPNAME " <path to ipa file>");
 			return AppInstExitCodeUnknown;
 		}
 		
 		/* Check file existence */
 		NSString *filePath = [NSString stringWithUTF8String:argv[1]];
 		if (![fileManager fileExistsAtPath:filePath]) {
-			LOG("file %s not exist", filePath.UTF8String);
+			LOG("The file %s does not exist", filePath.UTF8String);
 			return AppInstExitCodeFileSystem;
 		}
 
@@ -224,10 +224,10 @@ int main(int argc, const char *argv[])
 
 		/* Exit */
 		if (isInstalled) {
-			LOG(@"installed %@", appIdentifier);
+			LOG(@"Successfully installed %@", appIdentifier);
 			return AppInstExitCodeSuccess;
 		}
-		LOG(@"failed to install %@", appIdentifier);
+		LOG(@"Failed to install %@", appIdentifier);
 		return AppInstExitCodeUnknown;
 	}
 }
