@@ -9,6 +9,7 @@
 #**JulioVerne drama: tl;dr version**
 
 * **I am working together with JulioVerne, _not_ "competing" against him**
+* I'm not "jealous" of JulioVerne for being first at getting AppSync Unified to work... I've asked other developers in the community for help, too.
 * iOS 10 boot loop was caused by AppSync Unified crashing `installd` whenever Cydia ran `uicache`
 * JulioVerne's fix uses the actual Apple certificate, which was why I was concerned about copyright.
 * He is trustable, never did anything out of malice. And skilled. He just happens to crack software as a hobby.
@@ -26,6 +27,16 @@ Let's clear some things up.
 First off, a lot of people seem to think I am "competing" with JulioVerne or something. I'm not. I DM'd him on Twitter, asked to know what he did, he gave me the source code, all was fine.
 
 Yes, I would have _preferred_ him make a pull request on GitHub (it's open-source!) or something instead of fragmenting the releases with his own, but he didn't exactly do anything _wrong_.
+
+The only annoying thing about what he did is that now I have to deal with release fragmentation — people don't always read the version number of what they're installing, or _what repo_ they're installing _from_, so there will inevitably be a few people who install the JulioVerne version (or even the _broken-on-iOS-10_ version 5.8!!) even though I've released 6.0~b1. 
+
+**"Jealousy"**
+
+Some other people think that I'm jealous of Julio for being "first" ... I'm not? It's actually a good thing that someone was able to figure it out.
+
+It's not like I was trying to do this alone, either — I had asked two other developers in the community — /u/saurik and /u/ijapija00 to see if either of them had any idea what was causing the Security.framework crash in AppSync Unified. (We still haven't figured that out — I still want to.)
+
+Being first at something is not a reason to be jealous. Instead, learn from them and improve your own work based on their ideas (given permission).
 
 **What caused iOS 10 devices to drop like flies**
 
