@@ -5,7 +5,7 @@
  *	https://github.com/angelXwind/AppSync
  *	http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
  *
- *	Copyright (c) 2014 Linus Yang <laokongzi+appsync@gmail.com>, Karen Tsai <angelXwind@angelxwind.net>
+ *	Copyright (c) 2014 Linus Yang <laokongzi+appsync@gmail.com>, Karen／明美 <angelXwind@angelxwind.net>
  *
  *	AppSync Unified is NOT for piracy. Use it legally.
  *
@@ -52,7 +52,7 @@ int main(int argc, const char **argv)
 {
 #ifdef BUILD_POSTINST
 	printf("AppSync Unified for iOS 5 and above\n");
-	printf("Copyright (C) 2014-2016 Linus Yang, Karen Tsai\n");
+	printf("Copyright (C) 2014-2016 Linus Yang, Karen／明美\n");
 	printf("** PLEASE DO NOT USE APPSYNC UNIFIED FOR PIRACY **\n");
 #endif
 	if (geteuid() != 0) {

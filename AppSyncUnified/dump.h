@@ -5,7 +5,7 @@
  *	https://github.com/angelXwind/AppSync
  *	http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
  *
- *	Copyright (c) 2014 Linus Yang <laokongzi+appsync@gmail.com>, Karen Tsai <angelXwind@angelxwind.net>
+ *	Copyright (c) 2014 Linus Yang <laokongzi+appsync@gmail.com>, Karen／明美 <angelXwind@angelxwind.net>
  *
  *	AppSync Unified is NOT for piracy. Use it legally.
  *

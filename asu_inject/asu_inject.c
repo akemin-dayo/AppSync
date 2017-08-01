@@ -5,7 +5,7 @@
  *	https://github.com/angelXwind/AppSync
  *	http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
  *
- *	Copyright (c) 2014 Karen Tsai <angelXwind@angelxwind.net>
+ *	Copyright (c) 2014 Karen／明美 <angelXwind@angelxwind.net>
  *
  *	AppSync Unified is NOT for piracy. Use it legally.
  *
@@ -105,7 +105,7 @@ static void inject_dylib(const char* name, pid_t pid, const char* dylib) {
 int main(int argc, char* argv[]) {
 	printf("asu_inject for AppSync Unified 5\n");
 	printf("For use on iOS installations with Cydia Substrate version 0.9.5100 or lower");
-	printf("Karen Tsai (angelXwind) / Linus Yang (laokongzi)\n");
+	printf("Karen／明美 (angelXwind) / Linus Yang (laokongzi)\n");
 	printf("AppSync Unified is not for piracy.\n");
 
 	printf("Creating queue...\n");

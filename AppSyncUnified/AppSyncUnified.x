@@ -5,7 +5,7 @@
  *	https://github.com/angelXwind/AppSync
  *	http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
  *
- *	Copyright (c) 2014 Linus Yang <laokongzi+appsync@gmail.com>, Karen Tsai <angelXwind@angelxwind.net>
+ *	Copyright (c) 2014 Linus Yang <laokongzi+appsync@gmail.com>, Karen／明美 <angelXwind@angelxwind.net>
  *
  *	AppSync Unified is NOT for piracy. Use it legally.
  *
@@ -151,14 +151,14 @@ DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t 
 #ifdef KAREN_ASU
 	if (access(KAREN_ASU_PATH, F_OK) == -1) {
 		NSLog(@"You seem to have installed AppSync Unified from an APT repository that is not cydia.angelxwind.net (package ID net.angelxwind.appsyncunified).");
-		NSLog(@"If someone other than Linus Yang (laokongzi) or Karen Tsai (angelXwind) is taking credit for the development of this tweak, they are likely lying.");
+		NSLog(@"If someone other than Linus Yang (laokongzi) or Karen／明美 (angelXwind) is taking credit for the development of this tweak, they are likely lying.");
 		NSLog(@"Remember: AppSync Unified is NOT for piracy. Use it legally.");
 	}
 #endif
 #ifdef YANG_ASU
 	if (access(YANG_ASU_PATH, F_OK) == -1) {
 		NSLog(@"You seem to have installed AppSync from an APT repository that is not yangapp.googlecode.com/svn/ (package ID com.linusyang.appsync).");
-		NSLog(@"If someone other than Linus Yang (laokongzi) or Karen Tsai (angelXwind) is taking credit for the development of this tweak, they are likely lying.");
+		NSLog(@"If someone other than Linus Yang (laokongzi) or Karen／明美 (angelXwind) is taking credit for the development of this tweak, they are likely lying.");
 		NSLog(@"Remember: AppSync is NOT for piracy. Use it legally.");
 	}
 #endif

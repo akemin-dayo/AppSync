@@ -1,12 +1,12 @@
 Architecture: iphoneos-arm
-Author: Karen Tsai (angelXwind)
+Author: Karen／明美 (angelXwind)
 Depends: net.angelxwind.appsyncunified
 Description: Transitional package for AppSync Unified.
-Maintainer: Karen Tsai (angelXwind)
+Maintainer: Karen／明美 (angelXwind)
 Homepage: http://cydia.angelxwind.net/
 Name: AppSync Unified Transitional Package (60plus)
 Package: net.angelxwind.appsync60plus
 Section: Tweaks
-Version: 9.2
-Depiction: http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-transitional
+Version: 9.2.1
+Depiction: https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-transitional
 Tag: cydia::obsolete

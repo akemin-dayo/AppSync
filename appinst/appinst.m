@@ -80,7 +80,7 @@ int main(int argc, const char *argv[])
 		COPY_NSLOG(kCopyrightBytes, kCopyrightLength, kCopyrightKey);
 		if (access(APPINST_PATH, F_OK) == -1) {
 			NSLog(@"You seem to have installed appinst from an APT repository that is not %s (package ID com.linusyang.appinst).", REPO);
-			NSLog(@"If someone other than Linus Yang (laokongzi) or Karen Tsai (angelXwind) is taking credit for the development of this tool, they are likely lying.");
+			NSLog(@"If someone other than Linus Yang (laokongzi) or Karen／明美 (angelXwind) is taking credit for the development of this tool, they are likely lying.");
 			NSLog(@"Remember: App Installer (appinst) is NOT for piracy. Use it legally.");
 		}
 
