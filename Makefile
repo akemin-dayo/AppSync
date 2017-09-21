@@ -1,11 +1,12 @@
-THEOS_PACKAGE_DIR_NAME = debs
-TWEAK_NAME = AppSyncUnified
-IPHONE_ARCHS = armv7 armv7s arm64
-TARGET_IPHONEOS_DEPLOYMENT_VERSION = 5.0
+TARGET =: clang
+ARCHS = armv7 armv7s arm64
 DEBUG = 0
+
+THEOS_PACKAGE_DIR_NAME = debs
 PACKAGE_VERSION = $(THEOS_PACKAGE_BASE_VERSION)
 
 include $(THEOS)/makefiles/common.mk
+
 SUBPROJECTS += AppSyncUnified
 SUBPROJECTS += postinst
 SUBPROJECTS += asu_inject

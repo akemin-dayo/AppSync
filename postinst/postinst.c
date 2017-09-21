@@ -1,45 +1,19 @@
-/*
- *	postinst.c
- *	AppSync Unified
- *
- *	https://github.com/angelXwind/AppSync
- *	http://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified
- *
- *	Copyright (c) 2014 Linus Yang <laokongzi+appsync@gmail.com>, Karen／明美 <angelXwind@angelxwind.net>
- *
- *	AppSync Unified is NOT for piracy. Use it legally.
- *
- *	This program is free software: you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation, either version 3 of the License, or
- *	(at your option) any later version.
- *
- *	This program is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *	GNU General Public License for more details.
- *
- *	You should have received a copy of the GNU General Public License
- *	along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
 #include <CoreFoundation/CoreFoundation.h>
-#include <spawn.h>
-#include "misc.h"
-
-#define PLIST_PATH_IOS_8 "/Library/LaunchDaemons/com.apple.mobile.installd.plist"
-#define PLIST_PATH "/System" PLIST_PATH_IOS_8
-
-#ifdef BUILD_POSTINST
-#ifdef INJECT_HACK
 #include <sys/stat.h>
-#define DEFAULT_WAIT 1
-#define MAX_TRY 15
-#endif
-#endif
+#include <spawn.h>
+#include <version.h>
 
-static int run_launchctl(const char *path, const char *cmd)
-{
+#define DPKG_PATH "/var/lib/dpkg/info/net.angelxwind.appsyncunified.list"
+
+#define L_LAUNCHDAEMON_PATH "/Library/LaunchDaemons"
+#define SL_LAUNCHDAEMON_PATH "/System" L_LAUNCHDAEMON_PATH
+
+#define INSTALLD_PLIST_PATH_L L_LAUNCHDAEMON_PATH "/com.apple.mobile.installd.plist"
+#define INSTALLD_PLIST_PATH_SL SL_LAUNCHDAEMON_PATH "/com.apple.mobile.installd.plist"
+
+#define ASU_INJECT_PLIST_PATH L_LAUNCHDAEMON_PATH "/net.angelxwind.asu_inject.plist"
+
+static int run_launchctl(const char *path, const char *cmd) {
 	const char *args[] = {"/bin/launchctl", cmd, path, NULL};
 	pid_t pid;
 	int stat;
@@ -48,61 +22,46 @@ static int run_launchctl(const char *path, const char *cmd)
 	return stat;
 }
 
-int main(int argc, const char **argv)
-{
-#ifdef BUILD_POSTINST
-	printf("AppSync Unified for iOS 5 and above\n");
-	printf("Copyright (C) 2014-2016 Linus Yang, Karen／明美\n");
+int main(int argc, const char **argv) {
+	printf("AppSync Unified\n");
+	printf("Copyright (C) 2014-2017 Linus Yang, Karen／明美 (angelXwind)\n");
 	printf("** PLEASE DO NOT USE APPSYNC UNIFIED FOR PIRACY **\n");
-#endif
+	if (access(DPKG_PATH, F_OK) == -1) {
+		printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.angelxwind.net (package ID net.angelxwind.appsyncunified).\n");
+		printf("If someone other than Linus Yang (laokongzi) or Karen／明美 (angelXwind) is taking credit for the development of this tool, they are likely lying.\n");
+		printf("Please only download AppSync Unified from the official repository to ensure file integrity and reliability.\n");
+	}
 	if (geteuid() != 0) {
-		INFO("fatal: must be run as root, quit");
+		printf("FATAL: This binary must be run as root.\n");
 		return 1;
 	}
-	if (SYSTEM_GE_IOS_8_LT_IOS_10()) {
-		if (access(PLIST_PATH_IOS_8, F_OK) == -1) {
-			INFO("symlinking installd plist...");
-			symlink(PLIST_PATH, PLIST_PATH_IOS_8);
-		}
-		run_launchctl(PLIST_PATH_IOS_8, "unload");
-		run_launchctl(PLIST_PATH_IOS_8, "load");
-#ifdef INJECT_HACK
-#ifdef BUILD_RUNONCE
-		chown("/Library/LaunchDaemons/com.linusyang.appsync.plist", 0, 0);
-		chmod("/Library/LaunchDaemons/com.linusyang.appsync.plist", 0644);
-		chmod("/usr/bin/appsync", 0755);
-#endif
-#ifdef BUILD_POSTINST
-		INFO("Manually injecting for iOS 8...");
-		pid_t pid = -1;
-		int status = -1;
-		int tried = 0;
-		do {
-			sleep(DEFAULT_WAIT);
-			status = inject_installd(&pid);
-			tried++;
-			INFO("Inject installd (%d) with return %d", pid, status);
-		} while (tried < MAX_TRY && (pid == -1 || status != 0));
-		if (pid == -1 || status != 0) {
-#ifdef BUILD_RUNONCE
-			INFO("Inject failed, try to reinstall the package");
-#else
-			INFO("Inject failed, try again");
-#endif
-		}
-#else
-		run_launchctl("/Library/LaunchDaemons/com.linusyang.appsync.plist", "unload");
-#endif
-#endif
+	if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0 && kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_10_0) {
+		#ifdef POSTINST
+			if (access(INSTALLD_PLIST_PATH_L, F_OK) == -1) {
+				printf("Current iOS version is iOS 8/9, symlinking installd plist...\n");
+				symlink(INSTALLD_PLIST_PATH_SL, INSTALLD_PLIST_PATH_L);
+			}
+		#endif
+		// NOTE: I thought about removing this symlinked plist in the prerm, but decided against it as such an operation has a non-zero chance of somehow going horribly wrong in some kind of edge case
+		run_launchctl(INSTALLD_PLIST_PATH_L, "unload");
+		run_launchctl(INSTALLD_PLIST_PATH_L, "load");
 	} else {
-		run_launchctl(PLIST_PATH, "unload");
-		run_launchctl(PLIST_PATH, "load");
-#ifdef INJECT_HACK
-#ifdef BUILD_POSTINST
-		unlink("/Library/LaunchDaemons/com.linusyang.appsync.plist");
-		unlink("/usr/bin/appsync");
-#endif
-#endif
+		run_launchctl(INSTALLD_PLIST_PATH_SL, "unload");
+		run_launchctl(INSTALLD_PLIST_PATH_SL, "load");
 	}
+	#ifdef __LP64__
+		printf("Current device architecture is 64-bit, disabling asu_inject...\n");
+		unlink(ASU_INJECT_PLIST_PATH);
+	#else
+		if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_3) {
+			printf("Current device architecture is 32-bit running iOS >= 9.3, enabling asu_inject...\n");
+			chown(ASU_INJECT_PLIST_PATH, 0, 0);
+			chmod(ASU_INJECT_PLIST_PATH, 0644);
+			run_launchctl(ASU_INJECT_PLIST_PATH, "unload");
+			#ifdef POSTINST
+				run_launchctl(ASU_INJECT_PLIST_PATH, "load");
+			#endif
+		}
+	#endif
 	return 0;
 }

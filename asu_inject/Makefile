@@ -1,7 +1,5 @@
-IPHONE_ARCHS = armv7 armv7s arm64
-TARGET_IPHONEOS_DEPLOYMENT_VERSION = 6.0
-DEBUG = 0
 include $(THEOS)/makefiles/common.mk
+
 TOOL_NAME = asu_inject
 asu_inject_FILES = asu_inject.c
 asu_inject_CFLAGS += -fvisibility=hidden

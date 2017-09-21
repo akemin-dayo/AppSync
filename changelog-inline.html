@@ -1,55 +1,60 @@
 			<panel>
-				<label>6.0~b2: July 31st, 2017</label>
+				<label>6.0.1: 2017/09/21</label>
+				<fieldset>
+					<div><label>Re-enabled `asu_inject` on 32-bit devices running the Phœnix iOS 9.3.5 jailbreak to work around a bug where rebooting and kickstarting the jailbreak would cause AppSync Unified to cease to function.</label></div>
+					<div><label>Refactored many parts of AppSync Unified's code and removed many things that are no longer in use.</label></div>
+				</fieldset>
+				<label>6.0~b2: 2017/07/31</label>
 				<fieldset>
 					<div><label>Minor packaging change. No functionality changes were made.</label></div>
 				</fieldset>
-				<label>6.0~b1: February 13th, 2017</label>
+				<label>6.0~b1: 2017/02/13</label>
 				<fieldset>
 					<div><label>Return the public "Apple iPhone OS Application Signing" intermediate certificate instead of `kSecMagicBytes` on iOS 10 to avoid a Security.framework crash — thanks JulioVerne!</label></div>
 				</fieldset>
-				<label>5.8: January 30th, 2016</label>
+				<label>5.8: 2016/01/30</label>
 				<fieldset>
 					<div><label>Prevented AppSync Unified from excessively performing synchronous calls to NSLog(), which improves uicache performance a bit.</label></div>
 				</fieldset>
-				<label>5.6-1: July 18th, 2015</label>
+				<label>5.6-1: 2015/07/18</label>
 				<fieldset>
 					<div><label>Fixed uicache causing installd to crash while executing ASU's copyEntitlementDataFromFile on iOS 8.3/8.4</label></div>
 					<div><label>Fixed installing certain types of apps on iOS 8.3/8.4</label></div>
 				</fieldset>
-				<label>5.5-1: June 28th, 2015</label>
+				<label>5.5-1: 2015/06/28</label>
 				<fieldset>
 					<div><label>Quick and dirty workaround for ASU problems on iOS 8.3.</label></div>
 				</fieldset>
-				<label>5.4.1-1: April 08th, 2015</label>
+				<label>5.4.1-1: 2015/04/08</label>
 				<fieldset>
 					<div><label>Better (less dirty) fix to the copyEntitlementDataFromFile crash. Just check if super->count is > -1.</label></div>
 				</fieldset>
-				<label>5.4-1: April 08th, 2015</label>
+				<label>5.4-1: 2015/04/08</label>
 				<fieldset>
 					<div><label>Fixed a bug where users would experience an installd crash whenever uicache was being run against apps with malformed entitlements from Cydia</label></div>
 				</fieldset>
-				<label>5.3-1: December 07th, 2014</label>
+				<label>5.3-1: 2014/12/07</label>
 				<fieldset>
 					<div><label>Fixed a bug where users using the TaiG iOS 8.1.1 jailbreak would not get ASU successfully injected into installd at install-time due to com.apple.mobile.installd being in an unexpected location.</label></div>
 					<div><label>Removes other mirrored AppSync Unified packages found on other repositories that cause issues when the user attempts to install net.angelxwind.appsyncunified.</label></div>
 				</fieldset>
-				<label>5.2-1: November 12th, 2014</label>
+				<label>5.2-1: 2014/11/12</label>
 				<fieldset>
 					<div><label>Modified DEBIAN control file to add more mirrored package IDs.</label></div>
 				</fieldset>
-				<label>5.1-1: November 12th, 2014</label>
+				<label>5.1-1: 2014/11/12</label>
 				<fieldset>
 					<div><label>Major rewrite of AppSync Unified to fully support iOS 8.</label></div>
 				</fieldset>
-				<label>4.5-1: July 21st, 2014</label>
+				<label>4.5-1: 2014/07/21</label>
 				<fieldset>
 					<div><label>Modified NSLog behaviour to check to see if net.angelxwind.appsyncunified is installed.</label></div>
 				</fieldset>
-				<label>4.4-1: July 01st, 2014</label>
+				<label>4.4-1: 2014/07/01</label>
 				<fieldset>
 					<div><label>Added more PPSync package IDs to the removal list.</label></div>
 				</fieldset>
-				<label>1.0~4.3-1: 2013 ~ May 2014</label>
+				<label>1.0~4.3-1: 2013 ~ 2014</label>
 				<fieldset>
 					<div><label>Various bugfixes, various PPSync package IDs added to removal list.</label></div>
 				</fieldset>
