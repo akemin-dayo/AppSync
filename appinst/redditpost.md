@@ -2,7 +2,7 @@
 
 [**Tap here to add my repo directly to Cydia!**](https://cydia.angelxwind.net/add.php)
 
-[**Donate Using PayPal (`rei@angelxwind.net`)**](https://www.paypal.com/myaccount/transfer/send/external?recipient=rei@angelxwind.net&amount=&currencyCode=USD&payment_type=Gift) (donations are greatly appreciated, *but are not (and never will be) necessary!*)
+[**Donate Using PayPal (`rei@angelxwind.net`)**](https://paypal.me/angelXwind) (donations are greatly appreciated, *but are not (and never will be) necessary!*)
 
 #**Changelog ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appinst-changelog))**
 
