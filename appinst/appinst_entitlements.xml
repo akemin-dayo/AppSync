@@ -9,5 +9,7 @@
 		<string>Install</string>
 		<string>InstallForLaunchServices</string>
 	</array>
+	<key>platform-application</key>
+	<true/>
 </dict>
 </plist>
