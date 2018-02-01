@@ -6,11 +6,9 @@
 
 [**IMPORTANT: Regarding AppSync Unified and Piracy**](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/)
 
-#**Changelog ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
+#**Changelog for 6.1 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
 
-* Re-enabled `asu_inject` on 32-bit devices running the Phœnix iOS 9.3.5 jailbreak to work around a bug where rebooting and kickstarting the jailbreak would cause AppSync Unified to cease to function.
-
-* Refactored many parts of AppSync Unified's code and removed many things that are no longer in use.
+* Added compatibility with iOS 11.
 
 #**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, and 10. Supports arm64.**
 
