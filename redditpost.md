@@ -10,7 +10,9 @@
 
 * Added compatibility with iOS 11.
 
-#**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, and 10. Supports arm64.**
+* Fixed a (benign) bug where `asu_inject` would get erroneously enabled on some 32-bit devices.
+
+#**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, and 11. Supports arm64.**
 
 * AppSync Unified is **NOT** for piracy.
 

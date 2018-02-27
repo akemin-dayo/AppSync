@@ -24,7 +24,7 @@ static int run_launchctl(const char *path, const char *cmd) {
 
 int main(int argc, const char **argv) {
 	printf("AppSync Unified\n");
-	printf("Copyright (C) 2014-2017 Linus Yang, Karen／明美 (angelXwind)\n");
+	printf("Copyright (C) 2014-2018 Linus Yang, Karen／明美 (angelXwind)\n");
 	printf("** PLEASE DO NOT USE APPSYNC UNIFIED FOR PIRACY **\n");
 	if (access(DPKG_PATH, F_OK) == -1) {
 		printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.angelxwind.net (package ID net.angelxwind.appsyncunified).\n");
@@ -35,10 +35,10 @@ int main(int argc, const char **argv) {
 		printf("FATAL: This binary must be run as root.\n");
 		return 1;
 	}
-	if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0 && kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_10_0) {
+	if ((kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) && (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_10_0)) {
 		#ifdef POSTINST
 			if (access(INSTALLD_PLIST_PATH_L, F_OK) == -1) {
-				printf("Current iOS version is iOS 8/9, symlinking installd plist...\n");
+				printf("Current iOS version is iOS 8 or 9, creating symbolic link to installd plist...\n");
 				symlink(INSTALLD_PLIST_PATH_SL, INSTALLD_PLIST_PATH_L);
 			}
 		#endif
@@ -53,14 +53,16 @@ int main(int argc, const char **argv) {
 		printf("Current device architecture is 64-bit, disabling asu_inject...\n");
 		unlink(ASU_INJECT_PLIST_PATH);
 	#else
-		if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_3) {
-			printf("Current device architecture is 32-bit running iOS >= 9.3, enabling asu_inject...\n");
+		if ((kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_3) && (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_10_0)) {
+			printf("Current device is running 32-bit iOS 9.3.x, enabling asu_inject as a workaround for a Phoenix bug...\n");
 			chown(ASU_INJECT_PLIST_PATH, 0, 0);
 			chmod(ASU_INJECT_PLIST_PATH, 0644);
 			run_launchctl(ASU_INJECT_PLIST_PATH, "unload");
 			#ifdef POSTINST
 				run_launchctl(ASU_INJECT_PLIST_PATH, "load");
 			#endif
+		} else {
+			unlink(ASU_INJECT_PLIST_PATH);
 		}
 	#endif
 	return 0;
