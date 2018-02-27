@@ -4,7 +4,7 @@
 
 [**Donate Using PayPal (`rei@angelxwind.net`)**](https://paypal.me/angelXwind) (donations are greatly appreciated, *but are not (and never will be) necessary!*)
 
-#**Changelog for 1.1 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appinst-changelog))**
+#**Changelog for 1.1 ([full changelog](https://cydia.angelxwind.net/?page/com.linusyang.appinst-changelog))**
 
 * Added compatibility with iOS 11
 
