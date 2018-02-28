@@ -6,11 +6,9 @@
 
 [**IMPORTANT: Regarding AppSync Unified and Piracy**](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/)
 
-#**Changelog for 6.1 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
+#**Changelog for 9.0 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
 
-* Added compatibility with iOS 11.
-
-* Fixed a (benign) bug where `asu_inject` would get erroneously enabled on some 32-bit devices.
+* Artificially bumped version number up to 9.0 to work around a fake version "8.2" package floating around a piracy repo. Please do not use AppSync Unified for piracy.
 
 #**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, and 11. Supports arm64.**
 
