@@ -8,7 +8,7 @@
 
 #**Changelog for 9.0 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
 
-* Artificially bumped version number up to 9.0 to work around a fake version "8.2" package floating around a piracy repo. Please do not use AppSync Unified for piracy.
+* Artificially bumped version number to 9.0 to solve installation issues caused by certain third-party piracy repos making an unofficial modification with a version number of "8.2". Please do not use AppSync Unified for piracy.
 
 #**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, and 11. Supports arm64.**
 
