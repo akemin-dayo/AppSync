@@ -6,7 +6,7 @@ Depends: net.angelxwind.appsyncunified (>= 5.1)
 Version: 1.1
 Architecture: iphoneos-arm
 Description: Install IPAs from the command line
-Maintainer: Karen／明美 <angelXwind@angelxwind.net>
+Maintainer: Karen／明美 <karen@angelxwind.net>
 Author: Linus Yang <laokongzi+appsync@gmail.com>
 Section: Utilities
 Homepage: https://github.com/angelXwind/AppSync
