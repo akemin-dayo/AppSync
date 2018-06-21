@@ -6,9 +6,11 @@
 
 [**IMPORTANT: Regarding AppSync Unified and Piracy**](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/)
 
-#**Changelog for 9.0 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
+#**Changelog for 24.0 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
 
-* Artificially bumped version number to 9.0 to solve installation issues caused by certain third-party piracy repos making an unofficial modification with a version number of "8.2". Please do not use AppSync Unified for piracy.
+* Confirmed compatibility with all supported iOS versions up to iOS 11.3.1.
+
+* Artificially bumped version number to 24.0 to override all known third-party modifications of AppSync Unified available from piracy repos that will cause damage to your iOS installation. Please **DO NOT** use AppSync Unified for piracy.
 
 #**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, and 11. Supports arm64.**
 

@@ -4,9 +4,9 @@
 
 [**Donate Using PayPal (`rei@angelxwind.net`)**](https://paypal.me/angelXwind) (donations are greatly appreciated, *but are not (and never will be) necessary!*)
 
-#**Changelog for 1.1 ([full changelog](https://cydia.angelxwind.net/?page/com.linusyang.appinst-changelog))**
+#**Changelog for 1.1.1 ([full changelog](https://cydia.angelxwind.net/?page/com.linusyang.appinst-changelog))**
 
-* Added compatibility with iOS 11
+* Confirmed compatibility with all supported iOS versions up to iOS 11.3.1.
 
 #**Command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, and 11. Supports arm64.**
 

@@ -24,11 +24,11 @@ static int run_launchctl(const char *path, const char *cmd) {
 
 int main(int argc, const char **argv) {
 	printf("AppSync Unified\n");
-	printf("Copyright (C) 2014-2018 Linus Yang, Karen／明美 (angelXwind)\n");
+	printf("Copyright (C) 2014-2018 Linus Yang, Karen/あけみ (angelXwind)\n");
 	printf("** PLEASE DO NOT USE APPSYNC UNIFIED FOR PIRACY **\n");
 	if (access(DPKG_PATH, F_OK) == -1) {
 		printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.angelxwind.net (package ID net.angelxwind.appsyncunified).\n");
-		printf("If someone other than Linus Yang (laokongzi) or Karen／明美 (angelXwind) is taking credit for the development of this tool, they are likely lying.\n");
+		printf("If someone other than Linus Yang (laokongzi) or Karen/あけみ (angelXwind) is taking credit for the development of this tool, they are likely lying.\n");
 		printf("Please only download AppSync Unified from the official repository to ensure file integrity and reliability.\n");
 	}
 	if (geteuid() != 0) {
