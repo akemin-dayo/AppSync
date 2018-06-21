@@ -12,7 +12,7 @@
 
 * Artificially bumped version number to 24.0 to override all known third-party modifications of AppSync Unified available from piracy repos that will cause damage to your iOS installation. Please **DO NOT** use AppSync Unified for piracy.
 
-#**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, and 11. Supports arm64.**
+#**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, and 11.**
 
 * AppSync Unified is **NOT** for piracy.
 
@@ -22,8 +22,10 @@
 
 * Jailbreaking is for **freedom of your iOS device.**
 
-AppSync Unified is a tweak that patches installd to allow for the installation of unsigned IPA packages on an iOS device. This is particularly useful for iOS developers who are not enrolled in Apple's official iOS Developer Program, as it allows these developers to debug and test their apps on their own devices using modifications such as iOSOpenDev.
+AppSync Unified is a tweak that patches `installd` to allow for the installation of unsigned, fakesigned, or ad-hoc signed IPA packages on an iOS device.
+
+AppSync Unified can be used to downgrade or clone installed apps, to download fakesigned IPAs (often emulators), and also to assist in the development of iOS applications using Xcode.
+
+**AppSync Unified should not be used to pirate iOS apps. Please support iOS app developers and do not pirate!**
 
 **I explain the problem with AppSync Unified and iOS piracy rather thoroughly [in this reddit post](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/). Please give it a read.**
-
-Again, AppSync is **NOT** meant to support piracy. Obviously it can still be used in that way, and I, nor anyone else can really stop you if you want to pirate, but please **don't pirate and support the developers!**
