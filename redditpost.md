@@ -6,7 +6,7 @@
 
 [**IMPORTANT: Regarding AppSync Unified and Piracy**](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/)
 
-#**Changelog for 24.0 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
+#**Changelog for 30.0 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
 
 * Confirmed compatibility with all supported iOS versions up to iOS 11.3.1.
 
