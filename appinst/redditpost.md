@@ -10,6 +10,6 @@
 
 #**Command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, and 11.**
 
-App Installer is a command-line utility to install .ipa packages. Requires [AppSync Unified](https://cydia.angelxwind.net/net.angelxwind.appsyncunified) to install unsigned/fakesigned/self-signed apps.
+App Installer is a command-line utility to install .ipa packages. Requires [AppSync Unified](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified) to install unsigned/fakesigned/self-signed apps.
 
 Usage: `appinst <ipa file>`
