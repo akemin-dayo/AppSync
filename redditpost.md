@@ -6,7 +6,9 @@
 
 [**IMPORTANT: Regarding AppSync Unified and Piracy**](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/)
 
-#**Changelog for 31.0 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
+#**Changelog for 31.0 and 31.1 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
+
+* Modified Depends line to properly allow installation on the iOS 11.4 betas, as the previous one apparently does not work for the betas.
 
 * Fixed an issue on iOS 5 where AppSync Unified would not work at all due to an undocumented change in Theos causing default deployment target to be set incorrectly, thus generating binaries that could not be properly run on iOS 5.
 
