@@ -6,11 +6,9 @@
 
 [**IMPORTANT: Regarding AppSync Unified and Piracy**](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/)
 
-#**Changelog for 30.0 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
+#**Changelog for 31.0 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
 
-* Confirmed compatibility with all supported iOS versions up to iOS 11.3.1.
-
-* Artificially bumped version number to 24.0 to override all known third-party modifications of AppSync Unified available from piracy repos that will cause damage to your iOS installation. Please **DO NOT** use AppSync Unified for piracy.
+* Fixed an issue on iOS 5 where AppSync Unified would not work at all due to an undocumented change in Theos causing default deployment target to be set incorrectly, thus generating binaries that could not be properly run on iOS 5.
 
 #**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, and 11.**
 

@@ -4,9 +4,9 @@
 
 [**Donate Using PayPal (`rei@angelxwind.net`)**](https://paypal.me/angelXwind) (donations are greatly appreciated, *but are not (and never will be) necessary!*)
 
-#**Changelog for 1.1.1 ([full changelog](https://cydia.angelxwind.net/?page/com.linusyang.appinst-changelog))**
+#**Changelog for 1.1.2 ([full changelog](https://cydia.angelxwind.net/?page/com.linusyang.appinst-changelog))**
 
-* Confirmed compatibility with all supported iOS versions up to iOS 11.3.1.
+* Fixed an issue on iOS 5 where appinst would not work at all due to an undocumented change in Theos causing default deployment target to be set incorrectly, thus generating binaries that could not be properly run on iOS 5.
 
 #**Command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, and 11.**
 
