@@ -6,13 +6,11 @@
 
 [**IMPORTANT: Regarding AppSync Unified and Piracy**](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/)
 
-#**Changelog for 31.0 and 31.1 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
+#**Changelog for 32.0 ([full changelog](https://cydia.angelxwind.net/?page/net.angelxwind.appsyncunified-changelog))**
 
-* Modified Depends line to properly allow installation on the iOS 11.4 betas, as the previous one apparently does not work for the betas.
+* Added compatibility with iOS 12 (verified up to 12.1.2).
 
-* Fixed an issue on iOS 5 where AppSync Unified would not work at all due to an undocumented change in Theos causing default deployment target to be set incorrectly, thus generating binaries that could not be properly run on iOS 5.
-
-#**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, and 11.**
+#**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, and 12.**
 
 * AppSync Unified is **NOT** for piracy.
 
