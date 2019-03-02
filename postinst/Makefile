@@ -1,5 +1,3 @@
-ARCHS = armv7 armv7s arm64
-
 include $(THEOS)/makefiles/common.mk
 
 TOOL_NAME = postinst prerm

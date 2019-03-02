@@ -81,7 +81,7 @@ static void inject_dylib(const char *name, pid_t pid, const char *dylib) {
 
 int main(int argc, char *argv[]) {
 	printf("asu_inject for AppSync Unified\n");
-	printf("Copyright (C) 2014-2018 Karen/あけみ (angelXwind)\n");
+	printf("Copyright (C) 2014-2019 Karen/あけみ (angelXwind)\n");
 	if (access(DPKG_PATH, F_OK) == -1) {
 		printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.angelxwind.net (package ID net.angelxwind.appsyncunified).\n");
 		printf("If someone other than Karen/あけみ (angelXwind) is taking credit for the development of this tool, they are likely lying.\n");
