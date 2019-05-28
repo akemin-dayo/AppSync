@@ -1,5 +1,5 @@
 TARGET =: clang::5.0
-ARCHS = armv7 armv7s arm64
+ARCHS = armv7 armv7s arm64 arm64e
 DEBUG = 0
 
 PACKAGE_VERSION = $(THEOS_PACKAGE_BASE_VERSION)

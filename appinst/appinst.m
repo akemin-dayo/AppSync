@@ -40,11 +40,11 @@ typedef int (*MobileInstallationInstall)(CFStringRef path, CFDictionaryRef param
 int main(int argc, const char *argv[]) {
 	@autoreleasepool {
 		NSLog(@"appinst (App Installer)");
-		NSLog(@"Copyright (C) 2014-2019 Linus Yang, Karen/あけみ (angelXwind)");
+		NSLog(@"Copyright (C) 2014-2019 Linus Yang, Karen/あけみ");
 		NSLog(@"** PLEASE DO NOT USE APPINST FOR PIRACY **");
 		if (access(DPKG_PATH, F_OK) == -1) {
-			NSLog(@"You seem to have installed appinst from a Cydia/APT repository that is not cydia.angelxwind.net (package ID com.linusyang.appinst).");
-			NSLog(@"If someone other than Linus Yang (laokongzi) or Karen/あけみ (angelXwind) is taking credit for the development of this tool, they are likely lying.");
+			NSLog(@"You seem to have installed appinst from a Cydia/APT repository that is not cydia.akemi.ai (package ID com.linusyang.appinst).");
+			NSLog(@"If someone other than Linus Yang (laokongzi) or Karen/あけみ is taking credit for the development of this tool, they are likely lying.");
 			NSLog(@"Please only download appinst from the official repository to ensure file integrity and reliability.");
 		}
 

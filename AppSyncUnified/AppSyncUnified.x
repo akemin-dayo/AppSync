@@ -113,8 +113,8 @@ DECL_FUNC(SecCertificateCopySubjectSummary, CFStringRef, SecCertificateRef certi
 
 DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t b, NSDictionary **info) {
 	if (access(DPKG_PATH, F_OK) == -1) {
-		NSLog(@"You seem to have installed AppSync Unified from a Cydia/APT repository that is not cydia.angelxwind.net (package ID net.angelxwind.appsyncunified).");
-		NSLog(@"If someone other than Linus Yang (laokongzi) or Karen/あけみ (angelXwind) is taking credit for the development of this tweak, they are likely lying.");
+		NSLog(@"You seem to have installed AppSync Unified from a Cydia/APT repository that is not cydia.akemi.ai (package ID net.angelxwind.appsyncunified).");
+		NSLog(@"If someone other than Linus Yang (laokongzi) or Karen/あけみ is taking credit for the development of this tweak, they are likely lying.");
 		NSLog(@"Please only download AppSync Unified from the official repository to ensure file integrity and reliability.");
 	}
 	original_MISValidateSignatureAndCopyInfo(path, b, info);

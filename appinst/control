@@ -3,13 +3,13 @@ Name: appinst (App Installer)
 Priority: standard
 Pre-Depends: firmware (>= 5.0)
 Depends: net.angelxwind.appsyncunified (>= 5.1)
-Version: 1.1.2
+Version: 1.1.3
 Architecture: iphoneos-arm
 Description: Install IPAs from the command line
-Maintainer: Karen/あけみ <karen@angelxwind.net>
+Maintainer: Karen/あけみ <karen@akemi.ai>
 Author: Linus Yang <laokongzi+appsync@gmail.com>
 Section: Utilities
 Homepage: https://github.com/angelXwind/AppSync
 Tag: role::enduser, purpose::console
 Conflicts: com.sull.appinstaller
-Depiction: https://cydia.angelxwind.net/?page/com.linusyang.appinst
+Depiction: https://cydia.akemi.ai/?page/com.linusyang.appinst
