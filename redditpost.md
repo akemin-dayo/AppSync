@@ -1,18 +1,18 @@
-**Cydia/APT Repo URL:** https://cydia.akemi.ai/
+### Repo URL: https://cydia.akemi.ai/ (You can [tap here to add!](https://cydia.akemi.ai/add.php))
 
-[**Tap here to add my repo directly to Cydia!**](https://cydia.akemi.ai/add.php)
+#### Support me with [Patreon](https://patreon.com/akemin_dayo), [PayPal (`rei@akemi.ai`)](https://paypal.me/angelXwind), or [Cryptocurrency](https://akemi.ai/?page/links#crypto)
 
-[**Donate Using PayPal (`rei@akemi.ai`)**](https://paypal.me/angelXwind) (donations are greatly appreciated, *but are not (and never will be) necessary!*)
+Any support is _greatly_ appreciated, but donations are *not* and will *never* will be necessary to use my software! 
 
-[**IMPORTANT: Regarding AppSync Unified and Piracy**](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/)
+---
 
-#**Changelog for 40.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))**
+# Changelog for 41.0-NoA12 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Added compatibility with arm64e SoCs (A12/A12X).
+* Added compatibility with iOS 12.1.x, 12.2.x, and 12.3 beta for all devices **EXCEPT A12 devices**.
 
-* Updated URLs where relevant to reflect my new domain (akemi.ai).
+---
 
-#**Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, and 12.**
+# Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, and 12.
 
 * AppSync Unified is **NOT** for piracy.
 
