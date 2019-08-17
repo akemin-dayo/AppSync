@@ -1,5 +1,13 @@
 #import <version.h>
+#import <dlfcn.h>
 #import "dump.h"
+#import "substitute.h"
+#import "PAC.h"
+
+// Substitute functions
+int (*substitute_hook_functions)(const struct substitute_function_hook *hooks, size_t nhooks, struct substitute_function_hook_record **recordp, int options) = NULL;
+void *(*SubFindSymbol)(void *image, const char *name) = NULL;
+struct substitute_image *(*substitute_open_image)(const char *filename) = NULL;
 
 // Minimal Cydia Substrate header
 typedef const void *MSImageRef;
@@ -15,16 +23,55 @@ void MSHookFunction(void *symbol, void *replace, void **result);
 	#define LOG(...)
 #endif
 
+static bool didFindSubstitute = false;
+
+#define ASFindSymbolCallable(image, name) make_sym_callable(MSFindSymbol(image, name))
+
+static void checkSubstitute() {
+	if (!didFindSubstitute) {
+		MSImageRef ref = MSGetImageByName("/usr/lib/libsubstitute.dylib");
+		if (ref) {
+			substitute_hook_functions = (int (*)(const struct substitute_function_hook *, size_t, struct substitute_function_hook_record **, int))ASFindSymbolCallable(ref, "_substitute_hook_functions");
+			LOG(@"substitute_hook_functions exists: %d", substitute_hook_functions != NULL);
+			SubFindSymbol = (void *(*)(void *, const char *))ASFindSymbolCallable(ref, "SubFindSymbol");
+			LOG(@"SubFindSymbol exists: %d", SubFindSymbol != NULL);
+			substitute_open_image = (struct substitute_image *(*)(const char *))ASFindSymbolCallable(ref, "_substitute_open_image");
+			LOG(@"substitute_open_image exists: %d", substitute_open_image != NULL);
+		}
+		didFindSubstitute = true;
+	}
+}
+
+static void *ASFindSymbol(const char *image, const char *symbol) {
+	if (SubFindSymbol && substitute_open_image) {
+		if (image == NULL)
+			return make_sym_callable(SubFindSymbol(NULL, symbol));
+		dlopen(image, RTLD_LAZY);
+		struct substitute_image *im = substitute_open_image(image);
+		return make_sym_callable(SubFindSymbol(im, symbol));
+	}
+	return ASFindSymbolCallable(image ? MSGetImageByName(image) : NULL, symbol);
+}
+
+static void ASHookFunction(void *func, void *replace, void **result) {
+	if (substitute_hook_functions) {
+		struct substitute_function_hook hook = { func, replace, result };
+		substitute_hook_functions(&hook, 1, NULL, 1);
+	} else {
+		MSHookFunction(func, replace, result);
+	}
+}
+
 #define DECL_FUNC(name, ret, ...) \
 	static ret (*original_ ## name)(__VA_ARGS__); \
 	ret custom_ ## name(__VA_ARGS__)
 #define HOOK_FUNC(name, image) do { \
-	void *_ ## name = MSFindSymbol(image, "_" #name); \
+	void *_ ## name = ASFindSymbol(image, "_" #name); \
 	if (_ ## name == NULL) { \
 		LOG(@"Failed to load symbol: " #name "."); \
 		return; \
 	} \
-	MSHookFunction(_ ## name, (void *) custom_ ## name, (void **) &original_ ## name); \
+	ASHookFunction(_ ## name, (void *) custom_ ## name, (void **) &original_ ## name); \
 } while(0)
 #define LOAD_IMAGE(image, path) do { \
 	image = MSGetImageByName(path); \
@@ -167,6 +214,7 @@ DECL_FUNC(MISValidateSignatureAndCopyInfo, uintptr_t, NSString *path, uintptr_t 
 
 %ctor {
 	@autoreleasepool {
+		checkSubstitute();
 		MSImageRef image;
 		LOG(@"Loading and injecting into libmis.dylib");
 		LOAD_IMAGE(image, "/usr/lib/libmis.dylib");
