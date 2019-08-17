@@ -6,8 +6,8 @@ Homepage: https://cydia.akemi.ai/
 Provides: appsync
 Replaces: us.hackulo.appsync50
 Package: net.angelxwind.appsyncunified
-Name: AppSync Unified (NO A12 SUPPORT)
-Version: 41.0-NoA12
+Name: AppSync Unified
+Version: 41.0
 Architecture: iphoneos-arm
 Description: Enables the ability to install unsigned/fakesigned iOS applications.
 Section: Tweaks
