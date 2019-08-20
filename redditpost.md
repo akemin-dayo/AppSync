@@ -6,7 +6,9 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* w
 
 ---
 
-# Changelog for 41.0-NoA12 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 41.1-NoA12 and 40.0-NoA12 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+
+* Added compatibility with iOS 12.4 for all devices **EXCEPT A12 devices**.
 
 * Added compatibility with iOS 12.1.x, 12.2.x, and 12.3 beta for all devices **EXCEPT A12 devices**.
 
