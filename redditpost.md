@@ -6,11 +6,27 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* w
 
 ---
 
-# Changelog for 41.1-NoA12 and 40.0-NoA12 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 48.0-NoChimera ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Added compatibility with iOS 12.4 for all devices **EXCEPT A12 devices**.
+* Finally added compatibility with A12 (arm64e) devices running the unc0ver jailbreak! (Chimera is NOT supported at this time due to technical restraints.)
 
-* Added compatibility with iOS 12.1.x, 12.2.x, and 12.3 beta for all devices **EXCEPT A12 devices**.
+---
+
+# Wait, why is there no Chimera support…?
+
+First, I just want to preface this with the following disclaimer: **This is _not_ an attack on Chimera or CoolStar.**
+
+The reason why AppSync Unified 48.0 does not yet work with the Chimera jailbreak is due to Chimera shipping a _broken_ version of Substitute that breaks many different tweaks, including TetherMe, Safari Downloader Plus, and… well, AppSync Unified.
+
+unc0ver has already patched the bug as of version v3.7.0~b3, released about a week ago as of this writing. (For more technical information, see sbingner's Substitute fork, [commit SHA-1 070147453f2038b656b4ebef775d21995220f4bf](https://github.com/sbingner/substitute/commit/070147453f2038b656b4ebef775d21995220f4bf))
+
+Basically, the issue all along for all these months actually had _nothing_ to do with my code for AppSync Unified, but with Substitute, the code injection framework itself. (… So basically, I spent multiple months tearing my hair out for nothing haaaaaaaaaaaaaaaaaa…)
+
+Once Chimera pushes an update that fixes this bug on their fork of Substitute, I will release an update to AppSync Unified that will allow installation for those using the Chimera jailbreak.
+
+Thank you for reading, and I truly apologise for the long, _long_ delay it has taken for me to push this update.
+
+Expect more updates to my other tweaks in the coming days.
 
 ---
 
