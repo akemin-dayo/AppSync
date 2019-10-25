@@ -6,27 +6,23 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* w
 
 ---
 
-# Changelog for 48.0-NoChimera ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 60.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Finally added compatibility with A12 (arm64e) devices running the unc0ver jailbreak! (Chimera is NOT supported at this time due to technical restraints.)
+* Finally added full compatibility with all A12 (arm64e) devices running both unc0ver and Chimera!
+
+* Fixed an issue where Chimera and Electra users with devices using an A11 or lower SoC would be unable to install AppSync Unified.
 
 ---
 
-# Wait, why is there no Chimera support…?
+# Cydia/Zebra/Sileo/etc. is telling me to uninstall Substitute…!? What does this mean?
 
-First, I just want to preface this with the following disclaimer: **This is _not_ an attack on Chimera or CoolStar.**
+This means you are using an outdated version of Substitute. Please update your version of Substitute (and/or your jailbreak app of choice).
 
-The reason why AppSync Unified 48.0 does not yet work with the Chimera jailbreak is due to Chimera shipping a _broken_ version of Substitute that breaks many different tweaks, including TetherMe, Safari Downloader Plus, and… well, AppSync Unified.
+For unc0ver, Substitute version **0.0.13 or HIGHER** will work. (This Substitute version is also bundled with unc0ver app version **v3.7.0~b3 or HIGHER**.)
 
-unc0ver has already patched the bug as of version v3.7.0~b3, released about a week ago as of this writing. (For more technical information, see sbingner's Substitute fork, [commit SHA-1 070147453f2038b656b4ebef775d21995220f4bf](https://github.com/sbingner/substitute/commit/070147453f2038b656b4ebef775d21995220f4bf))
+Additionally, **please make sure you are NOT using a forked unc0ver app (such as the "abortive" version, which ships a broken Substitute under the ID `science.xnu.substitute`).** I cannot guarantee any compatibility with these versions.
 
-Basically, the issue all along for all these months actually had _nothing_ to do with my code for AppSync Unified, but with Substitute, the code injection framework itself. (… So basically, I spent multiple months tearing my hair out for nothing haaaaaaaaaaaaaaaaaa…)
-
-Once Chimera pushes an update that fixes this bug on their fork of Substitute, I will release an update to AppSync Unified that will allow installation for those using the Chimera jailbreak.
-
-Thank you for reading, and I truly apologise for the long, _long_ delay it has taken for me to push this update.
-
-Expect more updates to my other tweaks in the coming days.
+For Chimera or Electra, Substitute version **0.1.1-coolstar or HIGHER** will work.
 
 ---
 
