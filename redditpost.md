@@ -24,7 +24,7 @@ For Chimera or Electra, Substitute version **0.1.1-coolstar or HIGHER** will wor
 
 ---
 
-# Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, and 12.
+# Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, and 13.
 
 * AppSync Unified is **NOT** for piracy.
 
