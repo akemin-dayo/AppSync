@@ -6,11 +6,9 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* w
 
 ---
 
-# Changelog for 60.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 64.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Finally added full compatibility with all A12 (arm64e) devices running both unc0ver and Chimera!
-
-* Fixed an issue where Chimera and Electra users with devices using an A11 or lower SoC would be unable to install AppSync Unified.
+* Added compatibility with all iOS 12 and 13 versions up to 13.2.2 for all devices.
 
 ---
 
