@@ -6,9 +6,13 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* w
 
 ---
 
-# Changelog for 64.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 65.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Added compatibility with all iOS 12 and 13 versions up to 13.2.2 for all devices.
+* Fixed a code injection bug causing AppSync Unified to not take effect until after a reboot or `ldrestart` was performed.
+
+* Added compatibility with iOS 13.3 beta for all devices.
+
+* Thanks to [Nicole](https://twitter.com/NikkiNikkiTembo) for letting me use her iOS 13 devices (D22, N69u) to test!! <3
 
 ---
 
