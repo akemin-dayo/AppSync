@@ -2,7 +2,7 @@
 
 #### Support me with [Patreon](https://patreon.com/akemin_dayo), [PayPal (`karen@akemi.ai`)](https://paypal.me/akemindayo), or [Cryptocurrency](https://akemi.ai/?page/links#crypto)
 
-Any support is _greatly_ appreciated, but donations are *not* and will *never* will be necessary to use my software!
+Any support is _greatly_ appreciated, but donations are *not* and will *never* be necessary to use my software!
 
 (I also have a [Ko-fi](https://ko-fi.com/akemin_dayo) page, but I would prefer you only use that if you _must_ for some reason, because transactions processed through Ko-fi have a fee deducted from them and can sometimes even be delayed.)
 
