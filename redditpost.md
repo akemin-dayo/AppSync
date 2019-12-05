@@ -1,30 +1,20 @@
 ### Repo URL: https://cydia.akemi.ai/ (You can [tap here to add!](https://cydia.akemi.ai/add.php))
 
-#### Support me with [Patreon](https://patreon.com/akemin_dayo), [PayPal (`rei@akemi.ai`)](https://paypal.me/angelXwind), or [Cryptocurrency](https://akemi.ai/?page/links#crypto)
+#### Support me with [Patreon](https://patreon.com/akemin_dayo), [PayPal (`karen@akemi.ai`)](https://paypal.me/akemindayo), or [Cryptocurrency](https://akemi.ai/?page/links#crypto)
 
-Any support is _greatly_ appreciated, but donations are *not* and will *never* will be necessary to use my software! 
+Any support is _greatly_ appreciated, but donations are *not* and will *never* will be necessary to use my software!
+
+(I also have a [Ko-fi](https://ko-fi.com/akemin_dayo) page, but I would prefer you only use that if you _must_ for some reason, because transactions processed through Ko-fi have a fee deducted from them and can sometimes even be delayed.)
 
 ---
 
-# Changelog for 65.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 66.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Fixed a code injection bug causing AppSync Unified to not take effect until after a reboot or `ldrestart` was performed.
+* Minor update that eliminates the rare case where users with broken versions of Substitute installed would fail a dependency resolution check, prompting their package manager to try and uninstall Substitute along with all their tweaks.
 
-* Added compatibility with iOS 13.3 beta for all devices.
+* No other changes were made to AppSync Unified's functionality or code.
 
 * Thanks to [Nicole](https://twitter.com/NikkiNikkiTembo) for letting me use her iOS 13 devices (D22, N69u) to test!! <3
-
----
-
-# Cydia/Zebra/Sileo/etc. is telling me to uninstall Substitute…!? What does this mean?
-
-This means you are using an outdated version of Substitute. Please update your version of Substitute (and/or your jailbreak app of choice).
-
-For unc0ver, Substitute version **0.0.13 or HIGHER** will work. (This Substitute version is also bundled with unc0ver app version **v3.7.0~b3 or HIGHER**.)
-
-Additionally, **please make sure you are NOT using a forked unc0ver app (such as the "abortive" version, which ships a broken Substitute under the ID `science.xnu.substitute`).** I cannot guarantee any compatibility with these versions.
-
-For Chimera or Electra, Substitute version **0.1.1-coolstar or HIGHER** will work.
 
 ---
 
