@@ -8,13 +8,13 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# Changelog for 66.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 68.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Minor update that eliminates the rare case where users with broken versions of Substitute installed would fail a dependency resolution check, prompting their package manager to try and uninstall Substitute along with all their tweaks.
+* Minor update that resolves an edge case where users using the Meridian jailbreak on iOS 10 (which uses Substitute and _not_ Substrate) would be unable to install AppSync Unified due to an oversight in the dependency resolution logic.
 
 * No other changes were made to AppSync Unified's functionality or code.
 
-* Thanks to [Nicole](https://twitter.com/NikkiNikkiTembo) for letting me use her iOS 13 devices (D22, N69u) to test!! <3
+* Thanks to Jacqueline for notifying me of this bug and for testing the new dependency resolution logic on her Meridian device!
 
 ---
 
