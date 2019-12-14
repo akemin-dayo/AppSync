@@ -8,7 +8,9 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# Changelog for 68.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 70.0 and 68.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+
+* Fixes an issue where AppSync Unified would sometimes not work for some users that have arm64e (A12/A12X) devices.
 
 * Minor update that resolves an edge case where users using the Meridian jailbreak on iOS 10 (which uses Substitute and _not_ Substrate) would be unable to install AppSync Unified due to an oversight in the dependency resolution logic.
 
