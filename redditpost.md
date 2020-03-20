@@ -2,21 +2,19 @@
 
 #### Support me with [Patreon](https://patreon.com/akemin_dayo), [PayPal (`karen@akemi.ai`)](https://paypal.me/akemindayo), or [Cryptocurrency](https://akemi.ai/?page/links#crypto)
 
-Any support is _greatly_ appreciated, but donations are *not* and will *never* be necessary to use my software!
+(A full list of all available donation methods can be found [here](https://akemi.ai/?page/links#donate).)
 
-(I also have a [Ko-fi](https://ko-fi.com/akemin_dayo) page, but I would prefer you only use that if you _must_ for some reason, because transactions processed through Ko-fi have a fee deducted from them and can sometimes even be delayed.)
+Any support is _greatly_ appreciated, but donations are *not* and will *never* be necessary to use my software!
 
 ---
 
-# Changelog for 70.0 and 68.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 72.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Fixes an issue where AppSync Unified would sometimes not work for some users that have arm64e (A12/A12X) devices.
+* Add support for iOS 13.4.
 
-* Minor update that resolves an edge case where users using the Meridian jailbreak on iOS 10 (which uses Substitute and _not_ Substrate) would be unable to install AppSync Unified due to an oversight in the dependency resolution logic.
+* Added some more third-party modified package IDs to the `Conflicts` blacklist.
 
 * No other changes were made to AppSync Unified's functionality or code.
-
-* Thanks to Jacqueline for notifying me of this bug and for testing the new dependency resolution logic on her Meridian device!
 
 ---
 
