@@ -8,9 +8,9 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# Changelog for 76.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 78.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Added support for iOS 13.5.
+* Added support for iOS 13.5.1 and 13.5.5~b1.
 
 * No other changes were made to AppSync Unified's functionality or code.
 
