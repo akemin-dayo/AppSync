@@ -1,9 +1,9 @@
 # AppSync Unified
-###### Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, and 13.
+###### Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, and 14.
 
 What is AppSync Unified?
 ------------------------
-AppSync Unified is a tweak that patches `installd` to allow for the installation of unsigned, fakesigned, or ad-hoc signed IPA packages on an iOS device.
+AppSync Unified is a tweak that allows for the installation of unsigned, fakesigned, or ad-hoc signed IPA packages on an iOS device.
 
 AppSync Unified can be used to downgrade or clone installed apps, to download fakesigned IPAs (often emulators), and also to assist in the development of iOS applications using Xcode.
 
@@ -19,7 +19,9 @@ If you do not see AppSync Unified in Karen's Repo, then that just means you have
 
 How does it work?
 -----------------
-AppSync Unified utilizes the dynamic hooking function `MSHookFunction()` in Cydia Substrate to bypass installd's signature checks. This means AppSync Unified **does not modify any system files and is much more stable and safe as a result.**
+AppSync Unified utilizes the dynamic hooking function `MSHookFunction()` in Cydia Substrate to bypass `installd`'s signature checks. This means AppSync Unified **does not modify any system files and is much more stable and safe as a result.**
+
+On iOS 9.3.x and above, AppSync Unified also hooks `FrontBoard` and `FrontBoardServices` in order to bypass FrontBoard's signature verification functionality as well.
 
 Can't this be used to pirate apps?
 ----------------------------------

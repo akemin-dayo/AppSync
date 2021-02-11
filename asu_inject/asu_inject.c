@@ -17,7 +17,7 @@ extern int proc_listallpids(void *, int);
 extern int proc_pidpath(int, void *, uint32_t);
 
 static const char *cynject_path = "/usr/bin/cynject";
-static const char *dylib_path = "/Library/MobileSubstrate/DynamicLibraries/AppSyncUnified.dylib";
+static const char *dylib_path = "/Library/MobileSubstrate/DynamicLibraries/AppSyncUnified-installd.dylib";
 static const char *dispatch_queue_name = NULL;
 static const char *process_name = "installd";
 static int process_buffer_size = 4096;
@@ -81,7 +81,7 @@ static void inject_dylib(const char *name, pid_t pid, const char *dylib) {
 
 int main(int argc, char *argv[]) {
 	printf("asu_inject for AppSync Unified\n");
-	printf("Copyright (C) 2014-2019 Karen/あけみ\n");
+	printf("Copyright (C) 2014-2021 Karen/あけみ\n");
 	if (access(DPKG_PATH, F_OK) == -1) {
 		printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.akemi.ai (package ID net.angelxwind.appsyncunified).\n");
 		printf("If someone other than Karen/あけみ is taking credit for the development of this tool, they are likely lying.\n");
@@ -92,18 +92,20 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	printf("Creating queue...\n");
+	printf("Creating queue…\n");
 	dispatch_queue_t queue = dispatch_queue_create(dispatch_queue_name, 0);
 
-	printf("Finding installd PID...\n");
-	dispatch_async(queue, ^{ while (!find_process(process_name, &process_pid)); });
+	printf("Finding installd PID…\n");
+	dispatch_async(queue, ^{
+		while (!find_process(process_name, &process_pid));
+	});
 
-	printf("Waiting for queue to come back...\n");
+	printf("Waiting for queue to come back…\n");
 	dispatch_sync(queue, ^{});
 
-	printf("installd PID is %d\n", process_pid);
+	printf("installd's PID is %d\n", process_pid);
 
-	printf("Injecting AppSyncUnified.dylib into installd...\n");
+	printf("Injecting AppSyncUnified-installd.dylib into installd…\n");
 	inject_dylib(cynject_path, process_pid, dylib_path);
 	
 	return 0;

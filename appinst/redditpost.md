@@ -8,13 +8,15 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-#**Changelog for 1.1.3 ([full changelog](https://cydia.akemi.ai/?page/com.linusyang.appinst-changelog))**
+#**Changelog for 1.1.4 ([full changelog](https://cydia.akemi.ai/?page/com.linusyang.appinst-changelog))**
 
-* Verified iOS 12 compatibility. Minor update to reflect new domain.
+* Various improvements were made to appinst's output.
+
+* Fixed a crash that would sometimes occur on iOS 5.
 
 ---
 
-# `appinst`, a command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, 11, 12, and 13.**
+# `appinst`, a command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, and 14.**
 
 App Installer is a command-line utility to install .ipa packages. Requires [AppSync Unified](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified) to install unsigned/fakesigned/self-signed apps.
 

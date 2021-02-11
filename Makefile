@@ -7,8 +7,9 @@ PACKAGE_VERSION = $(THEOS_PACKAGE_BASE_VERSION)
 
 include $(THEOS)/makefiles/common.mk
 
-SUBPROJECTS += AppSyncUnified
-SUBPROJECTS += postinst
+SUBPROJECTS += AppSyncUnified-installd
+SUBPROJECTS += AppSyncUnified-FrontBoard
+SUBPROJECTS += pkg-actions
 SUBPROJECTS += asu_inject
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
@@ -19,3 +20,10 @@ package::
 
 clean::
 	@rm -f debs/*.deb
+
+before-install::
+	install.exec "touch /ai.akemi.appsyncunified.no-postinst-notification"
+
+after-install::
+	install.exec "killall backboardd; exit 0" # backboardd doesn't exist on iOS 5, but that's fine since… FrontBoard also doesn't exist on iOS 5. ;P
+	install.exec "rm -v /ai.akemi.appsyncunified.no-postinst-notification"

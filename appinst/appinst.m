@@ -3,7 +3,11 @@
 #import <dlfcn.h>
 #import "zipzap/zipzap.h"
 
-#define LOG(LogContents, ...) NSLog((@"appinst: %s:%d " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
+#ifdef DEBUG
+	#define LOG(LogContents, ...) NSLog((@"appinst [DEBUG]: %s:%d " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+	#define LOG(...)
+#endif
 #define kIdentifierKey @"CFBundleIdentifier"
 #define kAppType @"User"
 #define kAppTypeKey @"ApplicationType"
@@ -39,13 +43,13 @@ typedef int (*MobileInstallationInstall)(CFStringRef path, CFDictionaryRef param
 
 int main(int argc, const char *argv[]) {
 	@autoreleasepool {
-		NSLog(@"appinst (App Installer)");
-		NSLog(@"Copyright (C) 2014-2019 Linus Yang, Karen/あけみ");
-		NSLog(@"** PLEASE DO NOT USE APPINST FOR PIRACY **");
+		printf("appinst (App Installer)\n");
+		printf("Copyright (C) 2014-2021 Karen/あけみ, Linus Yang\n");
+		printf("** PLEASE DO NOT USE APPINST FOR PIRACY **\n");
 		if (access(DPKG_PATH, F_OK) == -1) {
-			NSLog(@"You seem to have installed appinst from a Cydia/APT repository that is not cydia.akemi.ai (package ID com.linusyang.appinst).");
-			NSLog(@"If someone other than Linus Yang (laokongzi) or Karen/あけみ is taking credit for the development of this tool, they are likely lying.");
-			NSLog(@"Please only download appinst from the official repository to ensure file integrity and reliability.");
+			printf("You seem to have installed appinst from a Cydia/APT repository that is not cydia.akemi.ai (package ID com.linusyang.appinst).\n");
+			printf("If someone other than Karen/あけみ or Linus Yang (laokongzi) is taking credit for the development of this tool, they are likely lying.\n");
+			printf("Please only download appinst from the official repository to ensure file integrity and reliability.\n");
 		}
 
 		// Clean up temporary directory
@@ -53,22 +57,22 @@ int main(int argc, const char *argv[]) {
 		NSString *workPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"com.linusyang.appinst"];
 		if ([fileManager fileExistsAtPath:workPath]) {
 			if (![fileManager removeItemAtPath:workPath error:nil]) {
-				LOG("Failed to remove temporary path: %@, ignoring.", workPath);
+				printf("Failed to remove temporary path: %s, ignoring.\n", [workPath UTF8String]);
 			} else {
-				LOG("Cleaning up temporary files...");
+				printf("Cleaning up temporary files…\n");
 			}
 		}
 
 		// Check arguments
 		if (argc != 2) {
-			LOG("Usage: appinst <path to ipa file>");
+			printf("Usage: appinst <path to ipa file>\n");
 			return AppInstExitCodeUnknown;
 		}
 		
 		// Check file existence
 		NSString *filePath = [NSString stringWithUTF8String:argv[1]];
 		if (![fileManager fileExistsAtPath:filePath]) {
-			LOG("The file %s does not exist.", filePath.UTF8String);
+			printf("The file \"%s\" could not be found. Perhaps you made a typo?\n", [filePath UTF8String]);
 			return AppInstExitCodeFileSystem;
 		}
 
@@ -78,16 +82,16 @@ int main(int argc, const char *argv[]) {
 		for (ZZArchiveEntry* entry in archive.entries) {
 			NSArray *components = [[entry fileName] pathComponents];
 			NSUInteger count = components.count;
-			NSString *firstComponent = components[0];
+			NSString *firstComponent = [components objectAtIndex:0];
 			if ([firstComponent isEqualToString:@"/"]) {
-				firstComponent = components[1];
+				firstComponent = [components objectAtIndex:1];
 				count -= 1;
 			}
 			if (count == 3 && [firstComponent isEqualToString:@"Payload"] &&
 				[components.lastObject isEqualToString:@"Info.plist"]) {
 				NSData *fileData = [entry newDataWithError:nil];
 				if (fileData == nil) {
-					LOG("Cannot read IPA file entry.");
+					printf("Unable to read the specified IPA file.\n");
 					return AppInstExitCodeZip;
 				}
 				NSError *error = nil;
@@ -95,21 +99,21 @@ int main(int argc, const char *argv[]) {
 				NSDictionary * dict = (NSDictionary *) [NSPropertyListSerialization propertyListWithData:fileData
 					options:NSPropertyListImmutable format:&format error:&error];
 				if (dict == nil) {
-					LOG("Malformed Info.plist in IPA.");
+					printf("The specified IPA file contains a malformed Info.plist.\n");
 					return AppInstExitCodeMalformed;
 				}
-				appIdentifier = dict[kIdentifierKey];
+				appIdentifier = [dict objectForKey:kIdentifierKey];
 				break;
 			}
 		}
 		if (appIdentifier == nil) {
-			LOG("Failed to resolve app identifier.");
+			printf("Failed to resolve app identifier.\n");
 			return AppInstExitCodeMalformed;
 		}
 
 		// Copy file to temporary directiory
 		if (![fileManager createDirectoryAtPath:workPath withIntermediateDirectories:YES attributes:nil error:NULL]) {
-			LOG("Failed to create working path.");
+			printf("Failed to create working path.\n");
 			return AppInstExitCodeFileSystem;
 		}
 		NSMutableString *randomString = [NSMutableString stringWithCapacity:kRandomLength];
@@ -120,28 +124,28 @@ int main(int argc, const char *argv[]) {
 		NSString *installPath = [workPath stringByAppendingPathComponent:installName];
 		if ([fileManager fileExistsAtPath:installPath]) {
 			if (![fileManager removeItemAtPath:installPath error:nil]) {
-				LOG("Failed to remove temporary file.");
+				printf("Failed to remove temporary files.\n");
 				return AppInstExitCodeFileSystem;
 			}
 		}
 		if (![fileManager copyItemAtPath:filePath toPath:installPath error:nil]) {
-			LOG("Failed to copy file to working path.");
+			printf("Failed to copy files to working path.\n");
 			return AppInstExitCodeFileSystem;
 		}
 
 		// Call system API to install app
-		LOG(@"Installing %@ ...", appIdentifier);
+		printf("Installing \"%s\"…\n", [appIdentifier UTF8String]);
 		BOOL isInstalled = NO;
 		if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) {
 			// Use LSApplicationWorkspace
 			Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
 			if (LSApplicationWorkspace_class == nil) {
-				LOG("Failed to get class: LSApplicationWorkspace");
+				printf("Failed to get class: LSApplicationWorkspace\n");
 				return AppInstExitCodeRuntime;
 			}
 			LSApplicationWorkspace *workspace = [LSApplicationWorkspace_class performSelector:@selector(defaultWorkspace)];
 			if (workspace == nil) {
-				LOG("Failed to get default workspace.");
+				printf("Failed to get the default workspace.\n");
 				return AppInstExitCodeRuntime;
 			}
 
@@ -156,12 +160,12 @@ int main(int argc, const char *argv[]) {
 			// Use MobileInstallationInstall
 			void *image = dlopen(MI_PATH, RTLD_LAZY);
 			if (image == NULL) {
-				LOG("Failed to retrieve MobileInstallation.");
+				printf("Failed to retrieve MobileInstallation.\n");
 				return AppInstExitCodeRuntime;
 			}
 			MobileInstallationInstall installHandle = (MobileInstallationInstall) dlsym(image, "MobileInstallationInstall");
 			if (installHandle == NULL) {
-				LOG("Failed to retrieve function MobileInstallationInstall.");
+				printf("Failed to retrieve the function MobileInstallationInstall.\n");
 				return AppInstExitCodeRuntime;
 			}
 
@@ -180,10 +184,11 @@ int main(int argc, const char *argv[]) {
 
 		// Exit
 		if (isInstalled) {
-			LOG(@"Successfully installed %@", appIdentifier);
+			printf("Successfully installed \"%s\"!\n", [appIdentifier UTF8String]);
 			return AppInstExitCodeSuccess;
 		}
-		LOG(@"Failed to install %@", appIdentifier);
+		
+		printf("Failed to install \"%s\".\n", [appIdentifier UTF8String]);
 		return AppInstExitCodeUnknown;
 	}
 }
