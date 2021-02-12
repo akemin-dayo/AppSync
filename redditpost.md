@@ -1,4 +1,4 @@
-### Repo URL: https://cydia.akemi.ai/ (You can [tap here to add!](https://cydia.akemi.ai/add.php))
+### Repo URL: https://cydia.akemi.ai/ ([Tap here on your device to automatically add the repo!](https://cydia.akemi.ai/add.php))
 
 #### Support me with [Patreon](https://patreon.com/akemin_dayo), [PayPal (`karen@akemi.ai`)](https://paypal.me/akemindayo), or [Cryptocurrency](https://akemi.ai/?page/links#crypto)
 
