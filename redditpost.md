@@ -28,21 +28,13 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 # Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, and 14.
 
-* AppSync Unified is **NOT** for piracy.
+AppSync Unified is a tweak that allows users to freely install ad-hoc signed, fakesigned, or unsigned IPA app packages on their iOS devices that iOS would otherwise consider invalid.
 
-* AppSync Unified is for **freedom of iOS development with the official Xcode iOS SDK.**
+Some popular use cases include:
 
-* Jailbreaking is **NOT** for piracy.
-
-* Jailbreaking is for **freedom of your iOS device.**
-
-AppSync Unified is a tweak that allows for the installation of unsigned, fakesigned, or ad-hoc signed IPA packages on an iOS device.
-
-AppSync Unified can be used to downgrade or clone installed apps, to download fakesigned IPAs (often emulators), and also to assist in the development of iOS applications using Xcode.
-
-**AppSync Unified should not be used to pirate iOS apps. Please support iOS app developers and do not pirate!**
-
-**I explain the problem with AppSync Unified and iOS piracy rather thoroughly [in this reddit post](https://www.reddit.com/r/jailbreak/comments/3oovnh/discussion_regarding_appsync_unified_ios_9_and/). Please give it a read.**
+* Installing freely-distributed apps that are unavailable from the App Store without having to re-sign the apps in question every 7 days (if the user does not have a subscription to the Apple Developer Program)
+* Assisting in the development of iOS applications with Xcode
+* Cloning or downgrading already-installed apps
 
 ---
 
@@ -50,12 +42,24 @@ AppSync Unified can be used to downgrade or clone installed apps, to download fa
 
 If AppSync Unified is not working after installation, reboot your device or run ldrestart to activate it. You will only need to do this ONCE.
 
-This issue appears to be caused by what seems like a Cydia Substrate/Substitute bug that's resurfaced from years ago, and occurs _really_ rarely, so it's an absolute nightmare of a bug. (🍍˃̶͈̀ロ˂̶͈́)੭ꠥ⁾⁾
+This issue appears to be caused by what …seems like a Cydia Substrate/Substitute bug(?) that's resurfaced from years ago, and occurs _really_ rarely, so it's an absolute nightmare of a bug. It's especially frustrating for me since I'm such a perfectionist when it comes to software development, too ww (🍍˃̶͈̀ロ˂̶͈́)੭ꠥ⁾⁾
 
-**For the curious developers among you:** AppSync Unified's `postinst` restarts `installd` via `launchctl` — for some reason though, it seems like Cydia Substrate and/or Substitute doesn't always inject the dylib properly into `installd` until you run `ldrestart` or reboot.
+**For the curious developers among you:** AppSync Unified's `postinst` binary (see [pkg-actions.m](https://github.com/angelXwind/AppSync/blob/master/pkg-actions/pkg-actions.m)) restarts `installd` via `launchctl` — for some reason though, it seems like Cydia Substrate and/or Substitute doesn't always inject the dylib properly into `installd` until you run `ldrestart` or reboot.
 
-I tried _really_ hard to determine the cause of this, but I really have no idea what could be causing this. The dylib has _long_ since been written to the filesystem by the time `postinst` was _executed_, let alone when `launchctl` was called by `posix_spawn`.
+I tried _really_ hard to determine the cause of this, but I really have no idea what could be causing this. The dylib has _long_ since been written to the filesystem by the time `postinst` was _executed_, let alone when `launchctl` was even called by `posix_spawn`.
 
-All I can do now is inform people for now, I guess. ⊂⌒~⊃｡Д｡🍍)⊃
+I guess for now, all I can do is inform people about the bug and how to resolve it. ⊂⌒~⊃｡Д｡🍍)⊃
 
-Hopefully I'll be able to properly resolve this somehow in a future version.
+Hopefully I'll be able to properly resolve this in time.
+
+---
+
+# Regarding piracy…
+
+**Please do NOT use AppSync Unified for piracy.**
+
+AppSync Unified is a development tool designed for app developers first and foremost, alongside other valid legal uses that I support — a few of which are outlined above.
+
+**Software piracy is illegal.** Please support the developers of the iOS software you use, whether they be app developers on the App Store or tweak developers on Chariz/Dynastic/etc.
+
+They're just trying to make a living too, much like you and I.
