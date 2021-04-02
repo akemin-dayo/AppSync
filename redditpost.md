@@ -8,21 +8,11 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# Changelog for 90.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 92.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Heavily rewrote AppSync Unified to _finally_ add support for all current iOS 14.x versions (14.0 to 14.4). Thank you for remaining patient — a lot of research and work had to be done to make this possible.
+* Added support for iOS 14.4.2.
 
-* Made significant improvements to the fake signing information that AppSync Unified presents to all versions of iOS.
-
-* Added code directory hash value (cdhash) calculation support.
-
-* AppSync Unified now also bypasses FrontBoard's signature verification functionality.
-
-* Fixed a bug where AppSync Unified wouldn't always work properly on iOS 5 and 6 in certain rare cases.
-
-* Added a notification during install time telling users to reboot (or ldrestart) if AppSync Unified does not appear to be working immediately after installation.
-
-* Fixed a bug where Cydia Substrate would sometimes not be installed when it… should be.
+* No other changes were made to AppSync Unified's functionality or code.
 
 ---
 

@@ -15,5 +15,5 @@ appinst_FRAMEWORKS = Foundation ImageIO CoreGraphics
 appinst_PRIVATE_FRAMEWORKS = MobileCoreServices
 appinst_LIBRARIES = z
 appinst_INSTALL_PATH = /usr/bin
-appinst_CODESIGN_FLAGS = -Sappinst_entitlements.xml
+appinst_CODESIGN_FLAGS = -Sappinst_entitlements.plist
 include $(THEOS_MAKE_PATH)/tool.mk
