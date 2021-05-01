@@ -9,7 +9,7 @@ Description: Install IPAs from the command line
 Maintainer: Karen/あけみ <karen@akemi.ai>
 Author: Karen/あけみ, Linus Yang <karen@akemi.ai>
 Section: Utilities
-Homepage: https://github.com/angelXwind/AppSync
+Homepage: https://github.com/akemin-dayo/AppSync
 Tag: role::enduser, purpose::console
 Conflicts: com.sull.appinstaller
 Depiction: https://cydia.akemi.ai/?page/com.linusyang.appinst

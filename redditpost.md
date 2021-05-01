@@ -34,7 +34,7 @@ If AppSync Unified is not working after installation, reboot your device or run 
 
 This issue appears to be caused by what …seems like a Cydia Substrate/Substitute bug(?) that's resurfaced from years ago, and occurs _really_ rarely, so it's an absolute nightmare of a bug. It's especially frustrating for me since I'm such a perfectionist when it comes to software development, too ww (🍍˃̶͈̀ロ˂̶͈́)੭ꠥ⁾⁾
 
-**For the curious developers among you:** AppSync Unified's `postinst` binary (see [pkg-actions.m](https://github.com/angelXwind/AppSync/blob/master/pkg-actions/pkg-actions.m)) restarts `installd` via `launchctl` — for some reason though, it seems like Cydia Substrate and/or Substitute doesn't always inject the dylib properly into `installd` until you run `ldrestart` or reboot.
+**For the curious developers among you:** AppSync Unified's `postinst` binary (see [pkg-actions.m](https://github.com/akemin-dayo/AppSync/blob/master/pkg-actions/pkg-actions.m)) restarts `installd` via `launchctl` — for some reason though, it seems like Cydia Substrate and/or Substitute doesn't always inject the dylib properly into `installd` until you run `ldrestart` or reboot.
 
 I tried _really_ hard to determine the cause of this, but I really have no idea what could be causing this. The dylib has _long_ since been written to the filesystem by the time `postinst` was _executed_, let alone when `launchctl` was even called by `posix_spawn`.
 

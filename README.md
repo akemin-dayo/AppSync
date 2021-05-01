@@ -60,7 +60,7 @@ First, make sure you have [Theos](https://github.com/theos/theos) installed. If 
 Once you've confirmed that you have Theos installed, open up Terminal and run the following commands:
 
 ```
-git clone https://github.com/angelXwind/AppSync.git
+git clone https://github.com/akemin-dayo/AppSync.git
 cd AppSync
 make
 make package
