@@ -70,6 +70,30 @@ And you should have a freshly built *.deb package file of AppSync Unified!
 
 ---
 
+## How do I build AppSync Unified for my AppleTV or other more obscure device?
+
+Modify file [repo-root]/control, replacing the line "Architecture: iphoneos-arm" with the required line for your device. A package can be built for a recent AppleTV by replacing this line with "Architecture: appletvos-arm64".
+
+Substitute "appletvos" for your OS name if you have a different OS like "bridgeos" for BridgeOS or "watchos" for WatchOS or whatever. Substitute "arm64" for "arm" or "arm64e" if your device has a different architecture.
+
+Try running the following to rebuild everything.
+
+```
+make clean
+make
+make package
+```
+
+The *.deb package for your device should then be in the debs folder. Then try installing the package through cydia or with apt or dpkg from the device root terminal.
+
+If your device does not complete the .deb package installation process and freezes despite printing "AppSync Unified installation complete!" in the logs, then maybe it doesn't support displaying the postinstall notification.
+
+The AppleTV is one such device and code has been added to [repo]/pkg-actions/pkg-actions.m to detect an AppleTV based on the uname string and bypass this notification. You can trivially modify this file to bypass the notification for your device family if it has the same issue.
+
+Consider submitting a pull request for detecting additional problematic devices in pkg-actions.m and to add instructions to this readme too.
+
+--
+
 ## Do I need to do anything in order to use Xcode with AppSync Unified?
 
 No, not unless you're using Xcode 6 or below.
