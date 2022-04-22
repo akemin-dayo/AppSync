@@ -3,6 +3,8 @@
 #include <sys/stat.h>
 #include <spawn.h>
 #include <version.h>
+#include <errno.h>
+#include <sys/utsname.h>
 
 #ifdef DEBUG
 	#define LOG(LogContents, ...) NSLog((@"AppSync Unified [pkg-actions] [DEBUG]: %s:%d " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
@@ -111,10 +113,24 @@ int main(int argc, const char **argv) {
 
 	printf("****** AppSync Unified installation complete! ******\n");
 
+    //Janky code block to check if the device is an AppleTV. Requires <sys/utsname.h> and <errno.h>
+	//Used to suppress POSTINST dialog. Replace if you have a cleaner way of doing this.
+	//Perhaps you can modify this to skip the dialogue on WatchOS / BridgeOS etc. too if needed...
+	struct utsname unameBuf;
+   	errno = 0;
+   	if (uname(&unameBuf) < 0) {
+    	perror("uname");
+		exit(EXIT_FAILURE);
+   	}
+   		//printf("Device= %s\n", unameBuf.machine);
+        char *deviceNoNotification = strstr(unameBuf.machine, "AppleTV");    
+
 	#ifdef POSTINST
 		// This is flag is intended for internal use with KarenTools automated testing.
 		// …That being said, nothing stops you from taking advantage of this, too. ;P
-		if (access("/ai.akemi.appsyncunified.no-postinst-notification", F_OK) == -1) {
+		// We also don't want to show the prompt on a device that has no way to show it properly.
+		// Detect these devices and set deviceNoNotification to a value that evaluates to true.
+		if ((access("/ai.akemi.appsyncunified.no-postinst-notification", F_OK) == -1) && !deviceNoNotification) {
 			// TODO: For some reason, this notification doesn't appear on my iOS 10 device. It's a minor bug though, so I'll allow it for now.
 			// … Even if that makes my perfectionist self scream in intense, agonising pain (🍍˃̶͈̀ロ˂̶͈́)੭ꠥ⁾⁾
 			CFUserNotificationRef postinstNotification = CFUserNotificationCreate(kCFAllocatorDefault, 0, 0, NULL, (__bridge CFDictionaryRef)[[NSDictionary alloc] initWithObjectsAndKeys:
