@@ -2,7 +2,7 @@ Package: com.linusyang.appinst
 Name: appinst (App Installer)
 Priority: standard
 Pre-Depends: firmware (>= 5.0)
-Depends: net.angelxwind.appsyncunified (>= 5.1)
+Depends: net.angelxwind.appsyncunified (>= 5.1), libzip5 (>= 1.7.3)
 Version: 1.1.4
 Architecture: iphoneos-arm
 Description: Install IPAs from the command line

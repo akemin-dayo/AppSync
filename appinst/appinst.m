@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <dlfcn.h>
-#import "zipzap/zipzap.h"
+#import "zip.h"
 
 #ifdef DEBUG
 	#define LOG(LogContents, ...) NSLog((@"appinst [DEBUG]: %s:%d " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
@@ -78,9 +78,22 @@ int main(int argc, const char *argv[]) {
 
 		// Resolve app identifier
 		NSString *appIdentifier = nil;
-		ZZArchive *archive = [ZZArchive archiveWithURL:[NSURL fileURLWithPath:filePath] error:nil];
-		for (ZZArchiveEntry* entry in archive.entries) {
-			NSArray *components = [[entry fileName] pathComponents];
+		int err = 0;
+		zip_t *archive = zip_open(argv[1], 0, &err);
+		if (err) {
+			printf("Unable to read the specified IPA file.\n");
+			return AppInstExitCodeZip;
+		}
+		zip_int64_t num_entries = zip_get_num_entries(archive, 0);
+		for (zip_uint64_t i = 0; i < num_entries; ++i) {
+			const char* name = zip_get_name(archive, i, 0);
+			if (!name) {
+				printf("Unable to read the specified IPA file.\n");
+				zip_close(archive);
+				return AppInstExitCodeZip;
+			}
+			NSString *fileName = [NSString stringWithUTF8String:name];
+			NSArray *components = [fileName pathComponents];
 			NSUInteger count = components.count;
 			NSString *firstComponent = [components objectAtIndex:0];
 			if ([firstComponent isEqualToString:@"/"]) {
@@ -89,7 +102,28 @@ int main(int argc, const char *argv[]) {
 			}
 			if (count == 3 && [firstComponent isEqualToString:@"Payload"] &&
 				[components.lastObject isEqualToString:@"Info.plist"]) {
-				NSData *fileData = [entry newDataWithError:nil];
+				zip_stat_t st;
+				zip_stat_init(&st);
+				zip_stat_index(archive, i, 0, &st);
+
+				void *buffer = malloc(st.size);
+				if (!buffer) {
+					printf("Unable to read the specified IPA file.\n");
+					zip_close(archive);
+					return AppInstExitCodeZip;
+				}
+
+				zip_file_t *file_in_zip = zip_fopen_index(archive, i, 0);
+				if (!file_in_zip) {
+					printf("Unable to read the specified IPA file.\n");
+					zip_close(archive);
+					return AppInstExitCodeZip;
+				}
+
+				zip_fread(file_in_zip, buffer, st.size);
+				zip_fclose(file_in_zip);
+
+				NSData *fileData = [NSData dataWithBytesNoCopy:buffer length:st.size freeWhenDone:YES];
 				if (fileData == nil) {
 					printf("Unable to read the specified IPA file.\n");
 					return AppInstExitCodeZip;
@@ -106,6 +140,9 @@ int main(int argc, const char *argv[]) {
 				break;
 			}
 		}
+
+		zip_close(archive);
+
 		if (appIdentifier == nil) {
 			printf("Failed to resolve app identifier.\n");
 			return AppInstExitCodeMalformed;
