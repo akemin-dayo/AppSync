@@ -81,11 +81,10 @@ static void inject_dylib(const char *name, pid_t pid, const char *dylib) {
 
 int main(int argc, char *argv[]) {
 	printf("asu_inject for AppSync Unified\n");
-	printf("Copyright (C) 2014-2021 Karen/あけみ\n");
+	printf("Copyright (C) 2014-2022 Karen/あけみ\n");
 	if (access(DPKG_PATH, F_OK) == -1) {
-		printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.akemi.ai (package ID net.angelxwind.appsyncunified).\n");
-		printf("If someone other than Karen/あけみ is taking credit for the development of this tool, they are likely lying.\n");
-		printf("Please only download AppSync Unified from the official repository to ensure file integrity and reliability.\n");
+		printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.akemi.ai.\n");
+		printf("Please make sure that you download AppSync Unified from the official repository to ensure proper operation.\n");
 	}
 	if (geteuid() != 0) {
 		printf("FATAL: asu_inject must be run as root.\n");

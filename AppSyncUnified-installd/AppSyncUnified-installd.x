@@ -110,9 +110,8 @@ DECL_FUNC(SecCertificateCopySubjectSummary, CFStringRef, SecCertificateRef certi
 
 static uintptr_t ASU_MISValidateSignatureAndCopyInfo(NSString *path, NSDictionary **info) {
 	if (access(DPKG_PATH, F_OK) == -1) {
-		NSLog(@"You seem to have installed AppSync Unified from a Cydia/APT repository that is not cydia.akemi.ai (package ID net.angelxwind.appsyncunified).");
-		NSLog(@"If someone other than Karen/あけみ or Linus Yang (laokongzi) is taking credit for the development of this tweak, they are likely lying.");
-		NSLog(@"Please only download AppSync Unified from the official repository to ensure file integrity and reliability.");
+		printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.akemi.ai.\n");
+		printf("Please make sure that you download AppSync Unified from the official repository to ensure proper operation.\n");
 	}
 
 	if (info == NULL) {
