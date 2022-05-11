@@ -11,7 +11,7 @@
 #define kIdentifierKey @"CFBundleIdentifier"
 #define kAppType @"User"
 #define kAppTypeKey @"ApplicationType"
-#define kRandomLength 6
+#define kRandomLength 32
 
 #define DPKG_PATH "/var/lib/dpkg/info/com.linusyang.appinst.list"
 
@@ -38,15 +38,16 @@ void mobileInstallationStatusCallback(CFDictionaryRef information) {
 	NSString *installStatus = [installInfo objectForKey:@"Status"];
 
 	if (installStatus) {
-		// Use NSRegularExpression to split up the PascalCase status string into individual words with spaces
+		// Use NSRegularExpression to split up the Apple-provided PascalCase status string into individual words with spaces
 		NSRegularExpression *pascalCaseSplitterRegex = [NSRegularExpression regularExpressionWithPattern:@"([a-z])([A-Z])" options:0 error:nil];
 		installStatus = [pascalCaseSplitterRegex stringByReplacingMatchesInString:installStatus options:0 range:NSMakeRange(0, [installStatus length]) withTemplate:@"$1 $2"];
 
 		// Capitalise only the first character in the resulting string
-		// TODO: Figure out a better/cleaner way to do this.
+		// TODO: Figure out a better/cleaner way to do this. This was simply the first method that came to my head after thinking about it for all of like, 30 seconds.
 		installStatus = [NSString stringWithFormat:@"%@%@", [[installStatus substringToIndex:1] uppercaseString], [[installStatus substringWithRange:NSMakeRange(1, [installStatus length] - 1)] lowercaseString]];
 
 		// Print status
+		// Yes, I went through all this extra effort just so the user can look at some pretty strings. No, there is (probably) nothing wrong with me. ;P
 		printf("%ld%% - %s…\n", (long)[percentComplete integerValue], [installStatus UTF8String]);
 	}
 }
@@ -57,6 +58,44 @@ void mobileInstallationStatusCallback(CFDictionaryRef information) {
 - (BOOL)installApplication:(NSURL *)path withOptions:(NSDictionary *)options;
 - (BOOL)uninstallApplication:(NSString *)identifier withOptions:(NSDictionary *)options;
 @end
+
+bool doesProcessAtPIDExist(pid_t pid) {
+	// kill() returns 0 when the process exists, and -1 if the process does not.
+	// TODO: This currently does not take into account a possible edge-case where a user can launch one instance of appinst as root, and another appinst instance as a non-privileged user.
+	// In such a case, if the non-privileged appinst attempts to kill(), it would return -1 due to failing the permission check, therefore resulting in a false positive.
+	return (kill(pid, 0) == 0);
+}
+
+bool isSafeToDeleteAppInstTemporaryDirectory(NSString *workPath) {
+	// There is no point in running multiple instances of appinst, as app installation on iOS can only happen one app at a time.
+	// … That being said, some people may still try to do so anyway — iOS /does/ gracefully handle such a state, and will simply wait for an existing install session lock to release before proceeding.
+	// However, appinst's temporary directory self-cleanup code prior to appinst 1.2 could potentially result in a slight issue if the user tries to run multiple appinst instances.
+	// If you launch two appinst instances in quick enough succession, both will fail to install due to their temporary IPA copies having been deleted by each other.
+	// ※ If you don't do it quickly, then nothing will really happen, because the file handle would have already been opened by MobileInstallation / LSApplicationWorkSpace, and the deletion wouldn't really take effect until the file handle was closed.
+	// But in the interest of making appinst as robust as I possibly can, here's some code to handle this potential edge-case.
+
+	// Build a list of all PID files in the temporary directory
+	NSArray *dirContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:workPath error:nil];
+	NSArray *pidFiles = [dirContents filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF ENDSWITH '.pid'"]];
+	for (NSString *pidFile in pidFiles) {
+		// Read the PID file contents and assign it to a pid_t
+		NSString *pidFilePath = [workPath stringByAppendingPathComponent:pidFile];
+		pid_t pidToCheck = [[NSString stringWithContentsOfFile:pidFilePath encoding:NSUTF8StringEncoding error:nil] intValue];
+		if (pidToCheck == 0) {
+			// If the resulting pid_t ends up as 0, something went horribly wrong while parsing the contents of the PID file.
+			// We'll just treat this failed state as if there are other active instances of appinst, just in case.
+			printf("Failed to read the PID from %s! Proceeding as if there are other active instances of appinst…", [pidFilePath UTF8String]);
+			return false;
+		}
+		if (doesProcessAtPIDExist(pidToCheck)) {
+			// If the PID exists, this means that there is another appinst instance in an active install session.
+			// This also takes into account PID files left over by an appinst that crashed or was otherwise interrupted, and therefore didn't get to clean up after itself
+			printf("Another instance of appinst seems to be in an active install session. Proceeding without deleting the temporary directory…\n");
+			return false;
+		}
+	}
+	return true;
+}
 
 int main(int argc, const char *argv[]) {
 	@autoreleasepool {
@@ -73,14 +112,14 @@ int main(int argc, const char *argv[]) {
 		NSString *workPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"appinst"];
 
 		// If there was a leftover temporary directory from a previous run, clean it up
-		if ([fileManager fileExistsAtPath:workPath]) {
+		if ([fileManager fileExistsAtPath:workPath] && isSafeToDeleteAppInstTemporaryDirectory(workPath)) {
 			if (![fileManager removeItemAtPath:workPath error:nil]) {
 				// This theoretically should never happen, now that appinst sets 0777 directory permissions for its temporary directory as of version 1.2.
 				// That, and the temporary directory is also different as of 1.2, too, so even if an older version of appinst was run as root, it should not affect appinst 1.2.
-				printf("Failed to remove leftover temporary directory: %s, ignoring.\n", [workPath UTF8String]);
+				printf("Failed to delete leftover temporary directory at %s, continuing anyway.\n", [workPath UTF8String]);
 				printf("This can happen if the previous temporary directory was created by the root user.\n");
 			} else {
-				printf("Found a leftover temporary directory! Cleaning it up…\n");
+				printf("Deleting leftover temporary directory…\n");
 			}
 		}
 
@@ -181,16 +220,33 @@ int main(int argc, const char *argv[]) {
 			printf("Failed to create temporary directory.\n");
 			return AppInstExitCodeFileSystem;
 		}
-		NSMutableString *randomString = [NSMutableString stringWithCapacity:kRandomLength];
+
+		// Generate a random string which will be used as a reasonably unique session ID
+		NSMutableString *sessionID = [NSMutableString stringWithCapacity:kRandomLength];
 		for (int i = 0; i < kRandomLength; i++) {
-			[randomString appendFormat: @"%C", [kRandomAlphabet characterAtIndex:arc4random_uniform([kRandomAlphabet length])]];
+			[sessionID appendFormat: @"%C", [kRandomAlphabet characterAtIndex:arc4random_uniform([kRandomAlphabet length])]];
 		}
-		NSString *installName = [NSString stringWithFormat:@"tmp.%@.install.ipa", randomString];
+
+		// Write the current appinst PID to a file corresponding to the session ID
+		// This is only used in isSafeToDeleteAppInstTemporaryDirectory() — see the comments in that function for more information.
+		pid_t currentPID = getpid();
+		printf("Initialising appinst installation session ID %s (PID %d)…\n", [sessionID UTF8String], currentPID);
+		NSString *pidFilePath = [workPath stringByAppendingPathComponent:[NSString stringWithFormat:@"appinst-session-%@.pid", sessionID]];
+		if (![[NSString stringWithFormat:@"%d", currentPID] writeToFile:pidFilePath atomically:YES encoding:NSUTF8StringEncoding error:nil]) {
+			// If we fail to write the PID, just ignore it and continue on. It's very unlikely that users will even run into the rare issue that this code is a fix for, anyway.
+			printf("Failed to write PID file to %s, continuing anyway.\n", [pidFilePath UTF8String]);
+		}
+
+		// Copy the user-specified IPA to the temporary directory
+		// The reason why we do this is because MobileInstallation / LSApplicationWorkSpace will actually delete the IPA once it's finished extracting.
+		NSString *installName = [NSString stringWithFormat:@"appinst-session-%@.ipa", sessionID];
 		NSString *installPath = [workPath stringByAppendingPathComponent:installName];
 		if ([fileManager fileExistsAtPath:installPath]) {
+			// It is extremely unlikely (almost impossible) for a session ID collision to occur, but if it does, we'll delete the conflicting IPA.
 			if (![fileManager removeItemAtPath:installPath error:nil]) {
-				// Defensive error handling for a case that can… theoretically occur.
-				printf("Failed to remove leftover temporary files.\n");
+				// … It's also possible (but even /more/ unlikely) that this will fail.
+				// If this somehow happens, just instruct the user to try again. That will give them a different, non-conflicting session ID.
+				printf("Failed to delete conflicting leftover temporary files from a previous appinst session at %s. Please try running appinst again.\n", [installPath UTF8String]);
 				return AppInstExitCodeFileSystem;
 			}
 		}
@@ -244,24 +300,29 @@ int main(int argc, const char *argv[]) {
 			}
 		}
 
+		// Clean up appinst PID file for current session ID
+		if ([fileManager fileExistsAtPath:pidFilePath] && [fileManager isDeletableFileAtPath:pidFilePath]) {
+			printf("Cleaning up appinst session ID %s (PID %d)…\n", [sessionID UTF8String], currentPID);
+			[fileManager removeItemAtPath:pidFilePath error:nil];
+		}
+
 		// Clean up temporary copied IPA
 		if ([fileManager fileExistsAtPath:installPath] && [fileManager isDeletableFileAtPath:installPath]) {
-			printf("Removing temporary files…\n");
+			printf("Cleaning up temporary files…\n");
 			[fileManager removeItemAtPath:installPath error:nil];
 		}
 
 		// Clean up temporary directory
-		if ([fileManager fileExistsAtPath:workPath] && [fileManager isDeletableFileAtPath:workPath]) {
-			printf("Removing temporary directory…\n");
+		if ([fileManager fileExistsAtPath:workPath] && [fileManager isDeletableFileAtPath:workPath] && isSafeToDeleteAppInstTemporaryDirectory(workPath)) {
+			printf("Deleting temporary directory…\n");
 			[fileManager removeItemAtPath:workPath error:nil];
 		}
 
-		// Print results
+		// Print final results
 		if (isInstalled) {
 			printf("Successfully installed \"%s\"!\n", [appIdentifier UTF8String]);
 			return AppInstExitCodeSuccess;
 		}
-
 		printf("Failed to install \"%s\".\n", [appIdentifier UTF8String]);
 		return AppInstExitCodeUnknown;
 	}
