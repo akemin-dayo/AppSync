@@ -5,7 +5,7 @@ Pre-Depends: firmware (>= 5.0)
 Depends: net.angelxwind.appsyncunified (>= 5.1), libzip
 Version: 1.2
 Architecture: iphoneos-arm
-Description: Install IPAs from the command line
+Description: A command-line IPA app installer.
 Maintainer: Karen/あけみ <karen@akemi.ai>
 Author: Karen/あけみ, Linus Yang <karen@akemi.ai>
 Section: Utilities

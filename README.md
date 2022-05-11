@@ -3,7 +3,7 @@
 
 ## What is AppSync Unified?
 
-AppSync Unified is a tweak that allows users to freely install ad-hoc signed, fakesigned, or unsigned IPA app packages on their iOS devices that iOS would otherwise consider invalid.
+AppSync Unified is a tweak that allows users to freely install ad-hoc signed, fakesigned, unsigned, or expired IPA app packages on their iOS devices that iOS would otherwise consider invalid.
 
 Some popular use cases include:
 
@@ -19,7 +19,7 @@ AppSync Unified is available from **Karen's Repo: https://cydia.akemi.ai/** ([Ta
 
 If you do not see AppSync Unified listed in Karen's Repo, then that just means you have another repository added that is also hosting a copy of AppSync Unified under the same package ID.
 
-**_Please_ only ever install the official, unmodified release from Karen's Repo for your own safety!** Third-party modified versions from other repositories can and _have_ broken various users' iOS installations in the past.
+**_Please_ only ever install the official, unmodified release from Karen's Repo for your own safety, and to ensure proper operation!** Third-party modified versions from other repositories can and _have_ broken various users' iOS installations in the past.
 
 By installing third-party modified versions of _any system tweak_ like AppSync Unified, you are putting the security and stability of your iOS device and your personal data at risk.
 
@@ -59,9 +59,9 @@ First, make sure you have [Theos](https://github.com/theos/theos) installed. If 
 
 Once you've confirmed that you have Theos installed, open up Terminal and run the following commands:
 
-```
+```shell
 git clone https://github.com/akemin-dayo/AppSync.git
-cd AppSync
+cd AppSync/
 make
 make package
 ```
