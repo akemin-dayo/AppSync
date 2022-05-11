@@ -251,7 +251,7 @@ int main(int argc, const char *argv[]) {
 			}
 		}
 		if (![fileManager copyItemAtPath:filePath toPath:installPath error:nil]) {
-			printf("Failed to copy the specified IPA to the temporary directory.\n");
+			printf("Failed to copy the specified IPA to the temporary directory. Do you have enough free disk space?\n");
 			return AppInstExitCodeFileSystem;
 		}
 
