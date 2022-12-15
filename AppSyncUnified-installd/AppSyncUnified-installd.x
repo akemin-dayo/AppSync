@@ -163,6 +163,7 @@ static uintptr_t ASU_MISValidateSignatureAndCopyInfo(NSString *path, NSDictionar
 			[fakeInfo setObject:[NSNumber numberWithBool:NO] forKey:@"ValidatedByUniversalProfile"];
 			[fakeInfo setObject:[NSNumber numberWithBool:NO] forKey:@"ValidatedByLocalProfile"];
 			[fakeInfo setObject:[NSNumber numberWithInt:0x20100] forKey:@"SignatureVersion"];
+			[fakeInfo setObject:[NSNumber numberWithLong:0] forKey:@"SignerType"];
 
 			*info = fakeInfo;
 			LOG(@"Generated fake signing information == %@", *info);
