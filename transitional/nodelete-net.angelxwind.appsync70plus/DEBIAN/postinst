@@ -1,4 +1,0 @@
-#!/bin/sh
-# karen was here o u o
-launchctl unload /System/Library/LaunchDaemons/com.apple.mobile.installd.plist
-launchctl load /System/Library/LaunchDaemons/com.apple.mobile.installd.plist
