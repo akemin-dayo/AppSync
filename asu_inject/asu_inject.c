@@ -10,7 +10,7 @@
 #include <spawn.h>
 #include <assert.h>
 
-#define DPKG_PATH "/var/lib/dpkg/info/net.angelxwind.appsyncunified.list"
+#define DPKG_PATH "/var/lib/dpkg/info/ai.akemi.appsyncunified.list"
 
 extern char ***_NSGetEnviron(void);
 extern int proc_listallpids(void *, int);

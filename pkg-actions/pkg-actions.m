@@ -11,7 +11,7 @@
 	#define LOG(...)
 #endif
 
-#define DPKG_PATH "/var/lib/dpkg/info/net.angelxwind.appsyncunified.list"
+#define DPKG_PATH "/var/lib/dpkg/info/ai.akemi.appsyncunified.list"
 
 #define L_LAUNCHDAEMON_PATH "/Library/LaunchDaemons"
 #define SL_LAUNCHDAEMON_PATH "/System" L_LAUNCHDAEMON_PATH
