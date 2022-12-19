@@ -23,7 +23,7 @@ If you do not see appinst listed in Karen's Repo, then that just means you have 
 
 ## How do I build appinst?
 
-First, make sure you have [Theos](https://github.com/theos/theos) installed. If you don't, [please refer to the official documentation](https://github.com/theos/theos/wiki/Installation) on how to set up Theos on your operating system of choice.
+First, make sure you have [Theos](https://github.com/theos/theos) installed. If you don't, [please refer to the official documentation](https://theos.dev/docs/installation) on how to set up Theos on your operating system of choice.
 
 Once you've confirmed that you have Theos installed, you'll need to acquire a copy of `libzip.a` to statically link against.
 
