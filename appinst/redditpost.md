@@ -26,7 +26,7 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 * `Improved `appinst`'s help message (accessible via the `-h` or `--help` arguments, or if `appinst` is run without any arguments specified)
 
-* Removed the unnecessary `arm64e` Mach-O arch slice from the binary.
+* Removed the unnecessary `arm64e` Mach-O arch slice from the `appinst` binary.
 
 * `appinst` will now always ensure that proper filesystem ownership and permissions are set on its temporary directory in order to prevent any possibility of an app installation failure if `appinst` was recently previously run as `root`. (That being said, this is rendered somewhat redundant by the other improvements in 2.0.0…)
 
