@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # karen was here o u o
 {
 	karentools build
