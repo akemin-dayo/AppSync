@@ -25,13 +25,13 @@ If you do not see appinst listed in Karen's Repo, then that just means you have 
 
 First, make sure you have [Theos](https://github.com/theos/theos) installed. If you don't, [please refer to the official documentation](https://github.com/theos/theos/wiki/Installation) on how to set up Theos on your operating system of choice.
 
-Once you've confirmed that you have Theos installed, you'll need to acquire a copy of `libzip.dylib` to link against.
+Once you've confirmed that you have Theos installed, you'll need to acquire a copy of `libzip.a` to statically link against.
 
-To do this, download the `libzip` package available from the BigBoss repo. The latest version as of the writing of this documentation is 0.11.2, and [the URL to the deb file can be found here](http://apt.thebigboss.org/repofiles/cydia/debs2.0/libzip_0.11.2.deb).
+To do this, download the `libzip` package available from the BigBoss repository. The latest version as of the writing of this documentation is 0.11.2, and [the URL to the deb file can be found here](http://apt.thebigboss.org/repofiles/cydia/debs2.0/libzip_0.11.2.deb).
 
 Extract the deb using whatever method you like. ([`dpkg -x`](https://formulae.brew.sh/formula/dpkg), [`unar`](https://formulae.brew.sh/formula/unar) ([also available without using Homebrew](https://theunarchiver.com/command-line)), [The Unarchiver](https://theunarchiver.com/), etc.)
 
-Locate the `libzip.dylib` file, and copy it to `$THEOS/libs/`.
+Locate the `libzip.a` file, and copy it to `$THEOS/libs/`.
 
 After you've done that, open up Terminal and run the following commands:
 
@@ -43,6 +43,14 @@ make package
 ```
 
 And you should have a freshly built *.deb package file of appinst!
+
+### … Wait, why are you _statically_ linking against libzip, instead of dynamically linking it and listing `libzip` as an APT dependency?
+
+Ah. Yeah. About that.
+
+It turns out that the different packages of `libzip` that are found on BigBoss (arm64, armv7s, armv7, armv6), Bingner/Elucubratus (arm64 only), and Procursus (arm64 only) all install to different locations and are all under different names.
+
+This pretty much makes it impossible to support, so statically linking against `libzip` is the only option.
 
 ---
 
