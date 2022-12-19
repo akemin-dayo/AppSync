@@ -28,7 +28,7 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 * Removed the unnecessary `arm64e` Mach-O arch slice from the `appinst` binary.
 
-* `appinst` will now always ensure that proper filesystem ownership and permissions are set on its temporary directory in order to prevent any possibility of an app installation failure if `appinst` was recently previously run as `root`. (That being said, this is rendered somewhat redundant by the other improvements in 2.0.0…)
+* `appinst` will now always ensure that proper filesystem ownership and permissions are set on its temporary directory in order to prevent any possibility of an app installation failure if `appinst` was recently previously run as `root`. (That being said, this is rendered somewhat redundant by the other improvements in 2.0…)
 
 * `appinst` will now always proactively clean up its temporary directory after an installation attempt, unlike previous versions which relied on iOS behaviour.
 
