@@ -32,6 +32,8 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 * `appinst` will now always proactively clean up its temporary directory after an installation attempt, unlike previous versions which relied on iOS behaviour.
 
+* Changed package ID to `ai.akemi.appinst`.
+
 ---
 
 # `appinst`, a command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, and 16.

@@ -16,6 +16,8 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 * Made multiple improvements to the package installation flow. The `CFUserNotification` now no longer blocks the main thread, and is now only ever shown if the user is installing the package from an actual APT GUI frontend that implements the `${CYDIA}` environment variable (such as Cydia, Zebra, or Sileo).
 
+* Changed package ID to `ai.akemi.appsyncunified`.
+
 ---
 
 # Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, and 16. Open-source on [GitHub](https://github.com/akemin-dayo/AppSync)!
