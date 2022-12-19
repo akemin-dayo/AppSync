@@ -5,7 +5,7 @@ Description: Transitional package for AppSync Unified.
 Maintainer: Karen/あけみ
 Homepage: http://cydia.akemi.ai/
 Name: AppSync Unified Transitional Package
-Package: ai.akemi.appsyncunified
+Package: net.angelxwind.appsyncunified
 Section: Tweaks
 Version: 9999.0
 Depiction: https://cydia.akemi.ai/?page/ai.akemi.appsyncunified-transitional
