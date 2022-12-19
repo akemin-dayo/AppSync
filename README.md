@@ -1,5 +1,5 @@
 # AppSync Unified
-###### Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, and 14.
+###### Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, and 16.
 
 ## What is AppSync Unified?
 

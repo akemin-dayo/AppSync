@@ -8,15 +8,15 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# Changelog for 104.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
+# Changelog for 106.0 ([full changelog](https://cydia.akemi.ai/?page/net.angelxwind.appsyncunified-changelog))
 
-* Added support for iOS 14.8.1.
+* Added full support for iOS 15.0 〜 16.2.
 
-* No other changes were made to AppSync Unified's functionality or code.
+* Added support for the `SignerType` key to ASU's fake codesigning info dictionary, which is required by iOS 15 and above in order to successfully install fakesigned applications.
 
 ---
 
-# Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, and 14. Open-source on [GitHub](https://github.com/akemin-dayo/AppSync)!
+# Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, and 16. Open-source on [GitHub](https://github.com/akemin-dayo/AppSync)!
 
 AppSync Unified is a tweak that allows users to freely install ad-hoc signed, fakesigned, or unsigned IPA app packages on their iOS devices that iOS would otherwise consider invalid.
 
