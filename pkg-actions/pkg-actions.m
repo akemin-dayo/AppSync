@@ -1,4 +1,5 @@
 #import <CoreFoundation/CoreFoundation.h>
+#import <CoreFoundation/CFUserNotification.h>
 #import <Foundation/Foundation.h>
 #include <sys/stat.h>
 #include <spawn.h>
