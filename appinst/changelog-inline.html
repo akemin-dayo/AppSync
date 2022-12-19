@@ -1,4 +1,18 @@
 			<panel>
+				<label>2.0: 2022/12/20</label>
+				<fieldset>
+					<div><label>Switched to using <code>libzip</code> to handle IPA extraction — thanks, ViRb3! This allows <code>appinst</code> to better handle some larger IPA files, as the previous implementation using the now-unmaintained <code>ZipZap</code> framework would sometimes cause a crash in this situation.</label></div>
+					<div><label>Added some informative user-facing status information on iOS versions that use <code>MobileInstallation</code>. (※ iOS 5 〜 7)</label></div>
+					<div><label>Reworded and improved user-facing messages.</label></div>
+					<div><label>Made major changes to how <code>appinst</code> creates and handles temporary staging directories and app installation session IDs.</label></div>
+					<div><label>Added proper handling for some potential edge cases involving running multiple <code>appinst</code> instances. (※ I do not recommend doing this. iOS can only install one app at a time anyway, so running multiple instances of <code>appinst</code> will merely add to the iOS app installation queue.)</label></div>
+					<div><label>Added some error handling code to prevent <code>appinst</code> from theoretically potentially failing if two instances are launched in very quick succession.</label></div>
+					<div><label>If the IPA fails to be copied to the temporary staging directory, <code>appinst</code> will now show suggest the user to check if they've run out of disk space, as that is the most likely cause of failure.</label></div>
+					<div><label><code>Improved <code>appinst<code>'s help message (accessible via the <code>-h</code> or <code>--help</code> arguments, or if <code>appinst</code> is run without any arguments specified)</label></div>
+					<div><label>Removed the unnecessary <code>arm64e</code> Mach-O arch slice from the binary.</label></div>
+					<div><label><code>appinst</code> will now always ensure that proper filesystem ownership and permissions are set on its temporary directory in order to prevent any possibility of an app installation failure if <code>appinst</code> was recently previously run as <code>root</code>. (That being said, this is rendered somewhat redundant by the other improvements in 2.0.0…)</label></div>
+					<div><label><code>appinst</code> will now always proactively clean up its temporary directory after an installation attempt, unlike previous versions which relied on iOS behaviour.</label></div>
+				</fieldset>
 				<label>1.1.4: 2021/02/11</label>
 				<fieldset>
 					<div><label>Various improvements were made to appinst's output.</label></div>
