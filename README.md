@@ -55,7 +55,7 @@ They're just trying to make a living too, much like you and I.
 
 ## How do I build AppSync Unified?
 
-First, make sure you have [Theos](https://github.com/theos/theos) installed. If you don't, [please refer to the official documentation](https://github.com/theos/theos/wiki/Installation) on how to set up Theos on your operating system of choice.
+First, make sure you have [Theos](https://github.com/theos/theos) installed. If you don't, [please refer to the official documentation](https://theos.dev/docs/installation) on how to set up Theos on your operating system of choice.
 
 Once you've confirmed that you have Theos installed, open up Terminal and run the following commands:
 
