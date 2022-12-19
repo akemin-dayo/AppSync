@@ -1,0 +1,12 @@
+Architecture: iphoneos-arm
+Author: Karen/あけみ
+Depends: ai.akemi.appsyncunified
+Description: Transitional package for AppSync Unified.
+Maintainer: Karen/あけみ
+Homepage: http://cydia.akemi.ai/
+Name: AppSync Unified Transitional Package
+Package: net.angelxwind.appsyncunified
+Section: Tweaks
+Version: 9999.0
+Depiction: https://cydia.akemi.ai/?page/ai.akemi.appsyncunified-transitional
+Tag: cydia::obsolete
