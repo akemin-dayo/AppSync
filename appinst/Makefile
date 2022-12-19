@@ -17,3 +17,6 @@ appinst_LIBRARIES = z zip
 appinst_INSTALL_PATH = /usr/bin
 appinst_CODESIGN_FLAGS = -Sappinst_entitlements.plist
 include $(THEOS_MAKE_PATH)/tool.mk
+
+package::
+	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-com.linusyang.appinst debs/nodelete-com.linusyang.appinst.deb

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>com.linusyang.appinst</string>
+	<string>ai.akemi.appinst</string>
 	<key>com.apple.private.mobileinstall.allowedSPI</key>
 	<array>
 		<string>Install</string>

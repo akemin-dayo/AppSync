@@ -2,7 +2,7 @@
 # karen was here o u o
 {
 	cd appinst/
-	karentools release "com.linusyang.appinst"
+	karentools release "ai.akemi.appinst"
 	
 	exit
 }

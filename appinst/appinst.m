@@ -13,7 +13,7 @@
 #define kAppTypeKey @"ApplicationType"
 #define kRandomLength 32
 
-#define DPKG_PATH "/var/lib/dpkg/info/com.linusyang.appinst.list"
+#define DPKG_PATH "/var/lib/dpkg/info/ai.akemi.appinst.list"
 
 static const NSString *kRandomAlphabet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 

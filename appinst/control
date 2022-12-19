@@ -1,4 +1,4 @@
-Package: com.linusyang.appinst
+Package: ai.akemi.appinst
 Name: appinst (App Installer)
 Priority: standard
 Pre-Depends: firmware (>= 5.0)
@@ -12,4 +12,4 @@ Section: Utilities
 Homepage: https://github.com/akemin-dayo/AppSync
 Tag: role::enduser, purpose::console
 Conflicts: com.sull.appinstaller
-Depiction: https://cydia.akemi.ai/?page/com.linusyang.appinst
+Depiction: https://cydia.akemi.ai/?page/ai.akemi.appinst

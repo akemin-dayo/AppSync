@@ -8,7 +8,7 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-#**Changelog for 2.0 ([full changelog](https://cydia.akemi.ai/?page/com.linusyang.appinst-changelog))**
+#**Changelog for 2.0 ([full changelog](https://cydia.akemi.ai/?page/ai.akemi.appinst-changelog))**
 
 * Switched to using `libzip` to handle IPA extraction — thanks, ViRb3! This allows `appinst` to better handle some larger IPA files, as the previous implementation using the now-unmaintained `ZipZap` framework would sometimes cause a crash in this situation.
 
