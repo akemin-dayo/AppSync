@@ -12,4 +12,6 @@ Section: Utilities
 Homepage: https://github.com/akemin-dayo/AppSync
 Tag: role::enduser, purpose::console
 Conflicts: com.sull.appinstaller
+Provides: com.linusyang.appinst
+Replaces: com.linusyang.appinst
 Depiction: https://cydia.akemi.ai/?page/ai.akemi.appinst

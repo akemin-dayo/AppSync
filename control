@@ -3,8 +3,8 @@ Depends: firmware (>= 5.0), mobilesubstrate (>= 0.9.5100), firmware (<= 16.2)
 Depiction: https://cydia.akemi.ai/?page/ai.akemi.appsyncunified
 Maintainer: Karen/あけみ <karen@akemi.ai>
 Homepage: https://cydia.akemi.ai/
-Provides: appsync
-Replaces: us.hackulo.appsync50
+Provides: appsync, net.angelxwind.appsyncunified
+Replaces: us.hackulo.appsync50, net.angelxwind.appsyncunified
 Package: ai.akemi.appsyncunified
 Name: AppSync Unified
 Version: 106.0
