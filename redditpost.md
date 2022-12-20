@@ -14,6 +14,8 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 * Added support for the `SignerType` key to ASU's fake codesigning info dictionary, which is required by iOS 15 and above in order to successfully install fakesigned applications.
 
+* AppSync Unified now declares all fakesigned apps as originating from the App Store.
+
 * Made multiple improvements to the package installation flow. The `CFUserNotification` now no longer blocks the main thread, and is now only ever shown if the user is installing the package from an actual APT GUI frontend that implements the `${CYDIA}` environment variable (such as Cydia, Zebra, or Sileo).
 
 * Changed package ID to `ai.akemi.appsyncunified`.

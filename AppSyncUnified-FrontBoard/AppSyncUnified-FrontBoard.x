@@ -6,7 +6,7 @@
 	#define LOG(...)
 #endif
 
-// Located in iOS 14.x's FrontBoardServices.framework
+// Located in iOS 14.x and above's FrontBoardServices.framework
 %hook FBSSignatureValidationService
 -(NSUInteger) trustStateForApplication:(id)application {
 	LOG(@"Original response for FBSSignatureValidationService trustStateForApplication: application == %@, retval == %lu", application, (unsigned long)%orig(application));
