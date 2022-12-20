@@ -1,10 +1,10 @@
 Architecture: iphoneos-arm
 Author: Karen/あけみ
 Depends: ai.akemi.appinst
-Description: Transitional package for AppSync Unified.
+Description: Transitional package for appinst (App Installer).
 Maintainer: Karen/あけみ
 Homepage: http://cydia.akemi.ai/
-Name: AppSync Unified Transitional Package
+Name: appinst (App Installer) Transitional Package
 Package: com.linusyang.appinst
 Section: Tweaks
 Version: 9999.0
