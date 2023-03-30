@@ -8,9 +8,9 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# Changelog for 108.0 ([full changelog](https://cydia.akemi.ai/?page/ai.akemi.appsyncunified-changelog))
+# Changelog for 110.0 ([full changelog](https://cydia.akemi.ai/?page/ai.akemi.appsyncunified-changelog))
 
-* Added support for iOS 16.3.
+* Added support for iOS 16.3.1.
 
 * No other changes were made to AppSync Unified's functionality or code.
 
