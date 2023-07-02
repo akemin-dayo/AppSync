@@ -100,7 +100,7 @@ bool isSafeToDeleteAppInstTemporaryDirectory(NSString *workPath) {
 int main(int argc, const char *argv[]) {
 	@autoreleasepool {
 		printf("appinst (App Installer)\n");
-		printf("Copyright (C) 2014-2022 Karen/あけみ\n");
+		printf("Copyright (C) 2014-2023 Karen/あけみ\n");
 		printf("** PLEASE DO NOT USE APPINST FOR PIRACY **\n");
 		if (access(DPKG_PATH, F_OK) == -1) {
 			printf("You seem to have installed appinst from an APT repository that is not cydia.akemi.ai.\n");
