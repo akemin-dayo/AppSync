@@ -87,8 +87,14 @@ int main(int argc, char *argv[]) {
 		printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.akemi.ai.\n");
 		printf("Please make sure that you download AppSync Unified from the official repository to ensure proper operation.\n");
 	}
+
 	if (geteuid() != 0) {
 		printf("FATAL: asu_inject must be run as root.\n");
+		return 1;
+	}
+
+	if (access(cynject_path, F_OK) == -1) {
+		printf("Unable to locate cynject.\n");
 		return 1;
 	}
 
