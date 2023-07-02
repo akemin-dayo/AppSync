@@ -20,4 +20,6 @@ appinst_CODESIGN_FLAGS = -Sappinst_entitlements.plist
 include $(THEOS_MAKE_PATH)/tool.mk
 
 package::
+ifndef THEOS_PACKAGE_SCHEME
 	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-com.linusyang.appinst debs/nodelete-com.linusyang.appinst.deb
+endif
