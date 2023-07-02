@@ -2,12 +2,6 @@ export TARGET = iphone:clang:latest:5.0
 export ARCHS = armv7 armv7s arm64
 export DEBUG = 0
 
-# This is already defined by KarenTools/AkemiTools internally, but I'm defining it here in the public Makefile as well, just to make the lives of any potential contributors easier.
-# ※ Note: You will have to manually run `make clean` twice — once for each packaging scheme and corresponding data directory.
-ifeq ($(THEOS_PACKAGE_SCHEME), rootless)
-	export _THEOS_RELATIVE_DATA_DIR = ".theos-rootless"
-endif
-
 THEOS_PACKAGE_DIR_NAME = debs
 PACKAGE_VERSION = $(THEOS_PACKAGE_BASE_VERSION)
 
