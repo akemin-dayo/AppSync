@@ -265,7 +265,7 @@ int main(int argc, const char *argv[]) {
 
 		// Call system APIs to actually install the app
 		printf("Installing \"%s\"…\n", [appIdentifier UTF8String]);
-		BOOL isInstalled = NO;
+		BOOL isInstalled = false;
 		if (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) {
 			// Use LSApplicationWorkspace on iOS 8 and above
 			Class LSApplicationWorkspace_class = objc_getClass("LSApplicationWorkspace");
