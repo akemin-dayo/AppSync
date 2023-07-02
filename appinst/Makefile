@@ -2,8 +2,8 @@ export TARGET = iphone:clang:latest:5.0
 export ARCHS = armv7 armv7s arm64
 export DEBUG = 0
 
-PACKAGE_VERSION = $(THEOS_PACKAGE_BASE_VERSION)
 THEOS_PACKAGE_DIR_NAME = debs
+PACKAGE_VERSION = $(THEOS_PACKAGE_BASE_VERSION)
 
 include $(THEOS)/makefiles/common.mk
 
