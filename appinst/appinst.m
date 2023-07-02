@@ -279,7 +279,10 @@ int main(int argc, const char *argv[]) {
 				if ([workspace installApplication:[NSURL fileURLWithPath:installPath] withOptions:options]) {
 					isInstalled = YES;
 				}
-			} @catch (NSException *e) {}
+			} @catch (NSException *exception) {
+				printf("An exception occurred while attempting to install the app!\n");
+				printf("NSException info: %s\n", [[NSString stringWithFormat:@"%@", exception] UTF8String]);
+			}
 		} else {
 			// Use MobileInstallationInstall on iOS 5〜7
 			void *image = dlopen(MI_PATH, RTLD_LAZY);
