@@ -2,6 +2,7 @@
 #include <dispatch/dispatch.h>
 #include <mach/boolean.h>
 #include <mach/mach.h>
+#include <rootless.h>
 #include <spawn.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -10,14 +11,14 @@
 #include <sys/param.h>
 #include <sys/types.h>
 
-#define DPKG_PATH "/var/lib/dpkg/info/ai.akemi.appsyncunified.list"
+#define DPKG_PATH ROOT_PATH("/var/lib/dpkg/info/ai.akemi.appsyncunified.list")
 
 extern char ***_NSGetEnviron(void);
 extern int proc_listallpids(void *, int);
 extern int proc_pidpath(int, void *, uint32_t);
 
-static const char *cynject_path = "/usr/bin/cynject";
-static const char *dylib_path = "/Library/MobileSubstrate/DynamicLibraries/AppSyncUnified-installd.dylib";
+static const char *cynject_path = ROOT_PATH("/usr/bin/cynject");
+static const char *dylib_path = ROOT_PATH("/Library/MobileSubstrate/DynamicLibraries/AppSyncUnified-installd.dylib");
 static const char *dispatch_queue_name = NULL;
 static const char *process_name = "installd";
 static int process_buffer_size = 4096;

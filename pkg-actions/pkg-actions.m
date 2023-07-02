@@ -1,6 +1,7 @@
 #import <CoreFoundation/CFUserNotification.h>
 #import <CoreFoundation/CoreFoundation.h>
 #import <Foundation/Foundation.h>
+#import <rootless.h>
 
 #include <spawn.h>
 #include <sys/stat.h>
@@ -12,16 +13,16 @@
 	#define LOG(...)
 #endif
 
-#define DPKG_PATH "/var/lib/dpkg/info/ai.akemi.appsyncunified.list"
+#define DPKG_PATH ROOT_PATH("/var/lib/dpkg/info/ai.akemi.appsyncunified.list")
 
 #define L_LAUNCHDAEMON_PATH "/Library/LaunchDaemons"
 #define SL_LAUNCHDAEMON_PATH "/System" L_LAUNCHDAEMON_PATH
 
-#define INSTALLD_PLIST_PATH_L L_LAUNCHDAEMON_PATH "/com.apple.mobile.installd.plist"
+#define INSTALLD_PLIST_PATH_L ROOT_PATH(L_LAUNCHDAEMON_PATH) "/com.apple.mobile.installd.plist"
 #define INSTALLD_PLIST_PATH_SL SL_LAUNCHDAEMON_PATH "/com.apple.mobile.installd.plist"
 
-#define ASU_INJECT_PLIST_PATH L_LAUNCHDAEMON_PATH "/ai.akemi.asu_inject.plist"
-#define ASU_INJECT_PLIST_PATH_OLD L_LAUNCHDAEMON_PATH "/net.angelxwind.asu_inject.plist"
+#define ASU_INJECT_PLIST_PATH ROOT_PATH(L_LAUNCHDAEMON_PATH) "/ai.akemi.asu_inject.plist"
+#define ASU_INJECT_PLIST_PATH_OLD ROOT_PATH(L_LAUNCHDAEMON_PATH) "/net.angelxwind.asu_inject.plist"
 
 typedef struct __CFUserNotification *CFUserNotificationRef;
 FOUNDATION_EXTERN CFUserNotificationRef CFUserNotificationCreate(CFAllocatorRef allocator, CFTimeInterval timeout, CFOptionFlags flags, SInt32 *error, CFDictionaryRef dictionary);
@@ -37,7 +38,8 @@ static int run_posix_spawn(const char *args[]) {
 
 static int run_launchctl(const char *path, const char *cmd, bool is_installd) {
 	LOG("run_launchctl() %s %s\n", cmd, path);
-	const char *args[] = {(access("/sbin/launchctl", X_OK) != -1) ? "/sbin/launchctl" : "/bin/launchctl", cmd, path, NULL};
+	// launchctl is shipped as part of the jailbreak bootstrap, not iOS itself.
+	const char *args[] = {(access(ROOT_PATH("/sbin/launchctl"), X_OK) != -1) ? ROOT_PATH("/sbin/launchctl") : ROOT_PATH("/bin/launchctl"), cmd, path, NULL};
 	return run_posix_spawn(args);
 }
 
@@ -73,6 +75,7 @@ int main(int argc, const char **argv) {
 			printf("Reloading and starting the symlinked installd LaunchDaemon…\n");
 			run_launchctl(INSTALLD_PLIST_PATH_L, "load", true);
 		}
+
 		printf("Unloading and stopping the installd LaunchDaemon…\n");
 		run_launchctl(INSTALLD_PLIST_PATH_SL, "unload", true);
 		printf("Reloading and starting the installd LaunchDaemon…\n");
@@ -92,7 +95,8 @@ int main(int argc, const char **argv) {
 			if ((kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_3) && (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_10_0)) {
 				printf("This device is /probably/ running the Phœnix jailbreak (detected iOS 9.3.x and a 32-bit CPU architecture).\n");
 				printf("Due to a bug in Phœnix, the asu_inject LaunchDaemon (which launches /usr/bin/asu_inject once upon boot) is required in order to properly inject AppSync Unified into installd.\n");
-				if (access("/usr/bin/cynject", F_OK) != -1) {
+				// This path lookup does not need to be rootless-aware for obvious reasons, but we might as well do this just in case someone decides to release a rootless jailbreak for older iOS versions (… whyever anyone would ever want to do that).
+				if (access(ROOT_PATH("/usr/bin/cynject"), F_OK) != -1) {
 					printf("Found cynject on this device!\n");
 					chown(ASU_INJECT_PLIST_PATH, 0, 0);
 					chmod(ASU_INJECT_PLIST_PATH, 0644);
@@ -115,10 +119,10 @@ int main(int argc, const char **argv) {
 
 		#ifdef POSTINST
 			// The CFUserNotification will only be shown if:
-			//     The user is installing AppSync Unified using an APT frontend that supports the CYDIA environment variable (Cydia, Zebra, Sileo, etc.)
-			//     The file /ai.akemi.appsyncunified.no-postinst-notification does not exist on the rootFS
+			//     ・The user is installing AppSync Unified using an APT frontend that supports the CYDIA environment variable (Cydia, Zebra, Sileo, etc.)
+			//     ・The file /ai.akemi.appsyncunified.no-postinst-notification does not exist in the rootFS or the rootless prefix path.
 			//         ※ This was originally used for KarenTools automated testing, but you can still use it to permanently silence the notification when using APT frontends.
-			if (getenv("CYDIA") != NULL && access("/ai.akemi.appsyncunified.no-postinst-notification", F_OK) == -1) {
+			if (getenv("CYDIA") != NULL && access(ROOT_PATH("/ai.akemi.appsyncunified.no-postinst-notification"), F_OK) == -1) {
 				// TODO: For some reason, this notification doesn't appear on my iOS 10 device. It's a minor bug though, so I'll allow it for now.
 				// … Even if that makes my perfectionist self scream in intense, agonising pain (🍍˃̶͈̀ロ˂̶͈́)੭ꠥ⁾⁾
 

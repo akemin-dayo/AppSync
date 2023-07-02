@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import <rootless.h>
 #import <version.h>
 
 #import "cdhash.h"
@@ -10,7 +11,7 @@ MSImageRef MSGetImageByName(const char *file);
 void *MSFindSymbol(MSImageRef image, const char *name);
 void MSHookFunction(void *symbol, void *replace, void **result);
 
-#define DPKG_PATH "/var/lib/dpkg/info/ai.akemi.appsyncunified.list"
+#define DPKG_PATH ROOT_PATH("/var/lib/dpkg/info/ai.akemi.appsyncunified.list")
 
 // Undefine LOG here since my version of cdhash.h defined it earlier
 #undef LOG
