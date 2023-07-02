@@ -1,0 +1,5 @@
+projectType="iOS-theos"
+bundleIdentifier="ai.akemi.appsyncunified"
+miniOSVersion="5.0"
+maxiOSVersion="latest"
+rootlessSupport=1
