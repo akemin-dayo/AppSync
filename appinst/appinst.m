@@ -4,7 +4,7 @@
 #import "zip.h"
 
 #ifdef DEBUG
-	#define LOG(LogContents, ...) NSLog((@"appinst [DEBUG]: %s:%d " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
+	#define LOG(LogContents, ...) NSLog((@"[appinst] [%s] [L%d] " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 	#define LOG(...)
 #endif

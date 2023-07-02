@@ -14,7 +14,7 @@ void MSHookFunction(void *symbol, void *replace, void **result);
 // Undefine LOG here since my version of cdhash.h defined it earlier
 #undef LOG
 #ifdef DEBUG
-	#define LOG(LogContents, ...) NSLog((@"AppSync Unified [dylib-installd] [DEBUG]: %s:%d " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
+	#define LOG(LogContents, ...) NSLog((@"[AppSync Unified] [dylib-installd] [%s] [L%d] " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 	#define LOG(...)
 #endif

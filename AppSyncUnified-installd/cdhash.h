@@ -29,7 +29,7 @@ bool compute_cdhash(const void *file, size_t size, void *cdhash);
 bool find_cdhash(const char *path, amfid_cdhash_t *cdhash);
 
 #ifdef DEBUG
-	#define LOG(LogContents, ...) NSLog((@"AppSync Unified [cdhash] [DEBUG]: %s:%d " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
+	#define LOG(LogContents, ...) NSLog((@"[AppSync Unified] [cdhash] [%s] [L%d] " LogContents), __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
 	#define LOG(...)
 #endif
