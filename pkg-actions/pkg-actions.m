@@ -36,10 +36,18 @@ static int run_posix_spawn(const char *args[]) {
 	return status;
 }
 
+static const char *determine_launchctl_path() {
+	// launchctl is shipped as part of the jailbreak bootstrap, not iOS itself.
+	// Some jailbreak bootstraps put launchctl inside /sbin instead of /bin for some reason, which is where it normally resides (at least on macOS).
+	if (access(ROOT_PATH("/bin/launchctl"), X_OK) == -1) {
+		return ROOT_PATH("/sbin/launchctl");
+	}
+	return ROOT_PATH("/bin/launchctl");
+}
+
 static int run_launchctl(const char *path, const char *cmd, bool is_installd) {
 	LOG("run_launchctl() %s %s\n", cmd, path);
-	// launchctl is shipped as part of the jailbreak bootstrap, not iOS itself.
-	const char *args[] = {(access(ROOT_PATH("/sbin/launchctl"), X_OK) != -1) ? ROOT_PATH("/sbin/launchctl") : ROOT_PATH("/bin/launchctl"), cmd, path, NULL};
+	const char *args[] = { determine_launchctl_path(), cmd, path, NULL };
 	return run_posix_spawn(args);
 }
 
