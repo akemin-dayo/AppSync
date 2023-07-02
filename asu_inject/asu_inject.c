@@ -108,7 +108,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	if ((access(cynject_path, X_OK) == -1) && (access(inject_criticald_path, X_OK) == -1)) {
-		printf("Unable to locate any suitable injectors! (%s, %s)\n", cynject_path, inject_criticald_path);
+		printf("FATAL: Unable to locate any suitable injectors! (%s, %s)\n", cynject_path, inject_criticald_path);
 		printf("If you are certain that they exist on your filesystem, please make sure their filesystem permissions are set correctly and that they are executable.\n");
 		return 1;
 	}
