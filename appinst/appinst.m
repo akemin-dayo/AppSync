@@ -109,10 +109,12 @@ int main(int argc, const char *argv[]) {
 		}
 
 		if (access(ROOT_PATH("/.installed_dopamine"), F_OK) == 0) {
+			printf("\n");
 			printf("WARNING: You appear to be using the Dopamine jailbreak.\n");
-			printf("There is a known IPC (inter-process communication) issue with Dopamine that may prevent apps from successfully installing.\n");
-			printf("It may also cause the TrollStore app to become temporarily unusable.\n");
-			printf("To restore TrollStore functionality, open your persistence helper (such as \"GTA Car Tracker\") and select \"Refresh App Registrations\".\n");
+			printf("         There is a known IPC (inter-process communication) issue with Dopamine that may prevent apps from successfully installing.\n");
+			printf("         It may also cause the TrollStore app to become temporarily unusable.\n");
+			printf("         To restore TrollStore functionality, open your persistence helper (such as \"GTA Car Tracker\") and select \"Refresh App Registrations\".\n");
+			printf("\n");
 		}
 
 		// Construct our temporary directory path
