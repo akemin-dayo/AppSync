@@ -16,7 +16,7 @@
 
 #define DPKG_PATH ROOT_PATH("/var/lib/dpkg/info/ai.akemi.appinst.list")
 
-static const NSString *kRandomAlphabet = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+static const NSString *kRandomAlphanumeric = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 typedef enum {
 	AppInstExitCodeSuccess = 0x0,
@@ -225,7 +225,7 @@ int main(int argc, const char *argv[]) {
 		// Generate a random string which will be used as a reasonably unique session ID
 		NSMutableString *sessionID = [NSMutableString stringWithCapacity:kRandomLength];
 		for (int i = 0; i < kRandomLength; i++) {
-			[sessionID appendFormat: @"%C", [kRandomAlphabet characterAtIndex:arc4random_uniform([kRandomAlphabet length])]];
+			[sessionID appendFormat: @"%C", [kRandomAlphanumeric characterAtIndex:arc4random_uniform([kRandomAlphanumeric length])]];
 		}
 
 		// Write the current appinst PID to a file corresponding to the session ID
