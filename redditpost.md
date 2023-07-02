@@ -8,11 +8,14 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# Changelog for 110.0 ([full changelog](https://cydia.akemi.ai/?page/ai.akemi.appsyncunified-changelog))
+# Changelog for 112.0 ([full changelog](https://cydia.akemi.ai/?page/ai.akemi.appsyncunified-changelog))
 
-* Added support for iOS 16.3.1.
-
-* No other changes were made to AppSync Unified's functionality or code.
+* Added support for all iOS versions up to iOS 16.5.1.
+* Added support for "rootless" mode jailbreaks. ※ Users using the Dopamine jailbreak may encounter issues.
+* Made many internal refactors and improvements to AppSync Unified's code and associated tooling.
+* Improved the functionality of `asu_inject` and added support for `inject_criticald` for wider jailbreak support. (※ No jailbreak that uses `inject_criticald` requires the use of `asu_inject` — this is simply a futureproofing measure.)
+* Improved documentation regarding userspace reboot.
+* Removed the `arm64e` architecture slice from binaries that did not need one.
 
 ---
 

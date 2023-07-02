@@ -1,4 +1,11 @@
 			<panel>
+				<label>2.1: 2023/07/03</label>
+				<fieldset>
+					<div><label>Added support for "rootless" mode jailbreaks. ※ appinst does NOT currently work with the Dopamine jailbreak due to an IPC issue on that specific jailbreak. [<a href="https://twitter.com/akemin_dayo/status/1672982839405723651" target="_blank">Twitter</a>] [<a href="https://main.elk.zone/mstdn.jp/@akemin_dayo@mstdn.jp/110605445960091417" target="_blank">Fediverse</a>] [<a href="https://bsky.app/profile/akemin-dayo.akemi.ai/post/3jyypxpxxpk25" target="_blank">Bluesky</a>]</label></div>
+					<div><label>Added a warning message for users attempting to use appinst with Dopamine.</label></div>
+					<div><label>Added more error logging so any failure states are more informative to the end user when and if they occur.</label></div>
+					<div><label>Added the new entitlement <code>com.apple.security.exception.mach-lookup.global-name</code>.</label></div>
+				</fieldset>
 				<label>2.0: 2022/12/20</label>
 				<fieldset>
 					<div><label>Switched to using <code>libzip</code> to handle IPA extraction — thanks, ViRb3! This allows <code>appinst</code> to better handle some larger IPA files, as the previous implementation using the now-unmaintained <code>ZipZap</code> framework would sometimes cause a crash in this situation.</label></div>
