@@ -9,6 +9,10 @@
 		<string>Install</string>
 		<string>InstallForLaunchServices</string>
 	</array>
+	<key>com.apple.security.exception.mach-lookup.global-name</key>
+	<array>
+		<string>com.apple.mobile.installd</string>
+	</array>
 	<key>platform-application</key>
 	<true/>
 </dict>
