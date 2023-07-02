@@ -56,7 +56,7 @@ void mobileInstallationStatusCallback(CFDictionaryRef information) {
 // LSApplicationWorkspace for iOS 8 and above
 @interface LSApplicationWorkspace : NSObject
 + (id)defaultWorkspace;
-- (BOOL)installApplication:(NSURL *)path withOptions:(NSDictionary *)options;
+- (BOOL)installApplication:(NSURL *)path withOptions:(NSDictionary *)options error:(NSError **)error;
 - (BOOL)uninstallApplication:(NSString *)identifier withOptions:(NSDictionary *)options;
 @end
 
@@ -194,7 +194,7 @@ int main(int argc, const char *argv[]) {
 					printf("Unable to read the specified IPA file.\n");
 					return AppInstExitCodeZip;
 				}
-				NSError *error = nil;
+				NSError *error;
 				NSPropertyListFormat format;
 				NSDictionary * dict = (NSDictionary *) [NSPropertyListSerialization propertyListWithData:fileData
 					options:NSPropertyListImmutable format:&format error:&error];
@@ -275,13 +275,18 @@ int main(int argc, const char *argv[]) {
 
 			// Install app
 			NSDictionary *options = [NSDictionary dictionaryWithObject:appIdentifier forKey:kIdentifierKey];
+			NSError *error;
 			@try {
-				if ([workspace installApplication:[NSURL fileURLWithPath:installPath] withOptions:options]) {
+				if ([workspace installApplication:[NSURL fileURLWithPath:installPath] withOptions:options error:&error]) {
 					isInstalled = YES;
 				}
 			} @catch (NSException *exception) {
 				printf("An exception occurred while attempting to install the app!\n");
 				printf("NSException info: %s\n", [[NSString stringWithFormat:@"%@", exception] UTF8String]);
+			}
+			if (error) {
+				printf("An error occurred while attempting to install the app!\n");
+				printf("NSError info: %s\n", [[NSString stringWithFormat:@"%@", error] UTF8String]);
 			}
 		} else {
 			// Use MobileInstallationInstall on iOS 5〜7
