@@ -18,6 +18,7 @@ extern int proc_listallpids(void *, int);
 extern int proc_pidpath(int, void *, uint32_t);
 
 static const char *cynject_path = ROOT_PATH("/usr/bin/cynject");
+static const char *inject_criticald_path = ROOT_PATH("/electra/inject_criticald");
 static const char *dylib_path = ROOT_PATH("/Library/MobileSubstrate/DynamicLibraries/AppSyncUnified-installd.dylib");
 static const char *dispatch_queue_name = NULL;
 static const char *process_name = "installd";
@@ -54,6 +55,19 @@ static boolean_t find_process(const char *name, pid_t *ppid_ret) {
 
 	free(pid_buffer);
 	return res;
+}
+
+static const char *determine_suitable_injector() {
+	// asu_inject should not be necessary on anything that's not 32-bit iOS 9.3.x, where cynject is pretty much guaranteed to be available.
+	// That being said, I might as well add support for inject_criticald to asu_inject just for… uh, futureproofing purposes?
+	// In general, asu_inject should not be necessary at all. It being required at all on any iOS version / jailbreak is merely a workaround for an old bug that will probably never be fixed.
+
+	// ※ TODO: ElleKit appears to lack a suitable analogue to cynject.
+	if (access(inject_criticald_path, F_OK) == 0) {
+		return inject_criticald_path;
+	}
+
+	return cynject_path;
 }
 
 static void inject_dylib(const char *name, pid_t pid, const char *dylib) {
@@ -93,8 +107,8 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	if (access(cynject_path, F_OK) == -1) {
-		printf("Unable to locate cynject.\n");
+	if ((access(cynject_path, F_OK) == -1) && (access(inject_criticald_path, F_OK) == -1)) {
+		printf("Unable to locate any suitable injectors! (cynject, inject_criticald)\n");
 		return 1;
 	}
 
@@ -112,7 +126,7 @@ int main(int argc, char *argv[]) {
 	printf("installd's PID is %d\n", process_pid);
 
 	printf("Injecting AppSyncUnified-installd.dylib into installd…\n");
-	inject_dylib(cynject_path, process_pid, dylib_path);
+	inject_dylib(determine_suitable_injector(), process_pid, dylib_path);
 	
 	return 0;
 }
