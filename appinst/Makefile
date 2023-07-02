@@ -1,6 +1,6 @@
-TARGET =: clang::5.0
-ARCHS = armv7 armv7s arm64
-DEBUG = 0
+export TARGET = iphone:clang:latest:5.0
+export ARCHS = armv7 armv7s arm64
+export DEBUG = 0
 
 PACKAGE_VERSION = $(THEOS_PACKAGE_BASE_VERSION)
 THEOS_PACKAGE_DIR_NAME = debs
@@ -17,6 +17,7 @@ appinst_LDFLAGS += $(THEOS)/lib/libzip.a
 appinst_LIBRARIES = z
 appinst_INSTALL_PATH = /usr/bin
 appinst_CODESIGN_FLAGS = -Sappinst_entitlements.plist
+
 include $(THEOS_MAKE_PATH)/tool.mk
 
 package::

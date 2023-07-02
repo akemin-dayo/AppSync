@@ -1,6 +1,6 @@
-TARGET =: clang::5.0
-ARCHS = armv7 armv7s arm64 arm64e
-DEBUG = 0
+export TARGET = iphone:clang:latest:5.0
+export ARCHS = armv7 armv7s arm64 arm64e
+export DEBUG = 0
 
 THEOS_PACKAGE_DIR_NAME = debs
 PACKAGE_VERSION = $(THEOS_PACKAGE_BASE_VERSION)
@@ -11,6 +11,7 @@ SUBPROJECTS += AppSyncUnified-installd
 SUBPROJECTS += AppSyncUnified-FrontBoard
 SUBPROJECTS += pkg-actions
 SUBPROJECTS += asu_inject
+
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 package::
