@@ -27,11 +27,11 @@ By installing third-party modified versions of _any system tweak_ like AppSync U
 
 ## Help! I installed AppSync Unified, but it doesn't seem to be working after I resprung from Cydia/Zebra/Sileo/etc.!
 
-If AppSync Unified is not working after installation, reboot your device or run ldrestart to activate it. You will only need to do this ONCE.
+If AppSync Unified is not working after installation, please reboot your device or perform a userspace reboot (`launchctl reboot userspace`, `ldrestart`, etc.) to activate it. You will only need to do this ONCE.
 
 This issue appears to be caused by what …seems like a Cydia Substrate/Substitute bug(?) that's resurfaced from years ago, and occurs _really_ rarely, so it's an absolute nightmare of a bug. It's especially frustrating for me since I'm such a perfectionist when it comes to software development, too ww (🍍˃̶͈̀ロ˂̶͈́)੭ꠥ⁾⁾
 
-**For the curious developers among you:** AppSync Unified's `postinst` binary (see [pkg-actions.m](pkg-actions/pkg-actions.m)) restarts `installd` via `launchctl` — for some reason though, it seems like Cydia Substrate and/or Substitute doesn't always inject the dylib properly into `installd` until you run `ldrestart` or reboot.
+**For the curious developers among you:** AppSync Unified's `postinst` binary (see [pkg-actions.m](pkg-actions/pkg-actions.m)) restarts `installd` via `launchctl` — for some reason though, it seems like Cydia Substrate and/or Substitute doesn't always inject the dylib properly into `installd` when it is reloaded via `launchctl` in this way.
 
 I tried _really_ hard to determine the cause of this, but I really have no idea what could be causing this. The dylib has _long_ since been written to the filesystem by the time `postinst` was _executed_, let alone when `launchctl` was even called by `posix_spawn`.
 

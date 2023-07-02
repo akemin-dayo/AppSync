@@ -137,13 +137,13 @@ int main(int argc, const char **argv) {
 				// Construct the notification
 				CFUserNotificationRef postinstNotification = CFUserNotificationCreate(kCFAllocatorDefault, 0, 0, NULL, (__bridge CFDictionaryRef)[[NSDictionary alloc] initWithObjectsAndKeys:
 					[NSString stringWithFormat:@"%@ %@", (kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_6_0) ? @"⚠️" : @"⚠", @"IMPORTANT NOTE 🍍"], @"AlertHeader",
-					@"If AppSync Unified is not working after installation, please reboot your device or run ldrestart to fix it. You will only need to do this ONCE.", @"AlertMessage",
+					@"If AppSync Unified is not working after installation, please reboot your device or perform a userspace reboot (launchctl reboot userspace, ldrestart, etc.) to activate it. You will only need to do this ONCE.", @"AlertMessage",
 					@"Okay, I understand! (🍍•̀ω•́)୨✨", @"DefaultButtonTitle", nil]);
 
 				// Display the notification using CFUserNotificationCreateRunLoopSource so we don't block the main thread
 				CFUserNotificationCreateRunLoopSource(kCFAllocatorDefault, postinstNotification, NULL, 0);
 			}
-			printf("※ IMPORTANT NOTE: If AppSync Unified is not working after installation, please reboot your device or run ldrestart to fix it. You will only need to do this ONCE.\n");
+			printf("※ IMPORTANT NOTE: If AppSync Unified is not working after installation, please reboot your device or perform a userspace reboot (launchctl reboot userspace, ldrestart, etc.) to activate it. You will only need to do this ONCE.\n");
 		#endif
 	}
 	return 0;
