@@ -104,8 +104,8 @@ int main(int argc, const char **argv) {
 				printf("This device is /probably/ running the Phœnix jailbreak (detected iOS 9.3.x and a 32-bit CPU architecture).\n");
 				printf("Due to a bug in Phœnix, the asu_inject LaunchDaemon (which launches /usr/bin/asu_inject once upon boot) is required in order to properly inject AppSync Unified into installd.\n");
 				// This path lookup does not need to be rootless-aware for obvious reasons, but we might as well do this just in case someone decides to release a rootless jailbreak for older iOS versions (… whyever anyone would ever want to do that).
-				if (access(ROOT_PATH("/usr/bin/cynject"), F_OK) != -1) {
-					printf("Found cynject on this device!\n");
+				if (access(ROOT_PATH("/usr/bin/cynject"), X_OK) != -1) {
+					printf("Found an executable copy of cynject on this device!\n");
 					chown(ASU_INJECT_PLIST_PATH, 0, 0);
 					chmod(ASU_INJECT_PLIST_PATH, 0644);
 					printf("Unloading and stopping the asu_inject LaunchDaemon…\n");
@@ -116,7 +116,7 @@ int main(int argc, const char **argv) {
 					#endif
 				} else {
 					// Just in case.
-					printf("Unable to find cynject on this device.\n");
+					printf("Unable to find an executable copy of cynject on this device.\n");
 					printf("Removing the asu_inject LaunchDaemon…\n");
 					unlink(ASU_INJECT_PLIST_PATH);
 				}

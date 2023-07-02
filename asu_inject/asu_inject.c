@@ -63,7 +63,7 @@ static const char *determine_suitable_injector() {
 	// In general, asu_inject should not be necessary at all. It being required at all on any iOS version / jailbreak is merely a workaround for an old bug that will probably never be fixed.
 
 	// ※ TODO: ElleKit appears to lack a suitable analogue to cynject.
-	if (access(inject_criticald_path, F_OK) == 0) {
+	if (access(inject_criticald_path, X_OK) == 0) {
 		return inject_criticald_path;
 	}
 
@@ -107,8 +107,9 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
-	if ((access(cynject_path, F_OK) == -1) && (access(inject_criticald_path, F_OK) == -1)) {
-		printf("Unable to locate any suitable injectors! (cynject, inject_criticald)\n");
+	if ((access(cynject_path, X_OK) == -1) && (access(inject_criticald_path, X_OK) == -1)) {
+		printf("Unable to locate any suitable injectors! (%s, %s)\n", cynject_path, inject_criticald_path);
+		printf("If you are certain that they exist on your filesystem, please make sure their filesystem permissions are set correctly and that they are executable.\n");
 		return 1;
 	}
 
