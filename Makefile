@@ -14,10 +14,12 @@ SUBPROJECTS += asu_inject
 include $(THEOS_MAKE_PATH)/aggregate.mk
 
 package::
+ifndef THEOS_PACKAGE_SCHEME
 	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-net.angelxwind.appsyncunified debs/nodelete-net.angelxwind.appsyncunified.deb
 	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-net.angelxwind.appsync70plus debs/nodelete-net.angelxwind.appsync70plus.deb
 	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-net.angelxwind.appsync60plus debs/nodelete-net.angelxwind.appsync60plus.deb
 	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-net.angelxwind.appsync50plus debs/nodelete-net.angelxwind.appsync50plus.deb
+endif
 
 clean::
 	@rm -f debs/*.deb
