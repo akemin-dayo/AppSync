@@ -21,8 +21,5 @@ ifndef THEOS_PACKAGE_SCHEME
 	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-net.angelxwind.appsync50plus debs/nodelete-net.angelxwind.appsync50plus.deb
 endif
 
-clean::
-	@rm -f debs/*.deb
-
 after-install::
 	install.exec "killall backboardd; exit 0" # backboardd doesn't exist on iOS 5, but that's fine since… FrontBoard also doesn't exist on iOS 5. ;P
