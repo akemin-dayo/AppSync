@@ -22,5 +22,5 @@ include $(THEOS_MAKE_PATH)/tool.mk
 
 package::
 ifndef THEOS_PACKAGE_SCHEME
-	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip transitional/nodelete-com.linusyang.appinst debs/nodelete-com.linusyang.appinst.deb
+	@$(_THEOS_PLATFORM_DPKG_DEB) -b -Zgzip "transitional/nodelete-com.linusyang.appinst" "$(THEOS_PACKAGE_DIR_NAME)/nodelete-com.linusyang.appinst.deb"
 endif
