@@ -1,8 +1,9 @@
-#import <CoreFoundation/CoreFoundation.h>
 #import <CoreFoundation/CFUserNotification.h>
+#import <CoreFoundation/CoreFoundation.h>
 #import <Foundation/Foundation.h>
-#include <sys/stat.h>
+
 #include <spawn.h>
+#include <sys/stat.h>
 #include <version.h>
 
 #ifdef DEBUG

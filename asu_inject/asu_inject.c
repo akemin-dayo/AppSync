@@ -1,14 +1,14 @@
-#include <sys/cdefs.h>
-#include <sys/types.h>
-#include <sys/param.h>
-#include <mach/mach.h>
-#include <mach/boolean.h>
+#include <assert.h>
 #include <dispatch/dispatch.h>
+#include <mach/boolean.h>
+#include <mach/mach.h>
+#include <spawn.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <spawn.h>
-#include <assert.h>
+#include <sys/cdefs.h>
+#include <sys/param.h>
+#include <sys/types.h>
 
 #define DPKG_PATH "/var/lib/dpkg/info/ai.akemi.appsyncunified.list"
 

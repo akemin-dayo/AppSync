@@ -1,7 +1,8 @@
 #import <Foundation/Foundation.h>
 #import <version.h>
-#import "dump.h"
+
 #import "cdhash.h"
+#import "dump.h"
 
 // Minimal Cydia Substrate header
 typedef const void *MSImageRef;
