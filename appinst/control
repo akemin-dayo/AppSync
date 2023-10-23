@@ -3,7 +3,7 @@ Name: appinst (App Installer)
 Priority: standard
 Pre-Depends: firmware (>= 5.0)
 Depends: ai.akemi.appsyncunified (>= 5.1)
-Version: 2.1
+Version: 2.1.1
 Architecture: iphoneos-arm
 Description: A command-line IPA app installer.
 Maintainer: Karen/あけみ <karen@akemi.ai>
