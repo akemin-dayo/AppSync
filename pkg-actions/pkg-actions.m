@@ -59,7 +59,7 @@ int main(int argc, const char **argv) {
 			LOG("Running prerm…\n");
 		#endif
 		printf("AppSync Unified\n");
-		printf("Copyright (C) 2014-2023 Karen/あけみ\n");
+		printf("Copyright (C) 2014-2024 Karen/あけみ\n");
 		printf("** PLEASE DO NOT USE APPSYNC UNIFIED FOR PIRACY **\n");
 		if (access(DPKG_PATH, F_OK) == -1) {
 			printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.akemi.ai.\n");
