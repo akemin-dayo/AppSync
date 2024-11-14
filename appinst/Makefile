@@ -1,5 +1,10 @@
-export TARGET = iphone:clang:latest:16.0
-export ARCHS = arm64 arm64e
+ifeq ($(THEOS_PACKAGE_SCHEME),rootless)
+	ARCHS = arm64 arm64e
+	TARGET = iphone:clang:latest:15.0
+else
+	ARCHS = armv7 armv7s arm64 arm64e
+	TARGET = iphone:clang:latest:7.0
+endif
 export DEBUG = 0
 
 THEOS_PACKAGE_DIR_NAME = debs
