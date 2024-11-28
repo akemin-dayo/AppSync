@@ -96,7 +96,7 @@ static void inject_dylib(const char *name, pid_t pid, const char *dylib) {
 
 int main(int argc, char *argv[]) {
 	printf("asu_inject for AppSync Unified\n");
-	printf("Copyright (C) 2014-2023 Karen/あけみ\n");
+	printf("Copyright (C) 2014-2024 Karen/あけみ\n");
 	if (access(DPKG_PATH, F_OK) == -1) {
 		printf("You seem to have installed AppSync Unified from an APT repository that is not cydia.akemi.ai.\n");
 		printf("Please make sure that you download AppSync Unified from the official repository to ensure proper operation.\n");
