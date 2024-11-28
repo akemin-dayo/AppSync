@@ -15,7 +15,7 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, and 16. Open-source on [GitHub](https://github.com/akemin-dayo/AppSync)!
+# Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, and 18. Open-source on [GitHub](https://github.com/akemin-dayo/AppSync)!
 
 AppSync Unified is a tweak that allows users to freely install ad-hoc signed, fakesigned, or unsigned IPA app packages on their iOS devices that iOS would otherwise consider invalid.
 

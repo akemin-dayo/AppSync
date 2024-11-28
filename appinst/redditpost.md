@@ -14,7 +14,7 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# `appinst`, a command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, and 16.
+# `appinst`, a command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, and 18.
 
 appinst is a command-line utility that allows you to install IPA packages.
 

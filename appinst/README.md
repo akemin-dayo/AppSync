@@ -1,5 +1,5 @@
 # appinst (App Installer)
-###### A command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, and 16.
+###### A command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, and 18.
 
 ## What is appinst?
 
