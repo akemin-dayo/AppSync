@@ -15,11 +15,11 @@ Some popular use cases include:
 
 ## How do I install AppSync Unified on my jailbroken iOS device?
 
-AppSync Unified is available from **Karen's Repo: https://cydia.akemi.ai/** ([Tap here on your device to automatically add the repo!](https://cydia.akemi.ai/add.php))
+AppSync Unified is available from **Karen/あけみ's Repo: https://cydia.akemi.ai/** ([Tap here on your device to automatically add the repo!](https://cydia.akemi.ai/add.php))
 
-If you do not see AppSync Unified listed in Karen's Repo, then that just means you have another repository added that is also hosting a copy of AppSync Unified under the same package ID.
+If you do not see AppSync Unified listed in Karen/あけみ's Repo, then that just means you have another repository added that is also hosting a copy of AppSync Unified under the same package ID.
 
-**_Please_ only ever install the official, unmodified release from Karen's Repo for your own safety, and to ensure proper operation!** Third-party modified versions from other repositories can and _have_ broken various users' iOS installations in the past.
+**_Please_ only ever install the official, unmodified release from Karen/あけみ's Repo for your own safety, and to ensure proper operation!** Third-party modified versions from other repositories can and _have_ broken various users' iOS installations in the past.
 
 By installing third-party modified versions of _any system tweak_ like AppSync Unified, you are putting the security and stability of your iOS device and your personal data at risk.
 
