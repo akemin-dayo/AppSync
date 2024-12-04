@@ -18,11 +18,17 @@
 #define L_LAUNCHDAEMON_PATH "/Library/LaunchDaemons"
 #define SL_LAUNCHDAEMON_PATH "/System" L_LAUNCHDAEMON_PATH
 
-#define INSTALLD_PLIST_PATH_L ROOT_PATH(L_LAUNCHDAEMON_PATH) "/com.apple.mobile.installd.plist"
+static const char *l_launch_daemon_path;
+
+static char l_installd_plist_path[PATH_MAX];
+static const char *installd_plist_path = "/com.apple.mobile.installd.plist";
+
 #define INSTALLD_PLIST_PATH_SL SL_LAUNCHDAEMON_PATH "/com.apple.mobile.installd.plist"
 
-#define ASU_INJECT_PLIST_PATH ROOT_PATH(L_LAUNCHDAEMON_PATH) "/ai.akemi.asu_inject.plist"
-#define ASU_INJECT_PLIST_PATH_OLD ROOT_PATH(L_LAUNCHDAEMON_PATH) "/net.angelxwind.asu_inject.plist"
+static const char *asu_inject_plist_rpath = "/ai.akemi.asu_inject.plist";
+static const char *asu_inject_plist_old_rpath = "/net.angelxwind.asu_inject.plist";
+static char asu_inject_plist_path[PATH_MAX];
+static char asu_inject_plist_old_path[PATH_MAX];
 
 typedef struct __CFUserNotification *CFUserNotificationRef;
 FOUNDATION_EXTERN CFUserNotificationRef CFUserNotificationCreate(CFAllocatorRef allocator, CFTimeInterval timeout, CFOptionFlags flags, SInt32 *error, CFDictionaryRef dictionary);
@@ -52,6 +58,14 @@ static int run_launchctl(const char *path, const char *cmd, bool is_installd) {
 }
 
 int main(int argc, const char **argv) {
+	l_launch_daemon_path = ROOT_PATH(L_LAUNCHDAEMON_PATH);
+	strcpy(l_installd_plist_path, l_launch_daemon_path);
+	strcat(l_installd_plist_path, installd_plist_path);
+	strcpy(asu_inject_plist_path, l_launch_daemon_path);
+	strcat(asu_inject_plist_path, asu_inject_plist_rpath);
+	strcpy(asu_inject_plist_old_path, l_launch_daemon_path);
+	strcat(asu_inject_plist_old_path, asu_inject_plist_old_rpath);
+
 	@autoreleasepool {
 		#ifdef POSTINST
 			LOG("Running postinst…\n");
@@ -72,16 +86,16 @@ int main(int argc, const char **argv) {
 
 		if ((kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_8_0) && (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_10_0)) {
 			#ifdef POSTINST
-				if (access(INSTALLD_PLIST_PATH_L, F_OK) == -1) {
+				if (access(l_installd_plist_path, F_OK) == -1) {
 					// NOTE: I thought about removing the symlinked installd plist in the prerm, but decided against it as such an operation has a non-zero chance of somehow going horribly wrong in some kind of edge case.
 					printf("This device appears to be running iOS 8 or 9. Creating a symbolic link to the installd LaunchDaemon…\n");
-					symlink(INSTALLD_PLIST_PATH_SL, INSTALLD_PLIST_PATH_L);
+					symlink(INSTALLD_PLIST_PATH_SL, l_installd_plist_path);
 				}
 			#endif
 			printf("Unloading and stopping the symlinked installd LaunchDaemon…\n");
-			run_launchctl(INSTALLD_PLIST_PATH_L, "unload", true);
+			run_launchctl(l_installd_plist_path, "unload", true);
 			printf("Reloading and starting the symlinked installd LaunchDaemon…\n");
-			run_launchctl(INSTALLD_PLIST_PATH_L, "load", true);
+			run_launchctl(l_installd_plist_path, "load", true);
 		}
 
 		printf("Unloading and stopping the installd LaunchDaemon…\n");
@@ -89,16 +103,16 @@ int main(int argc, const char **argv) {
 		printf("Reloading and starting the installd LaunchDaemon…\n");
 		run_launchctl(INSTALLD_PLIST_PATH_SL, "load", true);
 
-		if (access(ASU_INJECT_PLIST_PATH_OLD, F_OK) != -1) {
+		if (access(asu_inject_plist_old_path, F_OK) != -1) {
 			// This case should never happen, but I'm adding this check here just in case someone somehow has their system in such a weird state.
 			printf("Found an old version of the asu_inject LaunchDaemon, unloading and removing it…\n");
-			run_launchctl(ASU_INJECT_PLIST_PATH_OLD, "unload", false);
-			unlink(ASU_INJECT_PLIST_PATH_OLD);
+			run_launchctl(asu_inject_plist_old_path, "unload", false);
+			unlink(asu_inject_plist_old_path);
 		}
 
 		#ifdef __LP64__
 			printf("Removing the asu_inject LaunchDaemon, as it's not required on this system.\n");
-			unlink(ASU_INJECT_PLIST_PATH);
+			unlink(asu_inject_plist_path);
 		#else
 			if ((kCFCoreFoundationVersionNumber >= kCFCoreFoundationVersionNumber_iOS_9_3) && (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iOS_10_0)) {
 				printf("This device is /probably/ running the Phœnix jailbreak (detected iOS 9.3.x and a 32-bit CPU architecture).\n");
@@ -106,19 +120,19 @@ int main(int argc, const char **argv) {
 				// This path lookup does not need to be rootless-aware for obvious reasons, but we might as well do this just in case someone decides to release a rootless jailbreak for older iOS versions (… whyever anyone would ever want to do that).
 				if (access(ROOT_PATH("/usr/bin/cynject"), X_OK) != -1) {
 					printf("Found an executable copy of cynject on this device!\n");
-					chown(ASU_INJECT_PLIST_PATH, 0, 0);
-					chmod(ASU_INJECT_PLIST_PATH, 0644);
+					chown(asu_inject_plist_path, 0, 0);
+					chmod(asu_inject_plist_path, 0644);
 					printf("Unloading and stopping the asu_inject LaunchDaemon…\n");
-					run_launchctl(ASU_INJECT_PLIST_PATH, "unload", false);
+					run_launchctl(asu_inject_plist_path, "unload", false);
 					#ifdef POSTINST
 						printf("Reloading and starting the asu_inject LaunchDaemon…\n");
-						run_launchctl(ASU_INJECT_PLIST_PATH, "load", false);
+						run_launchctl(asu_inject_plist_path, "load", false);
 					#endif
 				} else {
 					// Just in case.
 					printf("Unable to find an executable copy of cynject on this device.\n");
 					printf("Removing the asu_inject LaunchDaemon…\n");
-					unlink(ASU_INJECT_PLIST_PATH);
+					unlink(asu_inject_plist_path);
 				}
 			}
 		#endif
@@ -145,6 +159,7 @@ int main(int argc, const char **argv) {
 			}
 			printf("※ IMPORTANT NOTE: If AppSync Unified is not working after installation, please reboot your device or perform a userspace reboot (launchctl reboot userspace, ldrestart, etc.) to activate it. You will only need to do this ONCE.\n");
 		#endif
+
 	}
 	return 0;
 }
