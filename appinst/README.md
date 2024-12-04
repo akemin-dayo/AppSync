@@ -1,5 +1,5 @@
 # appinst (App Installer)
-###### A command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, and 16.
+###### A command-line IPA app installer for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, and 18.
 
 ## What is appinst?
 
@@ -13,11 +13,11 @@ AppSync Unified is required as a dependency in order to install ad-hoc signed, f
 
 ## How do I install appinst on my jailbroken iOS device?
 
-appinst is available from **Karen's Repo: https://cydia.akemi.ai/** ([Tap here on your device to automatically add the repo!](https://cydia.akemi.ai/add.php))
+appinst is available from **Karen/あけみ's Repo: https://cydia.akemi.ai/** ([Tap here on your device to automatically add the repo!](https://cydia.akemi.ai/add.php))
 
-If you do not see appinst listed in Karen's Repo, then that just means you have another repository added that is also hosting a copy of appinst under the same package ID.
+If you do not see appinst listed in Karen/あけみ's Repo, then that just means you have another repository added that is also hosting a copy of appinst under the same package ID.
 
-**_Please_ only ever install the official, unmodified release from Karen's Repo for your own safety, and to ensure proper operation!**
+**_Please_ only ever install the official, unmodified release from Karen/あけみ's Repo for your own safety, and to ensure proper operation!**
 
 ---
 

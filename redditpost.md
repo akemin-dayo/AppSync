@@ -8,18 +8,14 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# Changelog for 112.0 ([full changelog](https://cydia.akemi.ai/?page/ai.akemi.appsyncunified-changelog))
+# Changelog for 116.0 ([full changelog](https://cydia.akemi.ai/?page/ai.akemi.appsyncunified-changelog))
 
-* Added support for all iOS versions up to iOS 16.5.1.
-* Added support for "rootless" mode jailbreaks. ※ Users using the Dopamine jailbreak may encounter issues.
-* Made many internal refactors and improvements to AppSync Unified's code and associated tooling.
-* Improved the functionality of `asu_inject` and added support for `inject_criticald` for wider jailbreak support. (※ No jailbreak that uses `inject_criticald` requires the use of `asu_inject` — this is simply a futureproofing measure.)
-* Improved documentation regarding userspace reboot.
-* Removed the `arm64e` architecture slice from binaries that did not need one.
+* Added support for all iOS versions up to iOS 18.2.
+* No other changes were made to AppSync Unified's functionality or code.
 
 ---
 
-# Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, and 16. Open-source on [GitHub](https://github.com/akemin-dayo/AppSync)!
+# Unified AppSync dynamic library for iOS 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, and 18. Open-source on [GitHub](https://github.com/akemin-dayo/AppSync)!
 
 AppSync Unified is a tweak that allows users to freely install ad-hoc signed, fakesigned, or unsigned IPA app packages on their iOS devices that iOS would otherwise consider invalid.
 

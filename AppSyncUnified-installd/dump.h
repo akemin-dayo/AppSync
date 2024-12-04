@@ -4,7 +4,6 @@
 extern "C" {
 #endif
 
-
 int copyEntitlementDataFromFile(const char *path, CFMutableDataRef output);
 
 enum {
