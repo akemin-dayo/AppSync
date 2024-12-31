@@ -2,7 +2,7 @@
 #include <dispatch/dispatch.h>
 #include <mach/boolean.h>
 #include <mach/mach.h>
-#include <rootless.h>
+#include <roothide.h>
 #include <spawn.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -11,15 +11,15 @@
 #include <sys/param.h>
 #include <sys/types.h>
 
-#define DPKG_PATH ROOT_PATH("/var/lib/dpkg/info/ai.akemi.appsyncunified.list")
+#define DPKG_PATH jbroot("/var/lib/dpkg/info/ai.akemi.appsyncunified.list")
 
 extern char ***_NSGetEnviron(void);
 extern int proc_listallpids(void *, int);
 extern int proc_pidpath(int, void *, uint32_t);
 
-static const char *cynject_path = ROOT_PATH("/usr/bin/cynject");
-static const char *inject_criticald_path = ROOT_PATH("/electra/inject_criticald");
-static const char *dylib_path = ROOT_PATH("/Library/MobileSubstrate/DynamicLibraries/AppSyncUnified-installd.dylib");
+#define cynject_path  jbroot("/usr/bin/cynject")
+#define inject_criticald_path  jbroot("/electra/inject_criticald")
+#define dylib_path  jbroot("/Library/MobileSubstrate/DynamicLibraries/AppSyncUnified-installd.dylib")
 static const char *dispatch_queue_name = NULL;
 static const char *process_name = "installd";
 static int process_buffer_size = 4096;

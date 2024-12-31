@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <dlfcn.h>
 #import <objc/runtime.h>
-#import <rootless.h>
+#import <roothide.h>
 #import "zip.h"
 
 #ifdef DEBUG
@@ -14,7 +14,7 @@
 #define kAppTypeKey @"ApplicationType"
 #define kRandomLength 32
 
-#define DPKG_PATH ROOT_PATH("/var/lib/dpkg/info/ai.akemi.appinst.list")
+#define DPKG_PATH jbroot("/var/lib/dpkg/info/ai.akemi.appinst.list")
 
 static const NSString *kRandomAlphanumeric = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
