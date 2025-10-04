@@ -8,9 +8,9 @@ Any support is _greatly_ appreciated, but donations are *not* and will *never* b
 
 ---
 
-# Changelog for 116.0 ([full changelog](https://cydia.akemi.ai/?page/ai.akemi.appsyncunified-changelog))
+# Changelog for 118.0 ([full changelog](https://cydia.akemi.ai/?page/ai.akemi.appsyncunified-changelog))
 
-* Added support for all iOS versions up to iOS 18.2.
+* Added support for all iOS versions up to iOS 18.7.1.
 * No other changes were made to AppSync Unified's functionality or code.
 
 ---
